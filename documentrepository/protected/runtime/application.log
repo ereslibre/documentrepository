@@ -1,0 +1,32 @@
+2011/09/24 00:16:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "u".' in /home/ereslibre/public_html/yii/framework/web/CWebApplication.php:281
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('u')
+#1 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#2 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=u
+2011/09/24 00:16:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user".' in /home/ereslibre/public_html/yii/framework/web/CWebApplication.php:281
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('user')
+#1 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#2 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=user
+2011/09/24 00:17:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "u".' in /home/ereslibre/public_html/yii/framework/web/CWebApplication.php:281
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('u')
+#1 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#2 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=u
+2011/09/24 00:17:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/".' in /home/ereslibre/public_html/yii/framework/web/CWebApplication.php:281
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('user/')
+#1 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#2 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=user/
+2011/09/24 00:17:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/admin".' in /home/ereslibre/public_html/yii/framework/web/CWebApplication.php:281
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('user/admin')
+#1 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#2 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=user/admin
+2011/09/24 00:26:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'documentrepository.tbl_user' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_user`.
+in /home/ereslibre/public_html/yii/documentrepository/index.php (13)

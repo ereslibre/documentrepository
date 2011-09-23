@@ -1,19 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "tbl_users".
+ * This is the model class for table "tbl_user".
  *
- * The followings are the available columns in table 'tbl_users':
+ * The followings are the available columns in table 'tbl_user':
  * @property integer $id
  * @property string $username
  * @property string $password
  * @property string $salt
  */
-class Users extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Users the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +25,7 @@ class Users extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_users';
+		return 'tbl_user';
 	}
 
 	/**
@@ -36,11 +36,11 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, salt', 'required'),
-			array('username, password, salt', 'length', 'max'=>255),
+			array('username, password', 'required'),
+			array('username, password', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password, salt', 'safe', 'on'=>'search'),
+			array('id, username, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +64,6 @@ class Users extends CActiveRecord
 			'id' => 'ID',
 			'username' => 'Username',
 			'password' => 'Password',
-			'salt' => 'Salt',
 		);
 	}
 
@@ -82,7 +81,6 @@ class Users extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
-		$criteria->compare('salt',$this->salt,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

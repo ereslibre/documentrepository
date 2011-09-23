@@ -29,8 +29,12 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+// 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')), ###
+// 				array('label'=>'Contact', 'url'=>array('/site/contact')), ###
+				array('label'=>'Create Document', 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Create Character', 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Create Collective', 'url'=>array('collective/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Create Event', 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
