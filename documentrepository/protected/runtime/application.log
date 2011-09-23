@@ -30,3 +30,23 @@ Stack trace:
 #3 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=user/admin
 2011/09/24 00:26:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'documentrepository.tbl_user' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_user`.
 in /home/ereslibre/public_html/yii/documentrepository/index.php (13)
+2011/09/24 01:42:25 [error] [exception.CException] exception 'CException' with message 'Property "CDbCriteria.username" is not defined.' in /home/ereslibre/public_html/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /home/ereslibre/public_html/yii/framework/db/schema/CDbCriteria.php(153): CComponent->__set('username', 'admin')
+#1 /home/ereslibre/public_html/yii/framework/db/schema/CDbCommandBuilder.php(460): CDbCriteria->__construct(Array)
+#2 /home/ereslibre/public_html/yii/framework/db/ar/CActiveRecord.php(1395): CDbCommandBuilder->createCriteria(Array, Array)
+#3 /home/ereslibre/public_html/yii/documentrepository/protected/components/UserIdentity.php(16): CActiveRecord->find(Array)
+#4 /home/ereslibre/public_html/yii/documentrepository/protected/models/LoginForm.php(52): UserIdentity->authenticate()
+#5 /home/ereslibre/public_html/yii/framework/validators/CInlineValidator.php(39): LoginForm->authenticate('password', Array)
+#6 /home/ereslibre/public_html/yii/framework/validators/CValidator.php(192): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#7 /home/ereslibre/public_html/yii/framework/base/CModel.php(152): CValidator->validate(Object(LoginForm), NULL)
+#8 /home/ereslibre/public_html/yii/documentrepository/protected/controllers/SiteController.php(88): CModel->validate()
+#9 /home/ereslibre/public_html/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#10 /home/ereslibre/public_html/yii/framework/web/CController.php(300): CInlineAction->runWithParams(Array)
+#11 /home/ereslibre/public_html/yii/framework/web/CController.php(278): CController->runAction(Object(CInlineAction))
+#12 /home/ereslibre/public_html/yii/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(277): CController->run('login')
+#14 /home/ereslibre/public_html/yii/framework/web/CWebApplication.php(136): CWebApplication->runController('site/login')
+#15 /home/ereslibre/public_html/yii/framework/base/CApplication.php(158): CWebApplication->processRequest()
+#16 /home/ereslibre/public_html/yii/documentrepository/index.php(13): CApplication->run()
+#17 {main} REQUEST_URI=/~ereslibre/yii/documentrepository/index.php?r=site/login
