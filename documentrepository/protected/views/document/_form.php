@@ -1,4 +1,9 @@
-<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+<?php
+	Yii::app()->clientScript->registerCoreScript('jquery');
+	$baseUrl = Yii::app()->baseUrl; 
+	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/document.js');
+?>
 
 <div class="form">
 
@@ -31,7 +36,14 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<?php echo CHtml::activeDropDownList(Character::model(), 'id', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt'=>'Select Character...')); ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<div style="display: none">
+			<?php echo CHtml::activeDropDownList(Character::model(), 'id', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('name' => 'characters')); ?>
+		</div>
+		<div id="selectedcharacters">
+		</div>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
