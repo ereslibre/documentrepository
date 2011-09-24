@@ -16,6 +16,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -24,7 +25,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document'); ?>
-		<?php echo $form->textField($model,'document',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->fileField($model,'document',array('size'=>60)); ?>
 		<?php echo $form->error($model,'document'); ?>
 	</div>
 
