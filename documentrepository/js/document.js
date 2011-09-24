@@ -30,8 +30,8 @@ function addCharacter()
 	}
 
 	var character = cloneCharacters(i);
-	character.attr('id', 'character' + i);
-	character.attr('name', 'character' + i);
+	character.attr('id', 'Document_character' + i);
+	character.attr('name', 'Document[character' + i + ']');
 
 	var character_wrapper = $('<div></div>');
 	character_wrapper.append(character);
