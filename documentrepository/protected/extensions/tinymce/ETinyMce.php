@@ -57,7 +57,7 @@ class ETinyMce extends CInputWidget
     *
     * @var string
     */
-   private $language = 'en';
+   private $language = 'es';
 
    /**
     * You can use one of these predefined setups for the editor:
@@ -111,7 +111,9 @@ class ETinyMce extends CInputWidget
     *
     * @var array
     */
-   private $options = array();
+   private $options = array('theme_advanced_buttons1' => 'separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor,bullist,numlist,separator,outdent,indent,separator,undo,redo,separator',
+                            'theme_advanced_buttons2' => 'hr,removeformat,visualaid,separator,sub,sup,separator,charmap',
+                            'theme_advanced_buttons3' => '');
 
    /**
     * Plugins to load. The more you load the slower is the first load.
@@ -208,7 +210,7 @@ class ETinyMce extends CInputWidget
     *
     * @var boolean
     */
-   private $useSwitch = true;
+   private $useSwitch = false;
 
    /**
     * Use cookies to "learn" the editor's mode?

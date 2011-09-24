@@ -20,6 +20,7 @@ function addCharacter()
 	if (i > 0) {
 		var selected = $('#Document_character' + (i - 1)).val();
 		if (selected == '') {
+			alert('Please, select the character you want to add');
 			return;
 		}
 		var removeMe;
@@ -46,7 +47,7 @@ function addCharacter()
 
 	var character_wrapper = $('<div></div>');
 	character_wrapper.append(character);
-	character_wrapper.append('<div id="characterlabel' + i + '"></div>');
+	character_wrapper.append('<div style="display: inline;" id="characterlabel' + i + '"></div>');
 	character_wrapper.append('<a style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter();" href="javascript:void(0);">Remove</a>');
 	character_wrapper.append('<a id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
 

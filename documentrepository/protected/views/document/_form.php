@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
+		<label>Characters</label>
 		<div style="display: none">
 			<?php echo CHtml::activeDropDownList(Character::model(), 'id', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('name'   => 'characters',
 																																			   'prompt' => 'Select Character...')); ?>
