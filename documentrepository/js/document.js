@@ -54,6 +54,7 @@ function addCharacter_(selected)
 			alert('Please, select the character you want to add');
 			return;
 		}
+		$('#Document_character' + lasti).val(selected);
 		var removeMe;
 		$.each(available_characters, function(i, v) {
 			if (v == selected) {

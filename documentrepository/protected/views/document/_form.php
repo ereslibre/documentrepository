@@ -59,3 +59,9 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script>
+	<?php if (!empty($characters)) { ?>
+		current_characters = (<?php echo json_encode($characters) ?>);
+	<?php } ?>
+</script>
