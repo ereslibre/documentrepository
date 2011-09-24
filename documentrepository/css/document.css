@@ -1,14 +1,17 @@
 div.spacing
 {
-	margin: 10px;
+	padding-left: 10px;
 }
 
-div.minwidth
+div.characterbox
 {
-	width: 200px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 300px;
 }
 
 a.action
 {
-	margin: 10px;
+	padding-left: 10px;
 }
+
