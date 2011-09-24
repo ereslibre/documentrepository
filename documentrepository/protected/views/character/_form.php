@@ -29,7 +29,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'biography'); ?>
-		<?php echo $form->textArea($model,'biography',array('rows'=>6, 'cols'=>50)); ?>
+		<?php $this->widget('application.extensions.tinymce.ETinyMce',
+							array('name' => 'Character[biography]',
+							'value' => $model->biography)); ?>
 		<?php echo $form->error($model,'biography'); ?>
 	</div>
 

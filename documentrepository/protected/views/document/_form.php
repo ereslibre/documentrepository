@@ -25,7 +25,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php $this->widget('application.extensions.tinymce.ETinyMce',
+							array('name' => 'Document[description]',
+							'value' => $model->description)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
