@@ -47,10 +47,9 @@ function updateCharacterSelection()
 	addCharacterSelection();
 }
 
-function addCharacter()
+function addCharacter_(selected)
 {
 	if (i > 0) {
-		var selected = $('#Document_character' + lasti).val();
 		if (selected == '') {
 			alert('Please, select the character you want to add');
 			return;
@@ -71,6 +70,11 @@ function addCharacter()
 	}
 
 	addCharacterSelection();
+}
+
+function addCharacter()
+{
+	addCharacter_($('#Document_character' + lasti).val());
 }
 
 function removeCharacter(i)
