@@ -21,6 +21,5 @@ $this->menu=array(
 		'id',
 		'document',
 		'name',
-		'description',
 	),
 )); ?>

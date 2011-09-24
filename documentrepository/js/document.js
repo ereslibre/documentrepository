@@ -1,4 +1,5 @@
 var i = 0;
+var lasti = 0;
 var available_characters = new Array();
 
 function cloneCharacters()
@@ -15,10 +16,41 @@ function cloneCharacters()
 	return characters;
 }
 
+function addCharacterSelection()
+{
+	if (!(available_characters.length - 1)) {
+		return;
+	}
+
+	var character = cloneCharacters();
+	character.attr('id', 'Document_character' + i);
+	character.attr('name', 'Document[character' + i + ']');
+
+	var character_wrapper = $('<div id="characterwrapper' + i + '" class="spacing characterbox"></div>');
+	character_wrapper.append(character);
+	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + i + '"></div>');
+	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter(' + i + ');" href="javascript:void(0);">Remove</a>');
+	character_wrapper.append('<a class="action" id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
+
+	$('#selectedcharacters').append(character_wrapper);
+
+	$('#Document_character' + i).show();
+	$('#addcharacter' + i).show();
+
+	lasti = i;
+	++i;
+}
+
+function updateCharacterSelection()
+{
+	$('#characterwrapper' + lasti).remove();
+	addCharacterSelection();
+}
+
 function addCharacter()
 {
 	if (i > 0) {
-		var selected = $('#Document_character' + (i - 1)).val();
+		var selected = $('#Document_character' + lasti).val();
 		if (selected == '') {
 			alert('Please, select the character you want to add');
 			return;
@@ -30,29 +62,15 @@ function addCharacter()
 			}
 		});
 		available_characters.splice(removeMe, 1);
-		$('#Document_character' + (i - 1)).hide();
-		$('#addcharacter' + (i - 1)).hide();
-		$('#removecharacter' + (i - 1)).show();
-		$('#characterlabel' + (i - 1)).html($('#Document_character' + (i - 1) + ' option:selected').text());
-		$('#characterlabel' + (i - 1)).show();
+		$('#Document_character' + lasti).hide();
+		$('#addcharacter' + lasti).hide();
+		$('#removecharacter' + lasti).show();
+		$('#characterlabel' + lasti).html($('#Document_character' + lasti + ' option:selected').text());
+		$('#characterlabel' + lasti).attr('character', $('#Document_character' + lasti + ' option:selected').val());
+		$('#characterlabel' + lasti).show();
 	}
 
-	if (!(available_characters.length - 1)) {
-		return;
-	}
-
-	var character = cloneCharacters();
-	character.attr('id', 'Document_character' + i);
-	character.attr('name', 'Document[character' + i + ']');
-
-	var character_wrapper = $('<div class="spacing characterbox"></div>');
-	character_wrapper.append(character);
-	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + i + '"></div>');
-	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter();" href="javascript:void(0);">Remove</a>');
-	character_wrapper.append('<a class="action" id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
-
-	$('#selectedcharacters').append(character_wrapper);
-	++i;
+	addCharacterSelection();
 }
 
 $(document).ready(function() {
@@ -62,6 +80,13 @@ $(document).ready(function() {
 	addCharacter();
 });
 
-function removeCharacter()
+function removeCharacter(i)
 {
+	available_characters.push($('#characterlabel' + i).attr('character'));
+	$('#characterwrapper' + i).remove();
+	if (available_characters.length == 2) {
+		addCharacterSelection();
+	} else {
+		updateCharacterSelection();
+	}
 }
