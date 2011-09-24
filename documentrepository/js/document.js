@@ -1,16 +1,24 @@
 var i = 0;
 var available_characters = new Array();
 
-function cloneCharacters(i)
+function cloneCharacters()
 {
 	var characters = $('#characters').clone();
+	characters.each(function(i, select) {
+			$('option', this).each(function() {
+				if ($.inArray(this.value, available_characters) == -1) {
+					$(this).remove();
+				}
+			})
+		}
+	);
 	return characters;
 }
 
 function addCharacter()
 {
 	if (i > 0) {
-		var selected = $('#character' + (i - 1)).val();
+		var selected = $('#Document_character' + (i - 1)).val();
 		var removeMe;
 		$.each(available_characters, function(i, v) {
 			if (v == selected) {
@@ -18,10 +26,10 @@ function addCharacter()
 			}
 		});
 		available_characters.splice(removeMe, 1);
-		$('#character' + (i - 1)).hide();
+		$('#Document_character' + (i - 1)).hide();
 		$('#addcharacter' + (i - 1)).hide();
 		$('#removecharacter' + (i - 1)).show();
-		$('#characterlabel' + (i - 1)).html($('#character' + (i - 1) + ' option:selected').text());
+		$('#characterlabel' + (i - 1)).html($('#Document_character' + (i - 1) + ' option:selected').text());
 		$('#characterlabel' + (i - 1)).show();
 	}
 
@@ -29,7 +37,7 @@ function addCharacter()
 		return;
 	}
 
-	var character = cloneCharacters(i);
+	var character = cloneCharacters();
 	character.attr('id', 'Document_character' + i);
 	character.attr('name', 'Document[character' + i + ']');
 
