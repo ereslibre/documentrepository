@@ -86,4 +86,21 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave()
+	{
+		$salt = $this->generateKey();
+		$this->setAttribute('salt', $salt);
+		$this->setAttribute('password', sha1("{$this->password}$salt"));
+		return parent::beforeSave();
+	}
+
+	private function generateKey($length = 16) {
+		$key = '';
+		for($i = 0; $i < $length; $i ++) {
+			$key .= chr(mt_rand(33, 126));
+		}
+		return $key;
+	}
+
 }
