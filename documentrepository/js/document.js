@@ -19,6 +19,9 @@ function addCharacter()
 {
 	if (i > 0) {
 		var selected = $('#Document_character' + (i - 1)).val();
+		if (selected == '') {
+			return;
+		}
 		var removeMe;
 		$.each(available_characters, function(i, v) {
 			if (v == selected) {
@@ -33,7 +36,7 @@ function addCharacter()
 		$('#characterlabel' + (i - 1)).show();
 	}
 
-	if (!available_characters.length) {
+	if (!(available_characters.length - 1)) {
 		return;
 	}
 
@@ -57,3 +60,7 @@ $(document).ready(function() {
 	});
 	addCharacter();
 });
+
+function removeCharacter()
+{
+}
