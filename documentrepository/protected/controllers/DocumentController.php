@@ -65,19 +65,13 @@ class DocumentController extends Controller
 		if(isset($_POST['Document']))
 		{
 			$model->attributes=$_POST['Document'];
-			$attributes = $_POST['Document'];
 			if($model->save()) {
-				foreach ($attributes as $attribute => &$value) {
-					// Check for characters
-					if (preg_match('/character\d+/', $attribute)) {
-						if (empty($value)) {
-							continue;
-						}
-						$documentCharacter = new DocumentCharacter;
-						$documentCharacter->attributes = array('character_id' => $value,
-															   'document_id'  => $model->id);
-						$documentCharacter->save();
-					}
+				$characters = $this->identifyCharacters($_POST['Document']);
+				foreach ($characters as $character) {
+					$documentCharacter = new DocumentCharacter;
+					$documentCharacter->attributes = array('character_id' => $character,
+														   'document_id'  => $model->id);
+					$documentCharacter->save();
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -191,5 +185,18 @@ class DocumentController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	private function identifyCharacters($attributes) {
+		$characters = Array();
+		foreach ($attributes as $attribute => &$value) {
+			if (preg_match('/character\d+/', $attribute)) {
+				if (empty($value)) {
+					continue;
+				}
+				$characters[] = $value;
+			}
+		}
+		return $characters;
 	}
 }
