@@ -4,6 +4,11 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerScriptFile($baseUrl . '/js/document.js');
 	$cs->registerCssFile($baseUrl . '/css/document.css');
+	if ($model->id) {
+		$cs->registerScriptFile($baseUrl . '/js/document_update.js');
+	} else {
+		$cs->registerScriptFile($baseUrl . '/js/document_create.js');
+	}
 ?>
 
 <div class="form">

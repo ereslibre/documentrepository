@@ -73,13 +73,6 @@ function addCharacter()
 	addCharacterSelection();
 }
 
-$(document).ready(function() {
-	$('#characters option').each(function() {
-		available_characters.push($(this).val());
-	});
-	addCharacter();
-});
-
 function removeCharacter(i)
 {
 	available_characters.push($('#characterlabel' + i).attr('character'));

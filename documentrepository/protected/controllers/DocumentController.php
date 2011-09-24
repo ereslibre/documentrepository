@@ -96,6 +96,14 @@ class DocumentController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$characters = Array();
+		$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
+																 'condition' => 'document_id = :document_id',
+																 'params'    => array(':document_id' => $model->id)));
+
+		foreach ($characters_ as $character) {
+			$characters[] = Character::model()->findByPk($character->character_id);
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -108,7 +116,8 @@ class DocumentController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'      => $model,
+			'characters' => $characters,
 		));
 	}
 
