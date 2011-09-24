@@ -68,10 +68,7 @@ class DocumentController extends Controller
 			if($model->save()) {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				foreach ($characters as $character) {
-					$documentCharacter = new DocumentCharacter;
-					$documentCharacter->attributes = array('character_id' => $character,
-														   'document_id'  => $model->id);
-					$documentCharacter->save();
+					$this->createDocumentCharacter($character, $model->id);
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -105,8 +102,31 @@ class DocumentController extends Controller
 		if(isset($_POST['Document']))
 		{
 			$model->attributes=$_POST['Document'];
-			if($model->save())
+			if($model->save()) {
+				$characters = $this->identifyCharacters($_POST['Document']);
+
+				// Check what characters to remove
+				$dbCharacters = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
+																		  'condition' => 'document_id = :document_id',
+																		  'params'    => array(':document_id' => $model->id)));
+				foreach ($dbCharacters as $character) {
+					if (!in_array($character->character_id, $characters)) {
+						$this->removeDocumentCharacter($character->character_id, $model->id);
+					}
+				}
+
+				// Check what characters to add
+				foreach ($characters as $character) {
+					$exists = DocumentCharacter::model()->find(array('select'    => '*',
+																	 'condition' => 'character_id = :character_id and document_id = :document_id',
+																	 'params'    => array(':character_id' => $character,
+																						  ':document_id'  => $model->id)));
+					if (!$exists) {
+						$this->createDocumentCharacter($character, $model->id);
+					}
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -198,5 +218,22 @@ class DocumentController extends Controller
 			}
 		}
 		return $characters;
+	}
+
+	private function createDocumentCharacter($character_id, $document_id)
+	{
+		$documentCharacter = new DocumentCharacter;
+		$documentCharacter->attributes = array('character_id' => $character_id,
+											   'document_id'  => $document_id);
+		$documentCharacter->save();
+	}
+
+	private function removeDocumentCharacter($character_id, $document_id)
+	{
+		$documentCharacter = DocumentCharacter::model()->find(array('select'    => '*',
+																	'condition' => 'character_id = :character_id and document_id = :document_id',
+																	'params'    => array(':character_id' => $character_id,
+																						 ':document_id'  => $document_id)));
+		$documentCharacter->delete();
 	}
 }
