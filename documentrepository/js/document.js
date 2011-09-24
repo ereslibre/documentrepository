@@ -45,11 +45,11 @@ function addCharacter()
 	character.attr('id', 'Document_character' + i);
 	character.attr('name', 'Document[character' + i + ']');
 
-	var character_wrapper = $('<div></div>');
+	var character_wrapper = $('<div class="spacing"></div>');
 	character_wrapper.append(character);
-	character_wrapper.append('<div style="display: inline;" id="characterlabel' + i + '"></div>');
-	character_wrapper.append('<a style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter();" href="javascript:void(0);">Remove</a>');
-	character_wrapper.append('<a id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
+	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + i + '"></div>');
+	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter();" href="javascript:void(0);">Remove</a>');
+	character_wrapper.append('<a class="action" id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
 
 	$('#selectedcharacters').append(character_wrapper);
 	++i;

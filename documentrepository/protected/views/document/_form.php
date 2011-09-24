@@ -3,6 +3,7 @@
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
 	$cs->registerScriptFile($baseUrl . '/js/document.js');
+	$cs->registerCssFile($baseUrl . '/css/document.css');
 ?>
 
 <div class="form">
