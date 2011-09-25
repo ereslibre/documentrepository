@@ -9,7 +9,7 @@ CREATE TABLE tbl_character(
 
 CREATE TABLE tbl_position(
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255)
+    name VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE tbl_character_alias(
