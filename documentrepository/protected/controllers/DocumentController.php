@@ -68,8 +68,10 @@ class DocumentController extends Controller
 		{
 			$model->attributes=$_POST['Document'];
 			$document = CUploadedFile::getInstance($model, 'document');
-			$documentRepository = Yii::app()->params->documentRepository;
-			$model->document = sha1_file($document->getTempName());
+			if ($document) {
+				$documentRepository = Yii::app()->params->documentRepository;
+				$model->document = sha1_file($document->getTempName());
+			}
 			if($model->save()) {
 				$document->saveAs("$documentRepository/{$model->document}");
 				$characters = $this->identifyCharacters($_POST['Document']);
