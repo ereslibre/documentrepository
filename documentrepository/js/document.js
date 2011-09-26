@@ -26,7 +26,7 @@ function addCharacterSelection()
 	character.attr('id', 'Document_character' + i);
 	character.attr('name', 'Document[character' + i + ']');
 
-	var character_wrapper = $('<div id="characterwrapper' + i + '" class="spacing characterbox"></div>');
+	var character_wrapper = $('<div id="characterwrapper' + i + '" class="characterbox"></div>');
 	character_wrapper.append(character);
 	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + i + '"></div>');
 	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter(' + i + ');" href="javascript:void(0);">Remove</a>');
