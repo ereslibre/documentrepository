@@ -27,6 +27,7 @@
 		<?php echo $form->labelEx($model,'document'); ?>
 		<?php echo $form->fileField($model,'document',array('size'=>60)); ?>
 		<?php echo $form->error($model,'document'); ?>
+		<div id="preview"></div>
 	</div>
 
 	<div class="row">

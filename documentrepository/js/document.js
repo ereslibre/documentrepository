@@ -88,3 +88,27 @@ function removeCharacter(i)
 		updateCharacterSelection();
 	}
 }
+
+function previewImage(evt)
+{
+	var files = evt.target.files;
+	for (var i = 0, f; f = files[i]; ++i) {
+		if (!f.type.match('image.*')) {
+			$('#preview').html('Selected file is not an image');
+			return;
+		}
+		var reader = new FileReader();
+		reader.onload = (function(file) {
+			return function(e) {
+				var preview = $('<img class="thumb" src="' + e.target.result + '" title="' + file.name + '"/>');
+				$('#preview').html(preview);
+			};
+		})(f);
+		reader.readAsDataURL(f);
+	}
+}
+
+function globalInit(id)
+{
+	$('#Document_' + id).change(function(evt) { previewImage(evt); });
+}
