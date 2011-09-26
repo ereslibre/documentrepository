@@ -62,6 +62,8 @@ class DocumentController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$characters = Array();
+
 		if(isset($_POST['Document']))
 		{
 			$documentRepository = Yii::app()->params->documentRepository;
@@ -76,11 +78,14 @@ class DocumentController extends Controller
 					$this->createDocumentCharacter($character, $model->id);
 				}
 				$this->redirect(array('view','id'=>$model->id));
+			} else {
+				$characters = $this->identifyCharacters($_POST['Document']);
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'characters' => $characters,
 		));
 	}
 
