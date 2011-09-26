@@ -11,7 +11,7 @@
  */
 class User extends CActiveRecord
 {
-    public $repeatpassword;
+	public $repeatpassword;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -40,9 +40,9 @@ class User extends CActiveRecord
 		return array(
 			array('username, password, repeatpassword', 'required'),
 			array('username, password, repeatpassword', 'length', 'max'=>255),
-            array('username', 'filter', 'filter'=>'strtolower'),
-            array('password', 'compare', 'compareAttribute' => 'repeatpassword'),
-            array('username', 'unique'),
+			array('username', 'filter', 'filter'=>'strtolower'),
+			array('password', 'compare', 'compareAttribute' => 'repeatpassword'),
+			array('username', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, username', 'safe', 'on'=>'search'),
@@ -69,7 +69,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'username' => 'Username',
 			'password' => 'Password',
-            'repeatpassword' => 'Repeat Password',
+			'repeatpassword' => 'Repeat Password',
 		);
 	}
 
