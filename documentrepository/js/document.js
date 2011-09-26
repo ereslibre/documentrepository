@@ -110,5 +110,8 @@ function previewImage(evt)
 
 function globalInit(id)
 {
-	$('#Document_' + id).change(function(evt) { previewImage(evt); });
+	$('#Document_' + id).change(function(evt) {
+		$('#preview').html('<img src="images/loading.gif"/>');
+		previewImage(evt);
+	});
 }
