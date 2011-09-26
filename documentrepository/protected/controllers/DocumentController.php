@@ -63,6 +63,7 @@ class DocumentController extends Controller
 		// $this->performAjaxValidation($model);
 
 		$characters = Array();
+		$collectives = Array();
 
 		if(isset($_POST['Document']))
 		{
@@ -73,21 +74,31 @@ class DocumentController extends Controller
 				$model->document = sha1_file($document->getTempName());
 			}
 			if($model->save()) {
+				// Save document on filesystem
 				$document->saveAs("$documentRepository/{$model->document}");
+				// Create characters
 				$characters = $this->identifyCharacters($_POST['Document']);
 				foreach ($characters as $character) {
 					$this->createDocumentCharacter($character, $model->id);
 				}
+				// Create collectives
+				$collectives = $this->identifyCollectives($_POST['Document']);
+				foreach ($collectives as $collective) {
+					$this->createDocumentCollective($collective, $model->id);
+				}
+				// Everything OK. Redirect
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$characters = $this->identifyCharacters($_POST['Document']);
+				$collectives = $this->identifyCollectives($_POST['Document']);
 			}
 			$model->document = $document;
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
-			'characters' => $characters,
+			'model'       => $model,
+			'characters'  => $characters,
+			'collectives' => $collectives
 		));
 	}
 
@@ -99,14 +110,6 @@ class DocumentController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
-																 'condition' => 'document_id = :document_id',
-																 'params'    => array(':document_id' => $model->id)));
-
-		$characters = Array();
-		foreach ($characters_ as &$character) {
-			$characters[] = $character->character_id;
-		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -116,34 +119,64 @@ class DocumentController extends Controller
 			$model->attributes=$_POST['Document'];
 			if($model->save()) {
 				$characters = $this->identifyCharacters($_POST['Document']);
+				$collectives = $this->identifyCollectives($_POST['Document']);
 
-				// Check what characters to remove
-				$dbCharacters = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
-																		  'condition' => 'document_id = :document_id',
-																		  'params'    => array(':document_id' => $model->id)));
-				foreach ($dbCharacters as $character) {
-					if (!in_array($character->character_id, $characters)) {
-						$this->removeDocumentCharacter($character->character_id, $model->id);
+				// Characters
+				{
+					// Check what characters to remove
+					$dbCharacters = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
+																			'condition' => 'document_id = :document_id',
+																			'params'    => array(':document_id' => $model->id)));
+					foreach ($dbCharacters as $character) {
+						if (!in_array($character->character_id, $characters)) {
+							$this->removeDocumentCharacter($character->character_id, $model->id);
+						}
+					}
+
+					// Check what characters to add
+					foreach ($characters as $character) {
+						$exists = DocumentCharacter::model()->find(array('select'    => '*',
+																		'condition' => 'character_id = :character_id and document_id = :document_id',
+																		'params'    => array(':character_id' => $character,
+																							':document_id'  => $model->id)));
+						if (!$exists) {
+							$this->createDocumentCharacter($character, $model->id);
+						}
 					}
 				}
 
-				// Check what characters to add
-				foreach ($characters as $character) {
-					$exists = DocumentCharacter::model()->find(array('select'    => '*',
-																	 'condition' => 'character_id = :character_id and document_id = :document_id',
-																	 'params'    => array(':character_id' => $character,
-																						  ':document_id'  => $model->id)));
-					if (!$exists) {
-						$this->createDocumentCharacter($character, $model->id);
+				// Collectives
+				{
+					// Check what collectives to remove
+					$dbCollectives = DocumentCollective::model()->findAll(array('select'    => 'collective_id',
+																				'condition' => 'document_id = :document_id',
+																				'params'    => array(':document_id' => $model->id)));
+					foreach ($dbCollectives as $collective) {
+						if (!in_array($collective->collective_id, $collectives)) {
+							$this->removeDocumentCollective($collective->collective_id, $model->id);
+						}
+					}
+
+					// Check what collectives to add
+					foreach ($collectives as $collective) {
+						$exists = DocumentCollective::model()->find(array('select'    => '*',
+																		  'condition' => 'collective_id = :collective_id and document_id = :document_id',
+																		  'params'    => array(':collective_id' => $collective,
+																							   ':document_id'  => $model->id)));
+						if (!$exists) {
+							$this->createDocumentCollective($collective, $model->id);
+						}
 					}
 				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
 		$this->render('update',array(
-			'model'      => $model,
-			'characters' => $characters,
+			'model'       => $model,
+			'characters'  => $characters,
+			'collectives' => $collectives,
 		));
 	}
 
@@ -232,6 +265,19 @@ class DocumentController extends Controller
 		return $characters;
 	}
 
+	private function identifyCollectives($attributes) {
+		$collectives = Array();
+		foreach ($attributes as $attribute => &$value) {
+			if (preg_match('/collective\d+/', $attribute)) {
+				if (empty($value)) {
+					continue;
+				}
+				$collectives[] = $value;
+			}
+		}
+		return $collectives;
+	}
+
 	private function createDocumentCharacter($character_id, $document_id)
 	{
 		$documentCharacter = new DocumentCharacter;
@@ -247,5 +293,22 @@ class DocumentController extends Controller
 																	'params'    => array(':character_id' => $character_id,
 																						 ':document_id'  => $document_id)));
 		$documentCharacter->delete();
+	}
+
+	private function createDocumentCollective($collective_id, $document_id)
+	{
+		$documentCollective = new DocumentCollective;
+		$documentCollective->attributes = array('collective_id' => $collective_id,
+											    'document_id'   => $document_id);
+		$documentCollective->save();
+	}
+
+	private function removeDocumentCollective($collective_id, $document_id)
+	{
+		$documentCollective = DocumentCollective::model()->find(array('select'    => '*',
+																	  'condition' => 'collective_id = :collective_id and document_id = :document_id',
+																	  'params'    => array(':collective_id' => $collective_id,
+																						   ':document_id'   => $document_id)));
+		$documentCollective->delete();
 	}
 }

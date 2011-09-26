@@ -54,6 +54,16 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<label>Collectives</label>
+		<div style="display: none">
+			<?php echo CHtml::activeDropDownList(Collective::model(), 'id', CHtml::listData(Collective::model()->findAll(), 'id', 'name'), array('name'   => 'collectives',
+																																			     'prompt' => 'Select Collective...')); ?>
+		</div>
+		<div id="selectedcollectives">
+		</div>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
