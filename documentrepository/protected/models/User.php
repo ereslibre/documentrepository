@@ -11,6 +11,8 @@
  */
 class User extends CActiveRecord
 {
+    public $repeatpassword;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return User the static model class
@@ -36,11 +38,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password', 'required'),
-			array('username, password', 'length', 'max'=>255),
+			array('username, password, repeatpassword', 'required'),
+			array('username, password, repeatpassword', 'length', 'max'=>255),
+            array('username', 'filter', 'filter'=>'strtolower'),
+            array('password', 'compare', 'compareAttribute' => 'repeatpassword'),
+            array('username', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password', 'safe', 'on'=>'search'),
+			array('id, username', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +69,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'username' => 'Username',
 			'password' => 'Password',
+            'repeatpassword' => 'Repeat Password',
 		);
 	}
 

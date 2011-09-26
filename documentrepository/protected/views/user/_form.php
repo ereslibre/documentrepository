@@ -21,6 +21,12 @@
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'repeatpassword'); ?>
+        <?php echo $form->passwordField($model,'repeatpassword',array('size'=>60,'maxlength'=>255)); ?>
+        <?php echo $form->error($model,'repeatpassword'); ?>
+    </div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
