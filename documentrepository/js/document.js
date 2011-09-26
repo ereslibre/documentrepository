@@ -89,8 +89,18 @@ function removeCharacter(i)
 	}
 }
 
+function fileAPIAvailable()
+{
+	return window.File && window.FileReader && window.FileList;
+}
+
 function previewImage(evt)
 {
+	if (!fileAPIAvailable()) {
+		$('#preview').html('Your browser does not support image previews');
+		return;
+	}
+
 	var files = evt.target.files;
 	for (var i = 0, f; f = files[i]; ++i) {
 		if (!f.type.match('image.*')) {
