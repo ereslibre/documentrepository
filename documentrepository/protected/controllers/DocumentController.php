@@ -66,13 +66,12 @@ class DocumentController extends Controller
 
 		if(isset($_POST['Document']))
 		{
-			$documentRepository = Yii::app()->params->documentRepository;
-			$document = $_FILES['Document']['tmp_name']['document'];
-			$documentName = sha1_file($document);
-			$repoDocument = copy($document, "$documentRepository/$documentName");
-			$_POST['Document']['document'] = $documentName;
 			$model->attributes=$_POST['Document'];
+			$model->document = CUploadedFile::getInstance($model, 'document');
 			if($model->save()) {
+				$documentRepository = Yii::app()->params->documentRepository;
+				$documentName = sha1_file($model->document->getTempName());
+				$model->document->saveAs("$documentRepository/$documentName");
 				$characters = $this->identifyCharacters($_POST['Document']);
 				foreach ($characters as $character) {
 					$this->createDocumentCharacter($character, $model->id);
