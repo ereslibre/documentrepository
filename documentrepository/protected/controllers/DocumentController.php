@@ -67,11 +67,11 @@ class DocumentController extends Controller
 		if(isset($_POST['Document']))
 		{
 			$model->attributes=$_POST['Document'];
-			$model->document = CUploadedFile::getInstance($model, 'document');
+			$document = CUploadedFile::getInstance($model, 'document');
+			$documentRepository = Yii::app()->params->documentRepository;
+			$model->document = sha1_file($document->getTempName());
 			if($model->save()) {
-				$documentRepository = Yii::app()->params->documentRepository;
-				$documentName = sha1_file($model->document->getTempName());
-				$model->document->saveAs("$documentRepository/$documentName");
+				$document->saveAs("$documentRepository/{$model->document}");
 				$characters = $this->identifyCharacters($_POST['Document']);
 				foreach ($characters as $character) {
 					$this->createDocumentCharacter($character, $model->id);
@@ -80,6 +80,7 @@ class DocumentController extends Controller
 			} else {
 				$characters = $this->identifyCharacters($_POST['Document']);
 			}
+			$model->document = $document;
 		}
 
 		$this->render('create',array(
