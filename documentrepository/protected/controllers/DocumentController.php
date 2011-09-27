@@ -114,9 +114,6 @@ class DocumentController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		$characters = Array();
-		$collectives = Array();
-
 		if(isset($_POST['Document']))
 		{
 			$model->attributes=$_POST['Document'];
@@ -173,23 +170,26 @@ class DocumentController extends Controller
 				}
 
 				$this->redirect(array('view','id'=>$model->id));
+			} else {
+				$characters = $this->identifyCharacters($_POST['Document']);
+				$collectives = $this->identifyCollectives($_POST['Document']);
 			}
-		}
+		} else {
+			$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
+																	'condition' => 'document_id = :document_id',
+																	'params'    => array(':document_id' => $model->id)));
+			$characters = Array();
+			foreach ($characters_ as &$character) {
+				$characters[] = $character->character_id;
+			}
 
-		$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
-																 'condition' => 'document_id = :document_id',
-																 'params'    => array(':document_id' => $model->id)));
-		$characters = Array();
-		foreach ($characters_ as &$character) {
-			$characters[] = $character->character_id;
-		}
-
-		$collectives_ = DocumentCollective::model()->findAll(array('select'    => 'collective_id',
-																   'condition' => 'document_id = :document_id',
-																   'params'    => array(':document_id' => $model->id)));
-		$collectives = Array();
-		foreach ($collectives_ as &$collective) {
-			$collectives[] = $collective->collective_id;
+			$collectives_ = DocumentCollective::model()->findAll(array('select'    => 'collective_id',
+																	'condition' => 'document_id = :document_id',
+																	'params'    => array(':document_id' => $model->id)));
+			$collectives = Array();
+			foreach ($collectives_ as &$collective) {
+				$collectives[] = $collective->collective_id;
+			}
 		}
 
 		$this->render('update',array(
