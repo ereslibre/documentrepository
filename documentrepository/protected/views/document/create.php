@@ -12,4 +12,6 @@ $this->menu=array(
 
 <h1>Create Document</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'characters'=>$characters)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,
+											   'characters'=>$characters,
+											   'collectives'=>$collectives)); ?>

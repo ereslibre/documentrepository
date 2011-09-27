@@ -1,6 +1,9 @@
-var i = 0;
-var lasti = 0;
+var characteri = 0;
+var characterlasti = 0;
+var collectivei = 0;
+var collectivelasti = 0;
 var available_characters = new Array();
+var available_collectives = new Array();
 
 function cloneCharacters()
 {
@@ -23,38 +26,38 @@ function addCharacterSelection()
 	}
 
 	var character = cloneCharacters();
-	character.attr('id', 'Document_character' + i);
-	character.attr('name', 'Document[character' + i + ']');
+	character.attr('id', 'Document_character' + characteri);
+	character.attr('name', 'Document[character' + characteri + ']');
 
-	var character_wrapper = $('<div id="characterwrapper' + i + '" class="characterbox"></div>');
+	var character_wrapper = $('<div id="characterwrapper' + characteri + '" class="characterbox"></div>');
 	character_wrapper.append(character);
-	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + i + '"></div>');
-	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + i + '" onclick="removeCharacter(' + i + ');" href="javascript:void(0);">Remove</a>');
-	character_wrapper.append('<a class="action" id="addcharacter' + i + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
+	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + characteri + '"></div>');
+	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + characteri + '" onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a>');
+	character_wrapper.append('<a class="action" id="addcharacter' + characteri + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
 
 	$('#selectedcharacters').append(character_wrapper);
 
-	$('#Document_character' + i).show();
-	$('#addcharacter' + i).show();
+	$('#Document_character' + characteri).show();
+	$('#addcharacter' + characteri).show();
 
-	lasti = i;
-	++i;
+	characterlasti = characteri;
+	++characteri;
 }
 
 function updateCharacterSelection()
 {
-	$('#characterwrapper' + lasti).remove();
+	$('#characterwrapper' + characterlasti).remove();
 	addCharacterSelection();
 }
 
 function addCharacter_(selected)
 {
-	if (i > 0) {
+	if (characteri > 0) {
 		if (selected == '') {
 			alert('Please, select the character you want to add');
 			return;
 		}
-		$('#Document_character' + lasti).val(selected);
+		$('#Document_character' + characterlasti).val(selected);
 		var removeMe;
 		$.each(available_characters, function(i, v) {
 			if (v == selected) {
@@ -62,12 +65,12 @@ function addCharacter_(selected)
 			}
 		});
 		available_characters.splice(removeMe, 1);
-		$('#Document_character' + lasti).hide();
-		$('#addcharacter' + lasti).hide();
-		$('#removecharacter' + lasti).show();
-		$('#characterlabel' + lasti).html($('#Document_character' + lasti + ' option:selected').text());
-		$('#characterlabel' + lasti).attr('character', $('#Document_character' + lasti + ' option:selected').val());
-		$('#characterlabel' + lasti).show();
+		$('#Document_character' + characterlasti).hide();
+		$('#addcharacter' + characterlasti).hide();
+		$('#removecharacter' + characterlasti).show();
+		$('#characterlabel' + characterlasti).html($('#Document_character' + characterlasti + ' option:selected').text());
+		$('#characterlabel' + characterlasti).attr('character', $('#Document_character' + characterlasti + ' option:selected').val());
+		$('#characterlabel' + characterlasti).show();
 	}
 
 	addCharacterSelection();
@@ -75,7 +78,7 @@ function addCharacter_(selected)
 
 function addCharacter()
 {
-	addCharacter_($('#Document_character' + lasti).val());
+	addCharacter_($('#Document_character' + characterlasti).val());
 }
 
 function removeCharacter(i)
@@ -88,6 +91,97 @@ function removeCharacter(i)
 		updateCharacterSelection();
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function cloneCollectives()
+{
+	var collectives = $('#collectives').clone();
+	collectives.each(function(i, select) {
+			$('option', this).each(function() {
+				if ($.inArray(this.value, available_collectives) == -1) {
+					$(this).remove();
+				}
+			})
+		}
+	);
+	return collectives;
+}
+
+function addCollectiveSelection()
+{
+	if (!(available_collectives.length - 1)) {
+		return;
+	}
+
+	var collective = cloneCollectives();
+	collective.attr('id', 'Document_collective' + collectivei);
+	collective.attr('name', 'Document[collective' + collectivei + ']');
+
+	var collective_wrapper = $('<div id="collectivewrapper' + collectivei + '" class="characterbox"></div>');
+	collective_wrapper.append(collective);
+	collective_wrapper.append('<div class="minwidth" style="display: inline;" id="collectivelabel' + collectivei + '"></div>');
+	collective_wrapper.append('<a class="action" style="display: none;" id="removecollective' + collectivei + '" onclick="removeCollective(' + collectivei + ');" href="javascript:void(0);">Remove</a>');
+	collective_wrapper.append('<a class="action" id="addcollective' + collectivei + '" onclick="addCollective();" href="javascript:void(0);">Add</a>');
+
+	$('#selectedcollectives').append(collective_wrapper);
+
+	$('#Document_collective' + collectivei).show();
+	$('#addcollective' + collectivei).show();
+
+	collectivelasti = collectivei;
+	++collectivei;
+}
+
+function updateCollectiveSelection()
+{
+	$('#collectivewrapper' + collectivelasti).remove();
+	addCollectiveSelection();
+}
+
+function addCollective_(selected)
+{
+	if (collectivei > 0) {
+		if (selected == '') {
+			alert('Please, select the collective you want to add');
+			return;
+		}
+		$('#Document_collective' + collectivelasti).val(selected);
+		var removeMe;
+		$.each(available_collectives, function(i, v) {
+			if (v == selected) {
+				removeMe = i;
+			}
+		});
+		available_collectives.splice(removeMe, 1);
+		$('#Document_collective' + collectivelasti).hide();
+		$('#addcollective' + collectivelasti).hide();
+		$('#removecollective' + collectivelasti).show();
+		$('#collectivelabel' + collectivelasti).html($('#Document_collective' + collectivelasti + ' option:selected').text());
+		$('#collectivelabel' + collectivelasti).attr('collective', $('#Document_collective' + collectivelasti + ' option:selected').val());
+		$('#collectivelabel' + collectivelasti).show();
+	}
+
+	addCollectiveSelection();
+}
+
+function addCollective()
+{
+	addCollective_($('#Document_collective' + collectivelasti).val());
+}
+
+function removeCollective(i)
+{
+	available_collectives.push($('#collectivelabel' + i).attr('collective'));
+	$('#collectivewrapper' + i).remove();
+	if (available_collectives.length == 2) {
+		addCollectiveSelection();
+	} else {
+		updateCollectiveSelection();
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function fileAPIAvailable()
 {

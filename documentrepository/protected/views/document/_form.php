@@ -76,4 +76,7 @@
 	<?php if (!empty($characters)) { ?>
 		current_characters = (<?php echo json_encode($characters) ?>);
 	<?php } ?>
+	<?php if (!empty($collectives)) { ?>
+		current_collectives = (<?php echo json_encode($collectives) ?>);
+	<?php } ?>
 </script>
