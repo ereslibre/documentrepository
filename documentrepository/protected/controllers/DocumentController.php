@@ -380,9 +380,9 @@ class DocumentController extends Controller
 	private function removeDocumentInstitution($institution_id, $document_id)
 	{
 		$documentInstitution = DocumentInstitution::model()->find(array('select'    => '*',
-																	  'condition' => 'institution_id = :institution_id and document_id = :document_id',
-																	  'params'    => array(':institution_id' => $institution_id,
-																						   ':document_id'    => $document_id)));
+																		'condition' => 'institution_id = :institution_id and document_id = :document_id',
+																		'params'    => array(':institution_id' => $institution_id,
+																							 ':document_id'    => $document_id)));
 		$documentInstitution->delete();
 	}
 
