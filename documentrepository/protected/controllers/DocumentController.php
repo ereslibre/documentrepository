@@ -64,6 +64,7 @@ class DocumentController extends Controller
 
 		$characters = Array();
 		$institutions = Array();
+		$events = Array();
 
 		if(isset($_POST['Document']))
 		{
@@ -86,19 +87,25 @@ class DocumentController extends Controller
 				foreach ($institutions as $institution) {
 					$this->createDocumentInstitution($institution, $model->id);
 				}
+				$events = $this->identifyEvents($_POST['Document']);
+				foreach ($events as $event) {
+					$this->createDocumentEvent($event, $model->id);
+				}
 				// Everything OK. Redirect
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
+				$events = $this->identifyEvents($_POST['Document']);
 			}
 			$model->document = $document;
 		}
 
 		$this->render('create',array(
-			'model'       => $model,
-			'characters'  => $characters,
-			'institutions' => $institutions
+			'model'        => $model,
+			'characters'   => $characters,
+			'institutions' => $institutions,
+			'events'       => $events
 		));
 	}
 
@@ -120,6 +127,7 @@ class DocumentController extends Controller
 			if($model->save()) {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
+				$events = $this->identifyEvents($_POST['Document']);
 
 				// Characters
 				{
@@ -169,10 +177,35 @@ class DocumentController extends Controller
 					}
 				}
 
+				// Events
+				{
+					// Check what events to remove
+					$dbEvents = DocumentEvent::model()->findAll(array('select'    => 'event_id',
+																	  'condition' => 'document_id = :document_id',
+																	  'params'    => array(':document_id' => $model->id)));
+					foreach ($dbEvents as $event) {
+						if (!in_array($event->event_id, $events)) {
+							$this->removeDocumentEvent($event->event_id, $model->id);
+						}
+					}
+
+					// Check what events to add
+					foreach ($events as $event) {
+						$exists = DocumentEvent::model()->find(array('select'    => '*',
+																	 'condition' => 'event_id = :event_id and document_id = :document_id',
+																	 'params'    => array(':event_id' => $event,
+																						  ':document_id'  => $model->id)));
+						if (!$exists) {
+							$this->createDocumentEvent($event, $model->id);
+						}
+					}
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
+				$events = $this->identifyEvents($_POST['Document']);
 			}
 		} else {
 			$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
@@ -190,12 +223,21 @@ class DocumentController extends Controller
 			foreach ($institutions_ as &$institution) {
 				$institutions[] = $institution->institution_id;
 			}
+
+			$events_ = DocumentEvent::model()->findAll(array('select'    => 'event_id',
+															 'condition' => 'document_id = :document_id',
+															 'params'    => array(':document_id' => $model->id)));
+			$events = Array();
+			foreach ($events_ as &$event) {
+				$events[] = $event->event_id;
+			}
 		}
 
 		$this->render('update',array(
-			'model'       => $model,
-			'characters'  => $characters,
+			'model'        => $model,
+			'characters'   => $characters,
 			'institutions' => $institutions,
+			'events'       => $events
 		));
 	}
 
@@ -297,6 +339,19 @@ class DocumentController extends Controller
 		return $institutions;
 	}
 
+	private function identifyEvents($attributes) {
+		$events = Array();
+		foreach ($attributes as $attribute => &$value) {
+			if (preg_match('/event\d+/', $attribute)) {
+				if (empty($value)) {
+					continue;
+				}
+				$events[] = $value;
+			}
+		}
+		return $events;
+	}
+
 	private function createDocumentCharacter($character_id, $document_id)
 	{
 		$documentCharacter = new DocumentCharacter;
@@ -327,7 +382,24 @@ class DocumentController extends Controller
 		$documentInstitution = DocumentInstitution::model()->find(array('select'    => '*',
 																	  'condition' => 'institution_id = :institution_id and document_id = :document_id',
 																	  'params'    => array(':institution_id' => $institution_id,
-																						   ':document_id'   => $document_id)));
+																						   ':document_id'    => $document_id)));
 		$documentInstitution->delete();
+	}
+
+	private function createDocumentEvent($event_id, $document_id)
+	{
+		$documentEvent = new DocumentEvent;
+		$documentEvent->attributes = array('event_id'    => $event_id,
+										   'document_id' => $document_id);
+		$documentEvent->save();
+	}
+
+	private function removeDocumentEvent($event_id, $document_id)
+	{
+		$documentEvent = DocumentEvent::model()->find(array('select'    => '*',
+															'condition' => 'event_id = :event_id and document_id = :document_id',
+															'params'    => array(':event_id'    => $event_id,
+																				 ':document_id' => $document_id)));
+		$documentEvent->delete();
 	}
 }

@@ -64,6 +64,16 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<label>Events</label>
+		<div style="display: none">
+			<?php echo CHtml::activeDropDownList(Event::model(), 'id', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('name'   => 'events',
+																																	   'prompt' => 'Select Event...')); ?>
+		</div>
+		<div id="selectedevents">
+		</div>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
@@ -78,5 +88,8 @@
 	<?php } ?>
 	<?php if (!empty($institutions)) { ?>
 		current_institutions = (<?php echo json_encode($institutions) ?>);
+	<?php } ?>
+	<?php if (!empty($events)) { ?>
+		current_events = (<?php echo json_encode($events) ?>);
 	<?php } ?>
 </script>

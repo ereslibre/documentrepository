@@ -2,8 +2,11 @@ var characteri = 0;
 var characterlasti = 0;
 var institutioni = 0;
 var institutionlasti = 0;
+var eventi = 0;
+var eventlasti = 0;
 var available_characters = new Array();
 var available_institutions = new Array();
+var available_events = new Array();
 
 function cloneCharacters()
 {
@@ -179,6 +182,95 @@ function removeInstitution(i)
 	} else {
 		updateInstitutionSelection();
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function cloneEvents()
+{
+    var events = $('#events').clone();
+    events.each(function(i, select) {
+            $('option', this).each(function() {
+                if ($.inArray(this.value, available_events) == -1) {
+                    $(this).remove();
+                }
+            })
+        }
+    );
+    return events;
+}
+
+function addEventSelection()
+{
+    if (!(available_events.length - 1)) {
+        return;
+    }
+
+    var event = cloneEvents();
+    event.attr('id', 'Document_event' + eventi);
+    event.attr('name', 'Document[event' + eventi + ']');
+
+    var event_wrapper = $('<div id="eventwrapper' + eventi + '" class="characterbox"></div>');
+    event_wrapper.append(event);
+    event_wrapper.append('<div class="minwidth" style="display: inline;" id="eventlabel' + eventi + '"></div>');
+    event_wrapper.append('<a class="action" style="display: none;" id="removeevent' + eventi + '" onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
+    event_wrapper.append('<a class="action" id="addevent' + eventi + '" onclick="addEvent();" href="javascript:void(0);">Add</a>');
+
+    $('#selectedevents').append(event_wrapper);
+
+    $('#Document_event' + eventi).show();
+    $('#addevent' + eventi).show();
+
+    eventlasti = eventi;
+    ++eventi;
+}
+
+function updateEventSelection()
+{
+    $('#eventwrapper' + eventlasti).remove();
+    addEventSelection();
+}
+
+function addEvent_(selected)
+{
+    if (eventi > 0) {
+        if (selected == '') {
+            alert('Please, select the event you want to add');
+            return;
+        }
+        $('#Document_event' + eventlasti).val(selected);
+        var removeMe;
+        $.each(available_events, function(i, v) {
+            if (v == selected) {
+                removeMe = i;
+            }
+        });
+        available_events.splice(removeMe, 1);
+        $('#Document_event' + eventlasti).hide();
+        $('#addevent' + eventlasti).hide();
+        $('#removeevent' + eventlasti).show();
+        $('#eventlabel' + eventlasti).html($('#Document_event' + eventlasti + ' option:selected').text());
+        $('#eventlabel' + eventlasti).attr('event', $('#Document_event' + eventlasti + ' option:selected').val());
+        $('#eventlabel' + eventlasti).show();
+    }
+
+    addEventSelection();
+}
+
+function addEvent()
+{
+    addEvent_($('#Document_event' + eventlasti).val());
+}
+
+function removeEvent(i)
+{
+    available_events.push($('#eventlabel' + i).attr('event'));
+    $('#eventwrapper' + i).remove();
+    if (available_events.length == 2) {
+        addEventSelection();
+    } else {
+        updateEventSelection();
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

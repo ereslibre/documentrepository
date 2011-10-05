@@ -6,6 +6,10 @@ $(document).ready(function() {
 	$('#institutions option').each(function() {
 		available_institutions.push($(this).val());
 	});
+	$('#events option').each(function() {
+		available_events.push($(this).val());
+	});
 	addCharacter();
 	addInstitution();
+	addEvent();
 });

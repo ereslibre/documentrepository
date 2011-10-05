@@ -8,12 +8,19 @@ $(document).ready(function() {
 	$('#institutions option').each(function() {
 		available_institutions.push($(this).val());
 	});
+	$('#events option').each(function() {
+		available_events.push($(this).val());
+	});
 	addCharacter();
 	addInstitution();
+	addEvent();
 	$.each(current_characters, function(index, value) {
 		addCharacter_(value);
 	});
 	$.each(current_institutions, function(index, value) {
 		addInstitution_(value);
+	});
+	$.each(current_events, function(index, value) {
+		addEvent_(value);
 	});
 });
