@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Collectives',
+	'Institutions',
 );
 
 $this->menu=array(
-	array('label'=>'Create Collective', 'url'=>array('create')),
-	array('label'=>'Manage Collective', 'url'=>array('admin')),
+	array('label'=>'Create Institution', 'url'=>array('create')),
+	array('label'=>'Manage Institution', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Collectives</h1>
+<h1>Institutions</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

@@ -55,12 +55,12 @@
 	</div>
 
 	<div class="row">
-		<label>Collectives</label>
+		<label>Institutions</label>
 		<div style="display: none">
-			<?php echo CHtml::activeDropDownList(Collective::model(), 'id', CHtml::listData(Collective::model()->findAll(), 'id', 'name'), array('name'   => 'collectives',
-																																			     'prompt' => 'Select Collective...')); ?>
+			<?php echo CHtml::activeDropDownList(Institution::model(), 'id', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('name'   => 'institutions',
+																																			     'prompt' => 'Select Institution...')); ?>
 		</div>
-		<div id="selectedcollectives">
+		<div id="selectedinstitutions">
 		</div>
 	</div>
 
@@ -76,7 +76,7 @@
 	<?php if (!empty($characters)) { ?>
 		current_characters = (<?php echo json_encode($characters) ?>);
 	<?php } ?>
-	<?php if (!empty($collectives)) { ?>
-		current_collectives = (<?php echo json_encode($collectives) ?>);
+	<?php if (!empty($institutions)) { ?>
+		current_institutions = (<?php echo json_encode($institutions) ?>);
 	<?php } ?>
 </script>

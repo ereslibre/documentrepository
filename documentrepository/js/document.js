@@ -1,9 +1,9 @@
 var characteri = 0;
 var characterlasti = 0;
-var collectivei = 0;
-var collectivelasti = 0;
+var institutioni = 0;
+var institutionlasti = 0;
 var available_characters = new Array();
-var available_collectives = new Array();
+var available_institutions = new Array();
 
 function cloneCharacters()
 {
@@ -94,90 +94,90 @@ function removeCharacter(i)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function cloneCollectives()
+function cloneInstitutions()
 {
-	var collectives = $('#collectives').clone();
-	collectives.each(function(i, select) {
+	var institutions = $('#institutions').clone();
+	institutions.each(function(i, select) {
 			$('option', this).each(function() {
-				if ($.inArray(this.value, available_collectives) == -1) {
+				if ($.inArray(this.value, available_institutions) == -1) {
 					$(this).remove();
 				}
 			})
 		}
 	);
-	return collectives;
+	return institutions;
 }
 
-function addCollectiveSelection()
+function addInstitutionSelection()
 {
-	if (!(available_collectives.length - 1)) {
+	if (!(available_institutions.length - 1)) {
 		return;
 	}
 
-	var collective = cloneCollectives();
-	collective.attr('id', 'Document_collective' + collectivei);
-	collective.attr('name', 'Document[collective' + collectivei + ']');
+	var institution = cloneInstitutions();
+	institution.attr('id', 'Document_institution' + institutioni);
+	institution.attr('name', 'Document[institution' + institutioni + ']');
 
-	var collective_wrapper = $('<div id="collectivewrapper' + collectivei + '" class="characterbox"></div>');
-	collective_wrapper.append(collective);
-	collective_wrapper.append('<div class="minwidth" style="display: inline;" id="collectivelabel' + collectivei + '"></div>');
-	collective_wrapper.append('<a class="action" style="display: none;" id="removecollective' + collectivei + '" onclick="removeCollective(' + collectivei + ');" href="javascript:void(0);">Remove</a>');
-	collective_wrapper.append('<a class="action" id="addcollective' + collectivei + '" onclick="addCollective();" href="javascript:void(0);">Add</a>');
+	var institution_wrapper = $('<div id="institutionwrapper' + institutioni + '" class="characterbox"></div>');
+	institution_wrapper.append(institution);
+	institution_wrapper.append('<div class="minwidth" style="display: inline;" id="institutionlabel' + institutioni + '"></div>');
+	institution_wrapper.append('<a class="action" style="display: none;" id="removeinstitution' + institutioni + '" onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a>');
+	institution_wrapper.append('<a class="action" id="addinstitution' + institutioni + '" onclick="addInstitution();" href="javascript:void(0);">Add</a>');
 
-	$('#selectedcollectives').append(collective_wrapper);
+	$('#selectedinstitutions').append(institution_wrapper);
 
-	$('#Document_collective' + collectivei).show();
-	$('#addcollective' + collectivei).show();
+	$('#Document_institution' + institutioni).show();
+	$('#addinstitution' + institutioni).show();
 
-	collectivelasti = collectivei;
-	++collectivei;
+	institutionlasti = institutioni;
+	++institutioni;
 }
 
-function updateCollectiveSelection()
+function updateInstitutionSelection()
 {
-	$('#collectivewrapper' + collectivelasti).remove();
-	addCollectiveSelection();
+	$('#institutionwrapper' + institutionlasti).remove();
+	addInstitutionSelection();
 }
 
-function addCollective_(selected)
+function addInstitution_(selected)
 {
-	if (collectivei > 0) {
+	if (institutioni > 0) {
 		if (selected == '') {
-			alert('Please, select the collective you want to add');
+			alert('Please, select the institution you want to add');
 			return;
 		}
-		$('#Document_collective' + collectivelasti).val(selected);
+		$('#Document_institution' + institutionlasti).val(selected);
 		var removeMe;
-		$.each(available_collectives, function(i, v) {
+		$.each(available_institutions, function(i, v) {
 			if (v == selected) {
 				removeMe = i;
 			}
 		});
-		available_collectives.splice(removeMe, 1);
-		$('#Document_collective' + collectivelasti).hide();
-		$('#addcollective' + collectivelasti).hide();
-		$('#removecollective' + collectivelasti).show();
-		$('#collectivelabel' + collectivelasti).html($('#Document_collective' + collectivelasti + ' option:selected').text());
-		$('#collectivelabel' + collectivelasti).attr('collective', $('#Document_collective' + collectivelasti + ' option:selected').val());
-		$('#collectivelabel' + collectivelasti).show();
+		available_institutions.splice(removeMe, 1);
+		$('#Document_institution' + institutionlasti).hide();
+		$('#addinstitution' + institutionlasti).hide();
+		$('#removeinstitution' + institutionlasti).show();
+		$('#institutionlabel' + institutionlasti).html($('#Document_institution' + institutionlasti + ' option:selected').text());
+		$('#institutionlabel' + institutionlasti).attr('institution', $('#Document_institution' + institutionlasti + ' option:selected').val());
+		$('#institutionlabel' + institutionlasti).show();
 	}
 
-	addCollectiveSelection();
+	addInstitutionSelection();
 }
 
-function addCollective()
+function addInstitution()
 {
-	addCollective_($('#Document_collective' + collectivelasti).val());
+	addInstitution_($('#Document_institution' + institutionlasti).val());
 }
 
-function removeCollective(i)
+function removeInstitution(i)
 {
-	available_collectives.push($('#collectivelabel' + i).attr('collective'));
-	$('#collectivewrapper' + i).remove();
-	if (available_collectives.length == 2) {
-		addCollectiveSelection();
+	available_institutions.push($('#institutionlabel' + i).attr('institution'));
+	$('#institutionwrapper' + i).remove();
+	if (available_institutions.length == 2) {
+		addInstitutionSelection();
 	} else {
-		updateCollectiveSelection();
+		updateInstitutionSelection();
 	}
 }
 

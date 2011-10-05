@@ -1,6 +1,6 @@
 <?php
 
-class CollectiveController extends Controller
+class InstitutionController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -57,14 +57,14 @@ class CollectiveController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Collective;
+		$model=new Institution;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Collective']))
+		if(isset($_POST['Institution']))
 		{
-			$model->attributes=$_POST['Collective'];
+			$model->attributes=$_POST['Institution'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -86,9 +86,9 @@ class CollectiveController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Collective']))
+		if(isset($_POST['Institution']))
 		{
-			$model->attributes=$_POST['Collective'];
+			$model->attributes=$_POST['Institution'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -123,7 +123,7 @@ class CollectiveController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Collective');
+		$dataProvider=new CActiveDataProvider('Institution');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -134,10 +134,10 @@ class CollectiveController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Collective('search');
+		$model=new Institution('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Collective']))
-			$model->attributes=$_GET['Collective'];
+		if(isset($_GET['Institution']))
+			$model->attributes=$_GET['Institution'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -151,7 +151,7 @@ class CollectiveController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Collective::model()->findByPk($id);
+		$model=Institution::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -163,7 +163,7 @@ class CollectiveController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='collective-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='institution-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

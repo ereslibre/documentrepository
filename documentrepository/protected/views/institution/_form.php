@@ -1,7 +1,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'collective-form',
+	'id'=>'institution-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -18,7 +18,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
-							array('name' => 'Collective[description]',
+							array('name' => 'Institution[description]',
 							'value' => $model->description)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>

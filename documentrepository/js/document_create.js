@@ -3,9 +3,9 @@ $(document).ready(function() {
 	$('#characters option').each(function() {
 		available_characters.push($(this).val());
 	});
-	$('#collectives option').each(function() {
-		available_collectives.push($(this).val());
+	$('#institutions option').each(function() {
+		available_institutions.push($(this).val());
 	});
 	addCharacter();
-	addCollective();
+	addInstitution();
 });

@@ -1,22 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "tbl_collective".
+ * This is the model class for table "tbl_institution".
  *
- * The followings are the available columns in table 'tbl_collective':
+ * The followings are the available columns in table 'tbl_institution':
  * @property integer $id
  * @property string $name
  * @property string $description
  * @property string $image
  *
  * The followings are the available model relations:
- * @property DocumentCollective[] $documentCollectives
+ * @property DocumentInstitution[] $documentInstitutions
  */
-class Collective extends CActiveRecord
+class Institution extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Collective the static model class
+	 * @return Institution the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +28,7 @@ class Collective extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_collective';
+		return 'tbl_institution';
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Collective extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'documentCollectives' => array(self::HAS_MANY, 'DocumentCollective', 'collective_id'),
+			'documentInstitutions' => array(self::HAS_MANY, 'DocumentInstitution', 'institution_id'),
 		);
 	}
 

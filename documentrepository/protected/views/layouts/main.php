@@ -32,7 +32,7 @@
 // 				array('label'=>'Search', 'url'=>array('search')),
 				array('label'=>'Create Document', 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Create Character', 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Create Collective', 'url'=>array('collective/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Create Institution', 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Create Event', 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Create Position', 'url'=>array('position/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Users', 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),

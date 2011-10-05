@@ -5,15 +5,15 @@ $(document).ready(function() {
 	$('#characters option').each(function() {
 		available_characters.push($(this).val());
 	});
-	$('#collectives option').each(function() {
-		available_collectives.push($(this).val());
+	$('#institutions option').each(function() {
+		available_institutions.push($(this).val());
 	});
 	addCharacter();
-	addCollective();
+	addInstitution();
 	$.each(current_characters, function(index, value) {
 		addCharacter_(value);
 	});
-	$.each(current_collectives, function(index, value) {
-		addCollective_(value);
+	$.each(current_institutions, function(index, value) {
+		addInstitution_(value);
 	});
 });

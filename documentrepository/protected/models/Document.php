@@ -11,7 +11,7 @@
  *
  * The followings are the available model relations:
  * @property DocumentCharacter[] $documentCharacters
- * @property DocumentCollective[] $documentCollectives
+ * @property DocumentInstitution[] $documentInstitutions
  * @property DocumentEvent[] $documentEvents
  */
 class Document extends CActiveRecord
@@ -59,7 +59,7 @@ class Document extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'documentCharacters' => array(self::HAS_MANY, 'DocumentCharacter', 'document_id'),
-			'documentCollectives' => array(self::HAS_MANY, 'DocumentCollective', 'document_id'),
+			'documentInstitutions' => array(self::HAS_MANY, 'DocumentInstitution', 'document_id'),
 			'documentEvents' => array(self::HAS_MANY, 'DocumentEvent', 'document_id'),
 		);
 	}

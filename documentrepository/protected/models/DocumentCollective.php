@@ -1,22 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "tbl_document_collective".
+ * This is the model class for table "tbl_document_institution".
  *
- * The followings are the available columns in table 'tbl_document_collective':
+ * The followings are the available columns in table 'tbl_document_institution':
  * @property integer $id
  * @property integer $document_id
- * @property integer $collective_id
+ * @property integer $institution_id
  *
  * The followings are the available model relations:
  * @property Document $document
- * @property Collective $collective
+ * @property Institution $institution
  */
-class DocumentCollective extends CActiveRecord
+class DocumentInstitution extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return DocumentCollective the static model class
+	 * @return DocumentInstitution the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +28,7 @@ class DocumentCollective extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_document_collective';
+		return 'tbl_document_institution';
 	}
 
 	/**
@@ -39,11 +39,11 @@ class DocumentCollective extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('document_id, collective_id', 'required'),
-			array('document_id, collective_id', 'numerical', 'integerOnly'=>true),
+			array('document_id, institution_id', 'required'),
+			array('document_id, institution_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, document_id, collective_id', 'safe', 'on'=>'search'),
+			array('id, document_id, institution_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +56,7 @@ class DocumentCollective extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
-			'collective' => array(self::BELONGS_TO, 'Collective', 'collective_id'),
+			'institution' => array(self::BELONGS_TO, 'Institution', 'institution_id'),
 		);
 	}
 
@@ -68,7 +68,7 @@ class DocumentCollective extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'document_id' => 'Document',
-			'collective_id' => 'Collective',
+			'institution_id' => 'Institution',
 		);
 	}
 
@@ -85,7 +85,7 @@ class DocumentCollective extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('document_id',$this->document_id);
-		$criteria->compare('collective_id',$this->collective_id);
+		$criteria->compare('institution_id',$this->institution_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

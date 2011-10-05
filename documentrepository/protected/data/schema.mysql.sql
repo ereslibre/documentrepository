@@ -29,7 +29,7 @@ CREATE TABLE tbl_character_position(
     FOREIGN KEY(position_id) REFERENCES tbl_position(id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE tbl_collective(
+CREATE TABLE tbl_institution(
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     description LONGTEXT,
@@ -60,12 +60,12 @@ CREATE TABLE tbl_document_character(
     FOREIGN KEY(character_id) REFERENCES tbl_character(id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE tbl_document_collective(
+CREATE TABLE tbl_document_institution(
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     document_id INTEGER NOT NULL,
-    collective_id INTEGER NOT NULL,
+    institution_id INTEGER NOT NULL,
     FOREIGN KEY(document_id) REFERENCES tbl_document(id) ON DELETE CASCADE,
-    FOREIGN KEY(collective_id) REFERENCES tbl_collective(id) ON DELETE CASCADE
+    FOREIGN KEY(institution_id) REFERENCES tbl_institution(id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 CREATE TABLE tbl_document_event(
@@ -82,3 +82,5 @@ CREATE TABLE tbl_user(
     password VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB;
+
+INSERT INTO tbl_user(username, password, salt) VALUES ('admin', 'b31c416ca991736f4fb5f8479b90075f63921b13', 'akepm3l!/d');
