@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	var currentTime = new Date();
-
 	$("#Character_birth_date").datepicker({
 		changeMonth: true,
 		changeYear: true,

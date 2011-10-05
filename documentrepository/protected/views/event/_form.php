@@ -1,3 +1,12 @@
+<?php
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
+	$baseUrl = Yii::app()->baseUrl;
+	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/event.js');
+	$cssCoreUrl = $cs->getCoreScriptUrl();
+	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

@@ -103,4 +103,20 @@ class Character extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave()
+	{
+		$birthDate = DateTime::createFromFormat('d/m/Y', $this->birth_date);
+		$deathDate = DateTime::createFromFormat('d/m/Y', $this->death_date);
+		$this->birth_date = date('Y-m-d', $birthDate->getTimestamp());
+		$this->death_date = date('Y-m-d', $deathDate->getTimestamp());
+		return parent::beforeSave();
+	}
+
+	protected function afterFind()
+	{
+		$this->birth_date = date('d-m-Y', strtotime($this->birth_date));
+		$this->death_date = date('d-m-Y', strtotime($this->death_date));
+		return parent::afterFind();
+	}
 }
