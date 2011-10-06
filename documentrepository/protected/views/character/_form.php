@@ -29,7 +29,12 @@
 
 	<div class="row">
 		<label>Alias</label>
-		<?php echo CHtml::activeTextField(CharacterAlias::model(), 'id', array('name' => 'alias0')); ?>
+		<div id="addedAlias">
+		</div>
+		<div id="addAlias">
+			<?php echo CHtml::activeTextField(CharacterAlias::model(), 'id', array('name' => 'Character[alias0]')); ?>
+			<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
+		</div>
 	</div>
 
 	<div class="row">
@@ -48,7 +53,7 @@
 		<?php echo $form->labelEx($model,'biography'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
 							array('name' => 'Character[biography]',
-							'value' => $model->biography)); ?>
+										'value' => $model->biography)); ?>
 		<?php echo $form->error($model,'biography'); ?>
 	</div>
 
