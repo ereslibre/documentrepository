@@ -1,24 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "tbl_document".
+ * This is the model class for table "tbl_language".
  *
- * The followings are the available columns in table 'tbl_document':
+ * The followings are the available columns in table 'tbl_language':
  * @property integer $id
- * @property string $document
- * @property string $name
- * @property string $description
+ * @property string $language
  *
  * The followings are the available model relations:
- * @property DocumentCharacter[] $documentCharacters
- * @property DocumentInstitution[] $documentInstitutions
- * @property DocumentEvent[] $documentEvents
+ * @property Document[] $documents
  */
-class Document extends CActiveRecord
+class Language extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Document the static model class
+	 * @return Language the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +26,7 @@ class Document extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_document';
+		return 'tbl_language';
 	}
 
 	/**
@@ -41,12 +37,12 @@ class Document extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('document, name', 'required'),
-			array('name, catalog', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('language', 'required'),
+			array('language', 'unique'),
+			array('language', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, document, name, catalog, description, language_id', 'safe', 'on'=>'search'),
+			array('id, language', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,9 +54,7 @@ class Document extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'documentCharacters' => array(self::HAS_MANY, 'DocumentCharacter', 'document_id'),
-			'documentInstitutions' => array(self::HAS_MANY, 'DocumentInstitution', 'document_id'),
-			'documentEvents' => array(self::HAS_MANY, 'DocumentEvent', 'document_id'),
+			'documents' => array(self::HAS_MANY, 'Document', 'language_id'),
 		);
 	}
 
@@ -71,11 +65,7 @@ class Document extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'document' => 'Document',
-			'name' => 'Name',
-			'catalog' => 'Catalog',
-			'description' => 'Description',
-			'language_id' => 'Language'
+			'language' => 'Language',
 		);
 	}
 
@@ -91,11 +81,7 @@ class Document extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('document',$this->document,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('catalog',$this->catalog,true);
-		$criteria->compare('language_id',$this->catalog,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('language',$this->language,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

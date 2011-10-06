@@ -26,13 +26,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'document'); ?>
-		<?php echo $form->fileField($model,'document'); ?>
-		<?php echo $form->error($model,'document'); ?>
-		<div id="preview"></div>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?>
@@ -44,6 +37,26 @@
 							array('name' => 'Document[description]',
 							'value' => $model->description)); ?>
 		<?php echo $form->error($model,'description'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'document'); ?>
+		<?php echo $form->fileField($model,'document'); ?>
+		<?php echo $form->error($model,'document'); ?>
+		<div id="preview"></div>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'catalog'); ?>
+		<?php echo $form->textField($model,'catalog',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'catalog'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'language'); ?>
+			<?php echo CHtml::activeDropDownList(Language::model(), 'id', CHtml::listData(Language::model()->findAll(), 'id', 'language'), array('name' => 'Document[language]',
+																																	   'prompt' => 'Select Language...')); ?>
+		<?php echo $form->error($model,'language'); ?>
 	</div>
 
 	<div class="row">

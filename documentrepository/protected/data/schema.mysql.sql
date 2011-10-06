@@ -9,7 +9,7 @@ CREATE TABLE tbl_character(
 
 CREATE TABLE tbl_position(
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL UNIQUE
 ) ENGINE = InnoDB;
 
 CREATE TABLE tbl_character_alias(
@@ -78,7 +78,7 @@ CREATE TABLE tbl_document_event(
 
 CREATE TABLE tbl_user(
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB;

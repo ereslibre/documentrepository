@@ -6,7 +6,7 @@ class m111006_004445_create_language_table extends CDbMigration
 	{
 		$this->createTable('tbl_language', array(
 			'id'       => 'pk',
-			'language' => 'string NOT NULL'
+			'language' => 'string NOT NULL UNIQUE'
 		));
 	}
 
