@@ -34,3 +34,12 @@ function globalInit(id_prefix, id)
 		previewImage(evt);
 	});
 }
+
+function datePicker(id)
+{
+	$('#' + id).datepicker({
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: 'dd/mm/yy'
+	});
+}
