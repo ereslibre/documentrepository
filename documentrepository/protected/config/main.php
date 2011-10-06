@@ -38,17 +38,12 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		// uncomment the following to enable URLs in path-format
-
-//      # API
-// 		'urlManager'=>array(
-// 			'urlFormat'=>'path',
-// 			'rules'=>array(
-// 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-// 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-// 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-// 			),
-// 		),
+		'urlManager'=>array(
+			'urlFormat'=>'path',
+			'rules'=>array(
+				'api/characters' => 'characterApi/list'
+			),
+		),
 
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=documentrepository',
