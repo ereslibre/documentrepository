@@ -65,8 +65,17 @@ class CharacterController extends Controller
 		if(isset($_POST['Character']))
 		{
 			$model->attributes=$_POST['Character'];
-			if($model->save())
+			$image = CUploadedFile::getInstance($model, 'image');
+			if ($image) {
+				$documentRepository = Yii::app()->params->documentRepository;
+				$model->image = sha1_file($image->getTempName());
+			}
+			if($model->save()) {
+				// Save image on filesystem
+				$image->saveAs("$documentRepository/{$model->image}");
 				$this->redirect(array('view','id'=>$model->id));
+			}
+			$model->image = $image;
 		}
 
 		$this->render('create',array(

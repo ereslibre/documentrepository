@@ -2,7 +2,9 @@
 	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
 	$cs->registerScriptFile($baseUrl . '/js/character.js');
+	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
 ?>
@@ -12,6 +14,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'character-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -22,6 +25,11 @@
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?>
+	</div>
+
+	<div class="row">
+		<label>Alias</label>
+		<?php echo CHtml::activeTextField(CharacterAlias::model(), 'id', array('name' => 'alias0')); ?>
 	</div>
 
 	<div class="row">
@@ -46,8 +54,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->fileField($model,'image'); ?>
 		<?php echo $form->error($model,'image'); ?>
+		<div id="preview"></div>
 	</div>
 
 	<div class="row buttons">

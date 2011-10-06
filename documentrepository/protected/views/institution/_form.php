@@ -1,8 +1,20 @@
+<?php
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
+	$baseUrl = Yii::app()->baseUrl;
+	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
+	$cs->registerScriptFile($baseUrl . '/js/institution.js');
+	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
+	$cssCoreUrl = $cs->getCoreScriptUrl();
+	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'institution-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -25,8 +37,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->fileField($model,'image'); ?>
 		<?php echo $form->error($model,'image'); ?>
+		<div id="preview"></div>
 	</div>
 
 	<div class="row buttons">

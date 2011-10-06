@@ -1,7 +1,7 @@
 var current_characters = new Array();
 
 $(document).ready(function() {
-	globalInit('document');
+	globalInit('Document', 'document');
 	$('#characters option').each(function() {
 		available_characters.push($(this).val());
 	});
