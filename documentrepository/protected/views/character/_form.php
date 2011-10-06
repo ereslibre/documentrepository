@@ -50,6 +50,20 @@
 	</div>
 
 	<div class="row">
+		<label>Positions</label>
+		<div id="addedPosition">
+		</div>
+		<div id="addPosition">
+			From: <?php echo $form->textField($model,'from_position0'); ?>
+			To: <?php echo $form->textField($model,'to_position0'); ?>
+			Position:
+			<?php echo CHtml::activeDropDownList(Position::model(), 'id', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('name' => 'Character[position0]',
+																																	   'prompt' => 'Select Position...')); ?>
+			<a href="javascript:void(0);" onclick="javascript:addPosition();">Add</a>
+		</div>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'biography'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
 							array('name' => 'Character[biography]',

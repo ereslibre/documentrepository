@@ -18,6 +18,9 @@
  */
 class Character extends CActiveRecord
 {
+	public $from_position0;
+	public $to_position0;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Character the static model class
