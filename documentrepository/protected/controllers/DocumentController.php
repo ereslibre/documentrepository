@@ -124,6 +124,11 @@ class DocumentController extends Controller
 		if(isset($_POST['Document']))
 		{
 			$model->attributes=$_POST['Document'];
+			$document = CUploadedFile::getInstance($model, 'document');
+			if ($document) {
+				$documentRepository = Yii::app()->params->documentRepository;
+				$model->document = sha1_file($document->getTempName());
+			}
 			if($model->save()) {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
@@ -207,6 +212,7 @@ class DocumentController extends Controller
 				$institutions = $this->identifyInstitutions($_POST['Document']);
 				$events = $this->identifyEvents($_POST['Document']);
 			}
+			$model->document = $document;
 		} else {
 			$characters_ = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
 																	'condition' => 'document_id = :document_id',
