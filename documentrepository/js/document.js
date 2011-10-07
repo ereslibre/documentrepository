@@ -22,6 +22,16 @@ function cloneCharacters()
 	return characters;
 }
 
+function reloadCharacters()
+{
+	$.ajax({
+		url: '/~ereslibre/yii/documentrepository/index.php/api/characters',
+		success: function(data) {
+			alert(JSON.parse(data));
+		}
+	});
+}
+
 function addCharacterSelection()
 {
 	if (!(available_characters.length - 1)) {
@@ -37,6 +47,7 @@ function addCharacterSelection()
 	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + characteri + '"></div>');
 	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + characteri + '" onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a>');
 	character_wrapper.append('<a class="action" id="addcharacter' + characteri + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
+	character_wrapper.append('<a class="action" onclick="reloadCharacters();" href="javascript:void(0);">Reload</a>');
 
 	$('#selectedcharacters').append(character_wrapper);
 
@@ -126,6 +137,7 @@ function addInstitutionSelection()
 	institution_wrapper.append('<div class="minwidth" style="display: inline;" id="institutionlabel' + institutioni + '"></div>');
 	institution_wrapper.append('<a class="action" style="display: none;" id="removeinstitution' + institutioni + '" onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a>');
 	institution_wrapper.append('<a class="action" id="addinstitution' + institutioni + '" onclick="addInstitution();" href="javascript:void(0);">Add</a>');
+	institution_wrapper.append('<a class="action" onclick="reloadInstitutions();" href="javascript:void(0);">Reload</a>');
 
 	$('#selectedinstitutions').append(institution_wrapper);
 
@@ -215,6 +227,7 @@ function addEventSelection()
     event_wrapper.append('<div class="minwidth" style="display: inline;" id="eventlabel' + eventi + '"></div>');
     event_wrapper.append('<a class="action" style="display: none;" id="removeevent' + eventi + '" onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
     event_wrapper.append('<a class="action" id="addevent' + eventi + '" onclick="addEvent();" href="javascript:void(0);">Add</a>');
+    event_wrapper.append('<a class="action" onclick="reloadEvents();" href="javascript:void(0);">Reload</a>');
 
     $('#selectedevents').append(event_wrapper);
 

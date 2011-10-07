@@ -99,12 +99,12 @@
 
 <script>
 	<?php if (!empty($characters)) { ?>
-		current_characters = (<?php echo json_encode($characters) ?>);
+		current_characters = JSON.parse('<?php echo json_encode($characters) ?>');
 	<?php } ?>
 	<?php if (!empty($institutions)) { ?>
-		current_institutions = (<?php echo json_encode($institutions) ?>);
+		current_institutions = JSON.parse('<?php echo json_encode($institutions) ?>');
 	<?php } ?>
 	<?php if (!empty($events)) { ?>
-		current_events = (<?php echo json_encode($events) ?>);
+		current_events = JSON.parse('<?php echo json_encode($events) ?>');
 	<?php } ?>
 </script>
