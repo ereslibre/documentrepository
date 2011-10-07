@@ -123,11 +123,14 @@ class DocumentController extends Controller
 
 		if(isset($_POST['Document']))
 		{
+			$oldDocument = $model->document;
 			$model->attributes=$_POST['Document'];
 			$document = CUploadedFile::getInstance($model, 'document');
 			if ($document) {
 				$documentRepository = Yii::app()->params->documentRepository;
 				$model->document = sha1_file($document->getTempName());
+			} else {
+				$model->document = $oldDocument;
 			}
 			if($model->save()) {
 				$characters = $this->identifyCharacters($_POST['Document']);
