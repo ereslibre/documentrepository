@@ -43,7 +43,7 @@ class Document extends CActiveRecord
 		return array(
 			array('document, name', 'required'),
 			array('name, catalog', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('description, language_id', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, document, name, catalog, description, language_id', 'safe', 'on'=>'search'),

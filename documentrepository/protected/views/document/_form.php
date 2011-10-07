@@ -53,10 +53,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'language'); ?>
-			<?php echo CHtml::activeDropDownList(Language::model(), 'id', CHtml::listData(Language::model()->findAll(), 'id', 'language'), array('name' => 'Document[language]',
-																																	   'prompt' => 'Select Language...')); ?>
-		<?php echo $form->error($model,'language'); ?>
+		<?php echo $form->labelEx($model,'language_id'); ?>
+			<?php echo CHtml::activeDropDownList($model, 'language_id', CHtml::listData(Language::model()->findAll(), 'id', 'language'), array('prompt' => 'Select Language...')); ?>
+		<?php echo $form->error($model,'language_id'); ?>
 	</div>
 
 	<div class="row">
