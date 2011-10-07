@@ -61,8 +61,7 @@
 	<div class="row">
 		<label>Characters</label>
 		<div style="display: none">
-			<?php echo CHtml::activeDropDownList(Character::model(), 'id', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('name'   => 'characters',
-																																			   'prompt' => 'Select Character...')); ?>
+			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Character...')); ?>
 		</div>
 		<div id="selectedcharacters">
 		</div>
@@ -71,8 +70,7 @@
 	<div class="row">
 		<label>Institutions</label>
 		<div style="display: none">
-			<?php echo CHtml::activeDropDownList(Institution::model(), 'id', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('name'   => 'institutions',
-																																			     'prompt' => 'Select Institution...')); ?>
+			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Institution...')); ?>
 		</div>
 		<div id="selectedinstitutions">
 		</div>
@@ -81,8 +79,7 @@
 	<div class="row">
 		<label>Events</label>
 		<div style="display: none">
-			<?php echo CHtml::activeDropDownList(Event::model(), 'id', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('name'   => 'events',
-																																	   'prompt' => 'Select Event...')); ?>
+			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Event...')); ?>
 		</div>
 		<div id="selectedevents">
 		</div>

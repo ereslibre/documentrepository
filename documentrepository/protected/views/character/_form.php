@@ -32,7 +32,7 @@
 		<div id="addedAlias">
 		</div>
 		<div id="addAlias">
-			<?php echo CHtml::activeTextField(CharacterAlias::model(), 'id', array('name' => 'Character[alias0]')); ?>
+			<?php echo CHtml::textField('Character[alias0]'); ?>
 			<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
 		</div>
 	</div>
@@ -57,8 +57,7 @@
 			From: <?php echo $form->textField($model,'from_position0'); ?>
 			To: <?php echo $form->textField($model,'to_position0'); ?>
 			Position:
-			<?php echo CHtml::activeDropDownList(Position::model(), 'id', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('name' => 'Character[position0]',
-																																	   'prompt' => 'Select Position...')); ?>
+			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...')); ?>
 			<a href="javascript:void(0);" onclick="javascript:addPosition();">Add</a>
 		</div>
 	</div>
