@@ -40,6 +40,7 @@ function datePicker(id)
 	$('#' + id).datepicker({
 		changeMonth: true,
 		changeYear: true,
-		dateFormat: 'dd/mm/yy'
+		dateFormat: 'dd/mm/yy',
+		writableYear: true
 	});
 }
