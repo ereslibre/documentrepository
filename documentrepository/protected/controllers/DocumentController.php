@@ -133,6 +133,11 @@ class DocumentController extends Controller
 				$model->document = $oldDocument;
 			}
 			if($model->save()) {
+				// Save document on filesystem
+				if ($document) {
+					$document->saveAs("$documentRepository/{$model->document}");
+				}
+
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
 				$events = $this->identifyEvents($_POST['Document']);

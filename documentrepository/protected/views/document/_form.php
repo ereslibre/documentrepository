@@ -41,7 +41,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document'); ?>
-		<?php echo $form->fileField($model,'document'); ?>
+		<?php
+			if ($model->id) {
+				$baseUrl = Yii::app()->request->baseUrl;
+				echo CHtml::label('Current document', 'currentdocument');
+				echo CHtml::image("$baseUrl/repository/{$model->document}", '', array('id' => 'currentdocument'));
+				echo CHtml::label('Change document', 'document');
+			}
+			echo $form->fileField($model,'document');
+		?>
 		<?php echo $form->error($model,'document'); ?>
 		<div id="preview"></div>
 	</div>
