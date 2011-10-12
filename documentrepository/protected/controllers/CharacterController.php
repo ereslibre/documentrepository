@@ -123,6 +123,67 @@ class CharacterController extends Controller
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
 
+				$aliases = $this->identifyAliases($_POST['Character']);
+				$positions = $this->identifyPositions($_POST['Character']);
+
+				// Aliases
+				{
+					// Check what aliases to remove
+					$dbAliases = CharacterAlias::model()->findAll(array('select'    => 'alias',
+																		'condition' => 'character_id = :character_id',
+																		'params'    => array(':character_id' => $model->id)));
+					foreach ($dbAliases as $alias) {
+						if (!in_array($alias->alias, $aliases)) {
+							$this->removeCharacterAlias($alias->alias, $model->id);
+						}
+					}
+
+					// Check what aliases to add
+					foreach ($aliases as $alias) {
+						$exists = CharacterAlias::model()->exists('alias = :alias and character_id = :character_id',
+																		array(':alias' => $alias,
+																			  ':character_id'  => $model->id));
+						if (!$exists) {
+							$this->createCharacterAlias($alias, $model->id);
+						}
+					}
+				}
+
+				// Positions
+				{
+					// Check what positions to remove
+					$dbPositions = CharacterPosition::model()->findAll(array('select'    => 'position_id, start_date, end_date',
+																			 'condition' => 'character_id = :character_id',
+																			 'params'    => array(':character_id' => $model->id)));
+					foreach ($dbPositions as $position) {
+						$position_ = Position::model()->findByPk($position->position_id);
+						$thisPosition = Array('position_id'   => $position->position_id,
+											  'position_name' => $position_->name,
+											  'start_date'    => $position->start_date,
+											  'end_date'      => $position->end_date);
+						if (!in_array($thisPosition, $positions)) {
+							$this->removeCharacterPosition($thisPosition, $model->id);
+						}
+					}
+
+					// Check what positions to add
+					foreach ($positions as $position) {
+						$fromDate = DateTime::createFromFormat('d/m/Y', $position['start_date']);
+						$toDate = DateTime::createFromFormat('d/m/Y', $position['end_date']);
+						$exists = CharacterPosition::model()->exists('position_id = :position_id and start_date = :start_date and end_date = :end_date and character_id = :character_id',
+																		array(':position_id'  => $position['position_id'],
+																			  ':start_date'   => date('Y-m-d', $fromDate->getTimestamp()),
+																			  ':end_date'     => date('Y-m-d', $toDate->getTimestamp()),
+																			  ':character_id' => $model->id));
+						if (!$exists) {
+							$thisPosition = Array('position_id' => $position['position_id'],
+												  'start_date'  => $position['start_date'],
+												  'end_date'    => $position['end_date']);
+							$this->createCharacterPosition($thisPosition, $model->id);
+						}
+					}
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$aliases = $this->identifyAliases($_POST['Character']);
@@ -284,20 +345,22 @@ class CharacterController extends Controller
 	private function createCharacterPosition($position, $character_id)
 	{
 		$characterPosition = new CharacterPosition;
-		$characterPosition->attributes = array('position_id'  => $position['position'],
-											   'start_date'   => $position['from'],
-											   'end_date'     => $position['to'],
+		$characterPosition->attributes = array('position_id'  => $position['position_id'],
+											   'start_date'   => $position['start_date'],
+											   'end_date'     => $position['end_date'],
 											   'character_id' => $character_id);
 		$characterPosition->save();
 	}
 
 	private function removeCharacterPosition($position, $character_id)
 	{
+		$fromDate = DateTime::createFromFormat('d/m/Y', $position['start_date']);
+		$toDate = DateTime::createFromFormat('d/m/Y', $position['end_date']);
 		$characterPosition = CharacterPosition::model()->find(array('select'    => '*',
 																	'condition' => 'position_id = :position_id and start_date = :start_date and end_date = :end_date and character_id = :character_id',
-																	'params'    => array(':position_id'  => $position['position'],
-																						 ':start_date'   => $position['from'],
-																						 ':end_date'     => $position['to'],
+																	'params'    => array(':position_id'  => $position['position_id'],
+																						 ':start_date'   => date('Y-m-d', $fromDate->getTimestamp()),
+																						 ':end_date'     => date('Y-m-d', $toDate->getTimestamp()),
 																						 ':character_id' => $character_id)));
 		$characterPosition->delete();
 	}

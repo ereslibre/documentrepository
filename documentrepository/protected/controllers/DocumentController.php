@@ -156,10 +156,9 @@ class DocumentController extends Controller
 
 					// Check what characters to add
 					foreach ($characters as $character) {
-						$exists = DocumentCharacter::model()->find(array('select'    => '*',
-																		'condition' => 'character_id = :character_id and document_id = :document_id',
-																		'params'    => array(':character_id' => $character,
-																							':document_id'  => $model->id)));
+						$exists = DocumentCharacter::model()->exists('character_id = :character_id and document_id = :document_id',
+																		array(':character_id' => $character,
+																			  ':document_id'  => $model->id));
 						if (!$exists) {
 							$this->createDocumentCharacter($character, $model->id);
 						}
@@ -180,10 +179,9 @@ class DocumentController extends Controller
 
 					// Check what institutions to add
 					foreach ($institutions as $institution) {
-						$exists = DocumentInstitution::model()->find(array('select'    => '*',
-																		   'condition' => 'institution_id = :institution_id and document_id = :document_id',
-																		   'params'    => array(':institution_id' => $institution,
-																								':document_id'  => $model->id)));
+						$exists = DocumentInstitution::model()->exists('institution_id = :institution_id and document_id = :document_id',
+																		array(':institution_id' => $institution,
+																			  ':document_id'  => $model->id));
 						if (!$exists) {
 							$this->createDocumentInstitution($institution, $model->id);
 						}
@@ -204,10 +202,9 @@ class DocumentController extends Controller
 
 					// Check what events to add
 					foreach ($events as $event) {
-						$exists = DocumentEvent::model()->find(array('select'    => '*',
-																	 'condition' => 'event_id = :event_id and document_id = :document_id',
-																	 'params'    => array(':event_id' => $event,
-																						  ':document_id'  => $model->id)));
+						$exists = DocumentEvent::model()->exists('event_id = :event_id and document_id = :document_id',
+																	array(':event_id' => $event,
+																		  ':document_id'  => $model->id));
 						if (!$exists) {
 							$this->createDocumentEvent($event, $model->id);
 						}
@@ -231,8 +228,8 @@ class DocumentController extends Controller
 			}
 
 			$institutions_ = DocumentInstitution::model()->findAll(array('select'    => 'institution_id',
-																	'condition' => 'document_id = :document_id',
-																	'params'    => array(':document_id' => $model->id)));
+																		 'condition' => 'document_id = :document_id',
+																		 'params'    => array(':document_id' => $model->id)));
 			$institutions = Array();
 			foreach ($institutions_ as &$institution) {
 				$institutions[] = $institution->institution_id;
