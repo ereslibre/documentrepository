@@ -37,7 +37,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->fileField($model,'image'); ?>
+		<?php
+			if ($model->id) {
+				$baseUrl = Yii::app()->request->baseUrl;
+				echo CHtml::label('Current image', 'currentimage');
+				echo CHtml::image("$baseUrl/repository/{$model->image}", '', array('id' => 'currentimage'));
+				echo CHtml::label('Change image', 'image');
+			}
+			echo $form->fileField($model,'image');
+		?>
 		<?php echo $form->error($model,'image'); ?>
 		<div id="preview"></div>
 	</div>

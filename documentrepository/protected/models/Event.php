@@ -111,8 +111,8 @@ class Event extends CActiveRecord
 
 	protected function afterFind()
 	{
-		$this->start_date = date('d-m-Y', strtotime($this->start_date));
-		$this->end_date = date('d-m-Y', strtotime($this->end_date));
+		$this->start_date = date('d/m/Y', strtotime($this->start_date));
+		$this->end_date = date('d/m/Y', strtotime($this->end_date));
 		return parent::afterFind();
 	}
 }

@@ -118,8 +118,8 @@ class Character extends CActiveRecord
 
 	protected function afterFind()
 	{
-		$this->birth_date = date('d-m-Y', strtotime($this->birth_date));
-		$this->death_date = date('d-m-Y', strtotime($this->death_date));
+		$this->birth_date = date('d/m/Y', strtotime($this->birth_date));
+		$this->death_date = date('d/m/Y', strtotime($this->death_date));
 		return parent::afterFind();
 	}
 }
