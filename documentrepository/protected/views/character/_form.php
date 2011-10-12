@@ -7,6 +7,11 @@
 	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
+	if ($model->id || isset($_POST['Character'])) {
+		$cs->registerScriptFile($baseUrl . '/js/character_update.js');
+	} else {
+		$cs->registerScriptFile($baseUrl . '/js/character_create.js');
+	}
 ?>
 
 <div class="form">
@@ -92,3 +97,9 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script>
+	<?php if (!empty($aliases)) { ?>
+		current_aliases = JSON.parse('<?php echo json_encode($aliases) ?>');
+	<?php } ?>
+</script>

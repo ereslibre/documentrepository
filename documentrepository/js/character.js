@@ -1,16 +1,31 @@
 var aliasi = 0;
 var positioni = 0;
 
+function globalCharacterInit()
+{
+	globalInit('Character', 'image');
+
+	datePicker('Character_birth_date');
+	datePicker('Character_death_date');
+	datePicker('Character_from_position0');
+	datePicker('Character_to_position0');
+}
+
 function addAlias()
 {
 	if ($('#Character_alias' + aliasi).val() == '') {
 		alert('Please, write an alias, and afterwards click on "Add"');
 		return;
 	}
+	addAlias_($('#Character_alias' + (aliasi + 1)).val());
+}
+
+function addAlias_(alias)
+{
 	$('#Character_alias' + aliasi).attr('name', 'Character[alias' + (aliasi + 1) + ']');
 	$('#Character_alias' + aliasi).attr('id', 'Character_alias' + (aliasi + 1));
 	var remove = '&nbsp;<a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">Remove</a>';
-	$('#addedAlias').append('<div id="aliaswrapper' + aliasi + '"><input type="text" id="Character_alias' + aliasi + '" name="Character[alias' + aliasi + ']" value="' + $('#Character_alias' + (aliasi + 1)).val() + '"/>' + remove + '<br/></div>');
+	$('#addedAlias').append('<div id="aliaswrapper' + aliasi + '"><input type="text" id="Character_alias' + aliasi + '" name="Character[alias' + aliasi + ']" value="' + alias + '"/>' + remove + '<br/></div>');
 	++aliasi;
 	$('#Character_alias' + aliasi).val('');
 }
@@ -70,12 +85,3 @@ function removePosition(i)
 {
 	$('#positionwrapper' + i).remove();
 }
-
-$(document).ready(function() {
-	globalInit('Character', 'image');
-
-	datePicker('Character_birth_date');
-	datePicker('Character_death_date');
-	datePicker('Character_from_position0');
-	datePicker('Character_to_position0');
-});

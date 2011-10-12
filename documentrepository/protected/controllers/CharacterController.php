@@ -124,11 +124,22 @@ class CharacterController extends Controller
 				}
 
 				$this->redirect(array('view','id'=>$model->id));
+			} else {
+				$aliases = $this->identifyAliases($_POST['Character']);
+			}
+		} else {
+			$aliases_ = CharacterAlias::model()->findAll(array('select'    => 'alias',
+															   'condition' => 'character_id = :character_id',
+															   'params'    => array(':character_id' => $model->id)));
+			$aliases = Array();
+			foreach ($aliases_ as &$alias) {
+				$aliases[] = $alias->alias;
 			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'aliases'=>$aliases
 		));
 	}
 
