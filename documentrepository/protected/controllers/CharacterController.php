@@ -73,6 +73,17 @@ class CharacterController extends Controller
 			if($model->save()) {
 				// Save image on filesystem
 				$image->saveAs("$documentRepository/{$model->image}");
+				// Create aliases
+				$aliases = $this->identifyAliases($_POST['Character']);
+				foreach ($aliases as $alias) {
+					$this->createCharacterAlias($alias, $model->id);
+				}
+				// Create positions
+				$positions = $this->identifyPositions($_POST['Character']);
+				foreach ($positions as $position) {
+					$this->createCharacterPosition($position, $model->id);
+				}
+				// Everything OK. Redirect
 				$this->redirect(array('view','id'=>$model->id));
 			}
 			$model->image = $image;
@@ -191,5 +202,76 @@ class CharacterController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	private function identifyAliases($attributes)
+	{
+		$aliases = Array();
+		foreach ($attributes as $attribute => &$value) {
+			if (preg_match('/alias\d+/', $attribute)) {
+				if (empty($value)) {
+					continue;
+				}
+				$aliases[] = $value;
+			}
+		}
+		return $aliases;
+	}
+
+	private function identifyPositions($attributes)
+	{
+		$positions = Array();
+		foreach ($attributes as $attribute => &$value) {
+			if (preg_match('/^position(\d+)/', $attribute, $matches)) {
+				$positionId = $matches[1];
+				$fromDate = $attributes["from_position$positionId"];
+				if (empty($value) || empty($fromDate)) {
+					continue;
+				}
+				$toDate = $attributes["to_position$positionId"];
+				$positions[] = Array('from'     => $fromDate,
+									 'to'       => $toDate,
+									 'position' => $value);
+			}
+		}
+		return $positions;
+	}
+
+	private function createCharacterAlias($alias, $character_id)
+	{
+		$characterAlias = new CharacterAlias;
+		$characterAlias->attributes = array('alias'        => $alias,
+											'character_id' => $character_id);
+		$characterAlias->save();
+	}
+
+	private function removeCharacterAlias($alias, $character_id)
+	{
+		$characterAlias = CharacterAlias::model()->find(array('select'    => '*',
+															  'condition' => 'alias = :alias and character_id = :character_id',
+															  'params'    => array(':alias'        => $alias,
+																				   ':character_id' => $character_id)));
+		$characterAlias->delete();
+	}
+
+	private function createCharacterPosition($position, $character_id)
+	{
+		$characterPosition = new CharacterPosition;
+		$characterPosition->attributes = array('position_id'  => $position['position'],
+											   'start_date'   => $position['from'],
+											   'end_date'     => $position['to'],
+											   'character_id' => $character_id);
+		$characterPosition->save();
+	}
+
+	private function removeCharacterPosition($position, $character_id)
+	{
+		$characterPosition = CharacterPosition::model()->find(array('select'    => '*',
+																	'condition' => 'position_id = :position_id and start_date = :start_date and end_date = :end_date and character_id = :character_id',
+																	'params'    => array(':position_id'  => $position['position'],
+																						 ':start_date'   => $position['from'],
+																						 ':end_date'     => $position['to'],
+																						 ':character_id' => $character_id)));
+		$characterPosition->delete();
 	}
 }
