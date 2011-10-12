@@ -17,7 +17,7 @@ function addAlias()
 		alert('Please, write an alias, and afterwards click on "Add"');
 		return;
 	}
-	addAlias_($('#Character_alias' + (aliasi + 1)).val());
+	addAlias_($('#Character_alias' + aliasi).val());
 }
 
 function addAlias_(alias)
