@@ -126,6 +126,7 @@ class CharacterController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$aliases = $this->identifyAliases($_POST['Character']);
+				$positions = $this->identifyPositions($_POST['Character']);
 			}
 		} else {
 			$aliases_ = CharacterAlias::model()->findAll(array('select'    => 'alias',
@@ -135,11 +136,24 @@ class CharacterController extends Controller
 			foreach ($aliases_ as &$alias) {
 				$aliases[] = $alias->alias;
 			}
+
+			$positions_ = CharacterPosition::model()->findAll(array('select'    => 'position_id, start_date, end_date',
+																	'condition' => 'character_id = :character_id',
+																	'params'    => array(':character_id' => $model->id)));
+			$positions = Array();
+			foreach ($positions_ as &$position) {
+				$position_ = Position::model()->findByPk($position->position_id);
+				$positions[] = array('position_id'   => $position->position_id,
+									 'position_name' => $position_->name,
+									 'start_date'    => $position->start_date,
+									 'end_date'      => $position->end_date);
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'aliases'=>$aliases
+			'aliases'=>$aliases,
+			'positions'=>$positions
 		));
 	}
 
@@ -239,10 +253,12 @@ class CharacterController extends Controller
 				if (empty($value) || empty($fromDate)) {
 					continue;
 				}
+				$position = Position::model()->findByPk($value);
 				$toDate = $attributes["to_position$positionId"];
-				$positions[] = Array('from'     => $fromDate,
-									 'to'       => $toDate,
-									 'position' => $value);
+				$positions[] = Array('position_id'   => $value,
+									 'position_name' => $position->name,
+									 'start_date'    => $fromDate,
+									 'end_date'      => $toDate);
 			}
 		}
 		return $positions;

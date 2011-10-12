@@ -102,4 +102,7 @@
 	<?php if (!empty($aliases)) { ?>
 		current_aliases = JSON.parse('<?php echo json_encode($aliases) ?>');
 	<?php } ?>
+	<?php if (!empty($positions)) { ?>
+		current_positions = JSON.parse('<?php echo json_encode($positions) ?>');
+	<?php } ?>
 </script>

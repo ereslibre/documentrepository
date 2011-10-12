@@ -41,16 +41,23 @@ function addPosition()
 		alert('Please, select start date, end date and position, and afterwards click on "Add"');
 		return;
 	}
+	addPosition_($('#Character_from_position' + positioni).val(),
+				 $('#Character_to_position' + positioni).val(),
+				 $('#Character_position' + positioni).val(),
+				 $('#Character_position' + positioni + ' option:selected').text());
+}
 
+function addPosition_(from_position_, to_position_, position_, position_name_)
+{
 	var from_position = $('From: <input type="text" id="Character_from_position' + positioni + '" name="Character[from_position' + positioni + ']" />');
 	var to_position = $('To: <input type="text" id="Character_to_position' + positioni + '" name="Character[to_position' + positioni + ']" />');
 	var position = $('<input type="hidden" id="Character_position' + positioni + '" name="Character[position' + positioni + ']" />');
-	var position_label = 'Position: ' + $('#Character_position' + positioni + ' option:selected').text();
+	var position_label = 'Position: ' + position_name_;
 	var remove_link = '&nbsp;<a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">Remove</a>';
 
-	from_position.attr('value', $('#Character_from_position' + positioni).val());
-	to_position.attr('value', $('#Character_to_position' + positioni).val());
-	position.attr('value', $('#Character_position' + positioni).val());
+	from_position.attr('value', from_position_);
+	to_position.attr('value', to_position_);
+	position.attr('value', position_);
 
 	$('#Character_from_position' + positioni).val('');
 	$('#Character_from_position' + positioni).attr('name', 'Character[from_position' + (positioni + 1) + ']');

@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Update Character <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'aliases'=>$aliases)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'aliases'=>$aliases, 'positions'=>$positions)); ?>
