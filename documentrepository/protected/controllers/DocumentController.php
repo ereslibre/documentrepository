@@ -170,8 +170,8 @@ class DocumentController extends Controller
 				{
 					// Check what institutions to remove
 					$dbInstitutions = DocumentInstitution::model()->findAll(array('select'    => 'institution_id',
-																				'condition' => 'document_id = :document_id',
-																				'params'    => array(':document_id' => $model->id)));
+																				  'condition' => 'document_id = :document_id',
+																				  'params'    => array(':document_id' => $model->id)));
 					foreach ($dbInstitutions as $institution) {
 						if (!in_array($institution->institution_id, $institutions)) {
 							$this->removeDocumentInstitution($institution->institution_id, $model->id);
@@ -181,9 +181,9 @@ class DocumentController extends Controller
 					// Check what institutions to add
 					foreach ($institutions as $institution) {
 						$exists = DocumentInstitution::model()->find(array('select'    => '*',
-																		  'condition' => 'institution_id = :institution_id and document_id = :document_id',
-																		  'params'    => array(':institution_id' => $institution,
-																							   ':document_id'  => $model->id)));
+																		   'condition' => 'institution_id = :institution_id and document_id = :document_id',
+																		   'params'    => array(':institution_id' => $institution,
+																								':document_id'  => $model->id)));
 						if (!$exists) {
 							$this->createDocumentInstitution($institution, $model->id);
 						}
