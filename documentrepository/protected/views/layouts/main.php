@@ -48,6 +48,18 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+	<?php if (Yii::app()->user->hasFlash('success')) { ?>
+		<div class="flashinfo">
+			<?php echo Yii::app()->user->getFlash('success'); ?>
+		</div>
+	<?php } ?>
+
+	<?php if (Yii::app()->user->hasFlash('error')) { ?>
+		<div class="flasherror">
+			<?php echo Yii::app()->user->getFlash('error'); ?>
+		</div>
+	<?php } ?>
+
 	<?php echo $content; ?>
 
 	<div id="footer">

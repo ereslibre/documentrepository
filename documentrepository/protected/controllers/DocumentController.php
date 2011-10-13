@@ -92,11 +92,13 @@ class DocumentController extends Controller
 					$this->createDocumentEvent($event, $model->id);
 				}
 				// Everything OK. Redirect
+				Yii::app()->user->setFlash('success', 'Document saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
 				$events = $this->identifyEvents($_POST['Document']);
+				Yii::app()->user->setFlash('error', 'Document could not be saved. Please review the information you provided');
 			}
 			$model->document = $document;
 		}
