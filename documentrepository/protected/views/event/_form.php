@@ -5,6 +5,7 @@
 	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
 	$cs->registerScriptFile($baseUrl . '/js/event.js');
 	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
+	$cs->registerCssFile($baseUrl . '/css/event.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
 ?>

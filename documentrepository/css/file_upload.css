@@ -1,11 +1,13 @@
 .thumb {
 	height: 100px;
-}
-
-#currentdocument {
-	height: 100px;
+	padding-left: 2em;
 }
 
 #currentimage {
 	height: 100px;
+	padding-left: 2em;
+}
+
+#currimage {
+	padding-left: 2em;
 }

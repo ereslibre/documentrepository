@@ -5,6 +5,7 @@
 	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
 	$cs->registerScriptFile($baseUrl . '/js/character.js');
 	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
+	$cs->registerCssFile($baseUrl . '/css/character.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
 	if ($model->id || isset($_POST['Character'])) {
@@ -77,17 +78,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php
-			if ($model->id) {
-				$baseUrl = Yii::app()->request->baseUrl;
-				echo CHtml::label('Current image', 'currentimage');
-				echo CHtml::image("$baseUrl/repository/{$model->image}", '', array('id' => 'currentimage'));
-				echo CHtml::label('Change image', 'image');
-			}
-			echo $form->fileField($model,'image');
-		?>
-		<?php echo $form->error($model,'image'); ?>
-		<div id="preview"></div>
+		<div id="currimage">
+			<?php
+				if ($model->id) {
+					$baseUrl = Yii::app()->request->baseUrl;
+					echo CHtml::label('Current image', 'currentimage');
+					echo CHtml::image("$baseUrl/repository/{$model->image}", '', array('id' => 'currentimage'));
+					echo CHtml::label('Change image', 'image');
+				}
+				echo $form->fileField($model,'image');
+				echo $form->error($model,'image');
+			?>
+			<div id="preview"></div>
+		</div>
 	</div>
 
 	<div class="row buttons">

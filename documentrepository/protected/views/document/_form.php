@@ -41,17 +41,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document'); ?>
-		<?php
-			if ($model->id) {
-				$baseUrl = Yii::app()->request->baseUrl;
-				echo CHtml::label('Current document', 'currentdocument');
-				echo CHtml::image("$baseUrl/repository/{$model->document}", '', array('id' => 'currentdocument'));
-				echo CHtml::label('Change document', 'document');
-			}
-			echo $form->fileField($model,'document');
-		?>
-		<?php echo $form->error($model,'document'); ?>
-		<div id="preview"></div>
+		<div id="currimage">
+			<?php
+				if ($model->id) {
+					$baseUrl = Yii::app()->request->baseUrl;
+					echo CHtml::label('Current document', 'currentdocument');
+					echo CHtml::image("$baseUrl/repository/{$model->document}", '', array('id' => 'currentdocument', 'class' => 'thumb'));
+					echo CHtml::label('Change document', 'document');
+				}
+				echo $form->fileField($model,'document');
+			?>
+			<?php echo $form->error($model,'document'); ?>
+			<div id="preview"></div>
+		</div>
 	</div>
 
 	<div class="row">
@@ -68,6 +70,11 @@
 
 	<div class="row">
 		<label>Characters</label>
+		<?php
+			if (Character::model()->count() == 0) {
+				echo 'No characters found - <a href="javascript:void(0);" onclick="createCharacter();">Create</a> - <a href="javascript:void(0);" onclick="reloadCharacters();">Reload</a>';
+			}
+		?>
 		<div style="display: none">
 			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Character...')); ?>
 		</div>
@@ -77,6 +84,11 @@
 
 	<div class="row">
 		<label>Institutions</label>
+		<?php
+			if (Institution::model()->count() == 0) {
+				echo 'No institutions found - <a href="javascript:void(0);" onclick="createInstitution();">Create</a> - <a href="javascript:void(0);" onclick="reloadInstitutions();">Reload</a>';
+			}
+		?>
 		<div style="display: none">
 			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Institution...')); ?>
 		</div>
@@ -86,6 +98,11 @@
 
 	<div class="row">
 		<label>Events</label>
+		<?php
+			if (Event::model()->count() == 0) {
+				echo 'No events found - <a href="javascript:void(0);" onclick="createEvent();">Create</a> - <a href="javascript:void(0);" onclick="reloadEvents();">Reload</a>';
+			}
+		?>
 		<div style="display: none">
 			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Event...')); ?>
 		</div>
