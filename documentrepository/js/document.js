@@ -25,7 +25,7 @@ function cloneCharacters()
 function reloadCharacters()
 {
 	$.ajax({
-		url: '/~ereslibre/yii/documentrepository/index.php/api/characters',
+		url: '/~ereslibre/documentrepository/index.php/api/characters',
 		success: function(data) {
 			alert(JSON.parse(data));
 		}
