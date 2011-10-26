@@ -2,14 +2,14 @@
 	Yii::app()->clientScript->registerCoreScript('jquery');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
-	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
-	$cs->registerScriptFile($baseUrl . '/js/document.js');
-	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
-	$cs->registerCssFile($baseUrl . '/css/document.css');
+	$cs->registerScriptFile($baseUrl . '/js/file_upload-min.js');
+	$cs->registerScriptFile($baseUrl . '/js/document-min.js');
+	$cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
+	$cs->registerCssFile($baseUrl . '/css/document-min.css');
 	if ($model->id || isset($_POST['Document'])) {
-		$cs->registerScriptFile($baseUrl . '/js/document_update.js');
+		$cs->registerScriptFile($baseUrl . '/js/document_update-min.js');
 	} else {
-		$cs->registerScriptFile($baseUrl . '/js/document_create.js');
+		$cs->registerScriptFile($baseUrl . '/js/document_create-min.js');
 	}
 ?>
 
