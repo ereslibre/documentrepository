@@ -4,21 +4,30 @@ var institutioni = 0;
 var institutionlasti = 0;
 var eventi = 0;
 var eventlasti = 0;
+var initial_characters = new Array();
 var available_characters = new Array();
+var initial_institutions = new Array();
 var available_institutions = new Array();
+var initial_events = new Array();
 var available_events = new Array();
+
+function documentInit()
+{
+	initial_characters = available_characters.slice();
+	initial_institutions = available_institutions.slice();
+	initial_events = available_events.slice();
+}
 
 function cloneCharacters()
 {
 	var characters = $('#characters').clone();
 	characters.each(function(i, select) {
-			$('option', this).each(function() {
-				if ($.inArray(this.value, available_characters) == -1) {
-					$(this).remove();
-				}
-			})
-		}
-	);
+		$('option', this).each(function() {
+			if ($.inArray(this.value, available_characters) == -1) {
+				$(this).remove();
+			}
+		})
+	});
 	return characters;
 }
 
@@ -27,7 +36,16 @@ function reloadCharacters()
 	$.ajax({
 		url: '/~ereslibre/documentrepository/index.php/api/characters',
 		success: function(data) {
-			alert(JSON.parse(data));
+			var server_characters = JSON.parse(data);
+			$.each(server_characters, function(i, server_character) {
+				if ($.inArray(server_character.id, initial_characters) == -1) {
+					$('#characters').append('<option value="' + server_character.id + '">' + server_character.name + '</option>');
+					available_characters.push(server_character.id);
+				}
+			});
+			// Update initial characters here
+			$('#characterwrapper' + (characteri - 1)).remove();
+			addCharacterSelection();
 		}
 	});
 }
@@ -47,7 +65,6 @@ function addCharacterSelection()
 	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + characteri + '"></div>');
 	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + characteri + '" onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a>');
 	character_wrapper.append('<a class="action" id="addcharacter' + characteri + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
-	character_wrapper.append('<a class="action" onclick="reloadCharacters();" href="javascript:void(0);">Reload</a>');
 
 	$('#selectedcharacters').append(character_wrapper);
 
@@ -137,7 +154,6 @@ function addInstitutionSelection()
 	institution_wrapper.append('<div class="minwidth" style="display: inline;" id="institutionlabel' + institutioni + '"></div>');
 	institution_wrapper.append('<a class="action" style="display: none;" id="removeinstitution' + institutioni + '" onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a>');
 	institution_wrapper.append('<a class="action" id="addinstitution' + institutioni + '" onclick="addInstitution();" href="javascript:void(0);">Add</a>');
-	institution_wrapper.append('<a class="action" onclick="reloadInstitutions();" href="javascript:void(0);">Reload</a>');
 
 	$('#selectedinstitutions').append(institution_wrapper);
 
@@ -227,7 +243,6 @@ function addEventSelection()
     event_wrapper.append('<div class="minwidth" style="display: inline;" id="eventlabel' + eventi + '"></div>');
     event_wrapper.append('<a class="action" style="display: none;" id="removeevent' + eventi + '" onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
     event_wrapper.append('<a class="action" id="addevent' + eventi + '" onclick="addEvent();" href="javascript:void(0);">Add</a>');
-    event_wrapper.append('<a class="action" onclick="reloadEvents();" href="javascript:void(0);">Reload</a>');
 
     $('#selectedevents').append(event_wrapper);
 

@@ -69,10 +69,10 @@
 	</div>
 
 	<div class="row">
-		<label>Characters</label>
+		<label>Characters (<a href="<?php echo "$baseUrl/index.php/character/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadCharacters();">Reload</a>)</label>
 		<?php
 			if (Character::model()->count() == 0) {
-				echo 'No characters found - <a href="javascript:void(0);" onclick="createCharacter();">Create</a> - <a href="javascript:void(0);" onclick="reloadCharacters();">Reload</a>';
+				echo 'No characters found';
 			}
 		?>
 		<div style="display: none">
@@ -83,10 +83,10 @@
 	</div>
 
 	<div class="row">
-		<label>Institutions</label>
+		<label>Institutions (<a href="<?php echo "$baseUrl/index.php/institution/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadInstitutions();">Reload</a>)</label>
 		<?php
 			if (Institution::model()->count() == 0) {
-				echo 'No institutions found - <a href="javascript:void(0);" onclick="createInstitution();">Create</a> - <a href="javascript:void(0);" onclick="reloadInstitutions();">Reload</a>';
+				echo 'No institutions found';
 			}
 		?>
 		<div style="display: none">
@@ -97,10 +97,10 @@
 	</div>
 
 	<div class="row">
-		<label>Events</label>
+		<label>Events (<a href="<?php echo "$baseUrl/index.php/event/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadEvents();">Reload</a>)</label>
 		<?php
 			if (Event::model()->count() == 0) {
-				echo 'No events found - <a href="javascript:void(0);" onclick="createEvent();">Create</a> - <a href="javascript:void(0);" onclick="reloadEvents();">Reload</a>';
+				echo 'No events found';
 			}
 		?>
 		<div style="display: none">

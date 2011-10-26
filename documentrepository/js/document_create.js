@@ -9,6 +9,7 @@ $(document).ready(function() {
 	$('#events option').each(function() {
 		available_events.push($(this).val());
 	});
+	documentInit();
 	addCharacter();
 	addInstitution();
 	addEvent();
