@@ -71,8 +71,10 @@ class CharacterController extends Controller
 				$model->image = sha1_file($image->getTempName());
 			}
 			if($model->save()) {
-				// Save image on filesystem
-				$image->saveAs("$documentRepository/{$model->image}");
+				if ($image) {
+					// Save image on filesystem
+					$image->saveAs("$documentRepository/{$model->image}");
+				}
 				// Create aliases
 				$aliases = $this->identifyAliases($_POST['Character']);
 				foreach ($aliases as $alias) {

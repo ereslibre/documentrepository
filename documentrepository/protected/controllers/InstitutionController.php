@@ -71,8 +71,10 @@ class InstitutionController extends Controller
 				$model->image = sha1_file($image->getTempName());
 			}
 			if($model->save()) {
-				// Save image on filesystem
-				$image->saveAs("$documentRepository/{$model->image}");
+				if ($image) {
+					// Save image on filesystem
+					$image->saveAs("$documentRepository/{$model->image}");
+				}
 				$this->redirect(array('view','id'=>$model->id));
 			}
 			$model->image = $image;
@@ -107,11 +109,10 @@ class InstitutionController extends Controller
 				$model->image = $oldImage;
 			}
 			if($model->save()) {
-				// Save image on filesystem
 				if ($image) {
+					// Save image on filesystem
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
-
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}

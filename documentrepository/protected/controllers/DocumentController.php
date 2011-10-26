@@ -75,8 +75,10 @@ class DocumentController extends Controller
 				$model->document = sha1_file($document->getTempName());
 			}
 			if($model->save()) {
-				// Save document on filesystem
-				$document->saveAs("$documentRepository/{$model->document}");
+				if ($document) {
+					// Save document on filesystem
+					$document->saveAs("$documentRepository/{$model->document}");
+				}
 				// Create characters
 				$characters = $this->identifyCharacters($_POST['Document']);
 				foreach ($characters as $character) {
@@ -135,8 +137,8 @@ class DocumentController extends Controller
 				$model->document = $oldDocument;
 			}
 			if($model->save()) {
-				// Save document on filesystem
 				if ($document) {
+					// Save document on filesystem
 					$document->saveAs("$documentRepository/{$model->document}");
 				}
 
