@@ -2,10 +2,10 @@
 	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
-	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
-	$cs->registerScriptFile($baseUrl . '/js/institution.js');
-	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
-	$cs->registerCssFile($baseUrl . '/css/institution.css');
+	$cs->registerScriptFile($baseUrl . '/js/file_upload-min.js');
+	$cs->registerScriptFile($baseUrl . '/js/institution-min.js');
+	$cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
+	$cs->registerCssFile($baseUrl . '/css/institution-min.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
 ?>

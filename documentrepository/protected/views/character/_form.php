@@ -2,16 +2,16 @@
 	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
-	$cs->registerScriptFile($baseUrl . '/js/file_upload.js');
-	$cs->registerScriptFile($baseUrl . '/js/character.js');
-	$cs->registerCssFile($baseUrl . '/css/file_upload.css');
-	$cs->registerCssFile($baseUrl . '/css/character.css');
+	$cs->registerScriptFile($baseUrl . '/js/file_upload-min.js');
+	$cs->registerScriptFile($baseUrl . '/js/character-min.js');
+	$cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
+	$cs->registerCssFile($baseUrl . '/css/character-min.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
 	if ($model->id || isset($_POST['Character'])) {
-		$cs->registerScriptFile($baseUrl . '/js/character_update.js');
+		$cs->registerScriptFile($baseUrl . '/js/character_update-min.js');
 	} else {
-		$cs->registerScriptFile($baseUrl . '/js/character_create.js');
+		$cs->registerScriptFile($baseUrl . '/js/character_create-min.js');
 	}
 ?>
 

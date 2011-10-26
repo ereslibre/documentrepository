@@ -37,13 +37,15 @@ function reloadCharacters()
 		url: '/~ereslibre/documentrepository/index.php/api/characters',
 		success: function(data) {
 			var server_characters = JSON.parse(data);
+			var initial_characters_ = new Array();
 			$.each(server_characters, function(i, server_character) {
 				if ($.inArray(server_character.id, initial_characters) == -1) {
 					$('#characters').append('<option value="' + server_character.id + '">' + server_character.name + '</option>');
 					available_characters.push(server_character.id);
 				}
+				initial_characters_.push(server_character.id);
 			});
-			// Update initial characters here
+			initial_characters = initial_characters_;
 			$('#characterwrapper' + (characteri - 1)).remove();
 			addCharacterSelection();
 		}
@@ -145,13 +147,15 @@ function reloadInstitutions()
 		url: '/~ereslibre/documentrepository/index.php/api/institutions',
 		success: function(data) {
 			var server_institutions = JSON.parse(data);
+			var initial_institutions_ = new Array();
 			$.each(server_institutions, function(i, server_institution) {
 				if ($.inArray(server_institution.id, initial_institutions) == -1) {
 					$('#institutions').append('<option value="' + server_institution.id + '">' + server_institution.name + '</option>');
 					available_institutions.push(server_institution.id);
 				}
+				initial_institutions_.push(server_institution.id);
 			});
-			// Update initial institutions here
+			initial_institutions = initial_institutions_;
 			$('#institutionwrapper' + (institutioni - 1)).remove();
 			addInstitutionSelection();
 		}
@@ -253,13 +257,15 @@ function reloadEvents()
 		url: '/~ereslibre/documentrepository/index.php/api/events',
 		success: function(data) {
 			var server_events = JSON.parse(data);
+			var initial_events_ = new Array();
 			$.each(server_events, function(i, server_event) {
 				if ($.inArray(server_event.id, initial_events) == -1) {
 					$('#events').append('<option value="' + server_event.id + '">' + server_event.name + '</option>');
 					available_events.push(server_event.id);
 				}
+				initial_events_.push(server_event.id);
 			});
-			// Update initial events here
+			initial_events = initial_events_;
 			$('#eventwrapper' + (eventi - 1)).remove();
 			addEventSelection();
 		}
