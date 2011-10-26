@@ -17,6 +17,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+		'application.controllers.ApiController',
 		'application.components.*',
 	),
 
@@ -39,7 +40,9 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'api/characters' => 'characterApi/list'
+				'api/characters'   => 'characterApi/list',
+				'api/institutions' => 'institutionApi/list',
+				'api/events'       => 'eventApi/list'
 			),
 		),
 

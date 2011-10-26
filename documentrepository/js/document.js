@@ -139,6 +139,25 @@ function cloneInstitutions()
 	return institutions;
 }
 
+function reloadInstitutions()
+{
+	$.ajax({
+		url: '/~ereslibre/documentrepository/index.php/api/institutions',
+		success: function(data) {
+			var server_institutions = JSON.parse(data);
+			$.each(server_institutions, function(i, server_institution) {
+				if ($.inArray(server_institution.id, initial_institutions) == -1) {
+					$('#institutions').append('<option value="' + server_institution.id + '">' + server_institution.name + '</option>');
+					available_institutions.push(server_institution.id);
+				}
+			});
+			// Update initial institutions here
+			$('#institutionwrapper' + (institutioni - 1)).remove();
+			addInstitutionSelection();
+		}
+	});
+}
+
 function addInstitutionSelection()
 {
 	if (!(available_institutions.length - 1)) {
@@ -226,6 +245,25 @@ function cloneEvents()
         }
     );
     return events;
+}
+
+function reloadEvents()
+{
+	$.ajax({
+		url: '/~ereslibre/documentrepository/index.php/api/events',
+		success: function(data) {
+			var server_events = JSON.parse(data);
+			$.each(server_events, function(i, server_event) {
+				if ($.inArray(server_event.id, initial_events) == -1) {
+					$('#events').append('<option value="' + server_event.id + '">' + server_event.name + '</option>');
+					available_events.push(server_event.id);
+				}
+			});
+			// Update initial events here
+			$('#eventwrapper' + (eventi - 1)).remove();
+			addEventSelection();
+		}
+	});
 }
 
 function addEventSelection()
