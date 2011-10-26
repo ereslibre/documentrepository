@@ -21,4 +21,8 @@ HOW TO INSTALL
   documentrepository/repository, so your images and documents
   are accessible by the application.
 
+- Install yuicompressor
+
+- Run 'make' on root directory to minify JS and CSS
+
 That's pretty much all. Have fun !
