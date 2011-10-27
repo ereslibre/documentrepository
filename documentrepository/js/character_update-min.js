@@ -1,0 +1,1 @@
+var current_aliases=new Array();var current_positions=new Array();$(document).ready(function(){globalCharacterInit();$.each(current_aliases,function(a,b){addAlias_(b)});$.each(current_positions,function(a,b){addPosition_(b.start_date,b.end_date,b.position_id,b.position_name)})});
