@@ -434,12 +434,14 @@ class DocumentController extends Controller
         $documentCharacters = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
                                                                         'condition' => 'document_id = :document_id',
                                                                         'params'    => array(':document_id' => $document_id)));
-        if (empty($documentCharacters)) {
-            return "None";
-        }
         $res = Array();
+        if (empty($documentCharacters)) {
+            return $res;
+        }
         foreach ($documentCharacters as &$documentCharacter) {
-            $res[] = $documentCharacter->character_id;
+            $character = Character::model()->findByPk($documentCharacter->character_id);
+            $res[] = Array('id'   => $character->id,
+                           'name' => $character->name);
         }
         return $res;
     }
@@ -449,12 +451,14 @@ class DocumentController extends Controller
         $documentInstitutions = DocumentInstitution::model()->findAll(array('select'    => 'institution_id',
                                                                             'condition' => 'document_id = :document_id',
                                                                             'params'    => array(':document_id' => $document_id)));
-        if (empty($documentInstitutions)) {
-            return "None";
-        }
         $res = Array();
+        if (empty($documentInstitutions)) {
+            return $res;
+        }
         foreach ($documentInstitutions as &$documentInstitution) {
-            $res[] = $documentInstitution->institution_id;
+            $institution = Institution::model()->findByPk($documentInstitution->institution_id);
+            $res[] = Array('id'   => $institution->id,
+                           'name' => $institution->name);
         }
         return $res;
     }
@@ -464,13 +468,60 @@ class DocumentController extends Controller
         $documentEvents = DocumentEvent::model()->findAll(array('select'    => 'event_id',
                                                                 'condition' => 'document_id = :document_id',
                                                                 'params'    => array(':document_id' => $document_id)));
-        if (empty($documentEvents)) {
-            return "None";
-        }
         $res = Array();
+        if (empty($documentEvents)) {
+            return $res;
+        }
         foreach ($documentEvents as &$documentEvent) {
-            $res[] = $documentEvent->event_id;
+            $event = Event::model()->findByPk($documentEvent->event_id);
+            $res[] = Array('id'   => $event->id,
+                           'name' => $event->name);
         }
         return $res;
+    }
+
+    public function printCharacters($data)
+    {
+        $characters = $this->getRelatedCharacters($data->id);
+        if (empty($characters)) {
+            echo "None<br/>";
+            return;
+        }
+        echo "<ul>";
+        foreach ($characters as &$character) {
+            $character_url = $this->createUrl("character/view", array('id' => $character['id']));
+            echo "<li>" . CHtml::link($character['name'], $character_url) . "</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function printInstitutions($data)
+    {
+        $institutions = $this->getRelatedInstitutions($data->id);
+        if (empty($institutions)) {
+            echo "None<br/>";
+            return;
+        }
+        echo "<ul>";
+        foreach ($institutions as &$institution) {
+            $institution_url = $this->createUrl("institution/view", array('id' => $institution['id']));
+            echo "<li>" . CHtml::link($institution['name'], $institution_url) . "</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function printEvents($data)
+    {
+        $events = $this->getRelatedEvents($data->id);
+        if (empty($events)) {
+            echo "None<br/>";
+            return;
+        }
+        echo "<ul>";
+        foreach ($events as &$event) {
+            $event_url = $this->createUrl("event/view", array('id' => $event['id']));
+            echo "<li>" . CHtml::link($event['name'], $event_url) . "</li>";
+        }
+        echo "</ul>";
     }
 }

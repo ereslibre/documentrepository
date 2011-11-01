@@ -26,3 +26,14 @@ div.description
     margin-left: 2em;
     vertical-align: middle;
 }
+
+ul
+{
+    margin-bottom: 0;
+    margin-left: 2em;
+}
+
+div.readmore
+{
+    text-align: right;
+}

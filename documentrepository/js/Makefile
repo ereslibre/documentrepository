@@ -1,4 +1,4 @@
 JS = $(wildcard *.js)
 
 minifyJS: $(JS)
-	yui-compressor -o '.js$$:-min.js' $(JS)
+	yuicompressor -o '.js$$:-min.js' $(JS)
