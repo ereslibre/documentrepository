@@ -417,4 +417,60 @@ class DocumentController extends Controller
 																				 ':document_id' => $document_id)));
 		$documentEvent->delete();
 	}
+
+    // View helpers
+
+    public function getLanguage($language_id)
+    {
+        $language = Language::model()->findByPk($language_id);
+        if (empty($language)) {
+            return "Unknown";
+        }
+        return $language->language;
+    }
+
+    public function getRelatedCharacters($document_id)
+    {
+        $documentCharacters = DocumentCharacter::model()->findAll(array('select'    => 'character_id',
+                                                                        'condition' => 'document_id = :document_id',
+                                                                        'params'    => array(':document_id' => $document_id)));
+        if (empty($documentCharacters)) {
+            return "None";
+        }
+        $res = Array();
+        foreach ($documentCharacters as &$documentCharacter) {
+            $res[] = $documentCharacter->character_id;
+        }
+        return $res;
+    }
+
+    public function getRelatedInstitutions($document_id)
+    {
+        $documentInstitutions = DocumentInstitution::model()->findAll(array('select'    => 'institution_id',
+                                                                            'condition' => 'document_id = :document_id',
+                                                                            'params'    => array(':document_id' => $document_id)));
+        if (empty($documentInstitutions)) {
+            return "None";
+        }
+        $res = Array();
+        foreach ($documentInstitutions as &$documentInstitution) {
+            $res[] = $documentInstitution->institution_id;
+        }
+        return $res;
+    }
+
+    public function getRelatedEvents($document_id)
+    {
+        $documentEvents = DocumentEvent::model()->findAll(array('select'    => 'event_id',
+                                                                'condition' => 'document_id = :document_id',
+                                                                'params'    => array(':document_id' => $document_id)));
+        if (empty($documentEvents)) {
+            return "None";
+        }
+        $res = Array();
+        foreach ($documentEvents as &$documentEvent) {
+            $res[] = $documentEvent->event_id;
+        }
+        return $res;
+    }
 }

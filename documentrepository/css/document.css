@@ -13,3 +13,16 @@ a.action
 #Document_document {
 	padding-left: 2em;
 }
+
+div.document
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.description
+{
+    display: inline-block;
+    margin-left: 2em;
+    vertical-align: middle;
+}
