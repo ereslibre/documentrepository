@@ -108,6 +108,7 @@ class Event extends CActiveRecord
 			$endDate = DateTime::createFromFormat('d/m/Y', $this->end_date);
 			$this->end_date = date('Y-m-d', $endDate->getTimestamp());
 		}
+        $this->image = basename($this->image);
 		return parent::beforeSave();
 	}
 

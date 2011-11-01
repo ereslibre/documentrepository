@@ -94,6 +94,12 @@ class Institution extends CActiveRecord
 		));
 	}
 
+	protected function beforeSave()
+	{
+        $this->image = basename($this->image);
+		return parent::beforeSave();
+	}
+
 	protected function afterFind()
 	{
         $baseUrl = Yii::app()->baseUrl;

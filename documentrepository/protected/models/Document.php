@@ -102,6 +102,12 @@ class Document extends CActiveRecord
 		));
 	}
 
+	protected function beforeSave()
+	{
+        $this->document = basename($this->document);
+		return parent::beforeSave();
+	}
+
 	protected function afterFind()
 	{
         $baseUrl = Yii::app()->baseUrl;

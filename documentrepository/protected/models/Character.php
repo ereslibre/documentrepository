@@ -115,6 +115,7 @@ class Character extends CActiveRecord
 			$deathDate = DateTime::createFromFormat('d/m/Y', $this->death_date);
 			$this->death_date = date('Y-m-d', $deathDate->getTimestamp());
 		}
+        $this->image = basename($this->image);
 		return parent::beforeSave();
 	}
 
