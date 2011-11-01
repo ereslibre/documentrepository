@@ -2,7 +2,7 @@
     $baseUrl = Yii::app()->baseUrl;
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
-    $cs->registerCssFile($baseUrl . '/css/document.css');
+    $cs->registerCssFile($baseUrl . '/css/document-min.css');
 
     $document_url = $this->createUrl("document/view", array('id' => $data->id));
 ?>
