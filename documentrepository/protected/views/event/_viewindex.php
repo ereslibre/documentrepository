@@ -3,6 +3,8 @@
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
     $cs->registerCssFile($baseUrl . '/css/event-min.css');
+
+    $event_url = $this->createUrl("event/view", array('id' => $data->id));
 ?>
 
 <div class="view">
@@ -20,9 +22,9 @@
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('end_date')); ?>:</b>
 	    <?php echo CHtml::encode($data->end_date); ?>
-	    <br />
-	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	    <?php echo $data->description; ?>
     </div>
 
+    <div class="readmore">
+        <?php echo CHtml::link('Read more', $event_url) ?>
+    </div>
 </div>
