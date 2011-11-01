@@ -366,4 +366,71 @@ class CharacterController extends Controller
 																						 ':character_id' => $character_id)));
 		$characterPosition->delete();
 	}
+
+    // View helpers
+
+    public function getRelatedAliases($character_id)
+    {
+        $characterAliases = CharacterAlias::model()->findAll(array('select'    => 'alias',
+                                                                   'condition' => 'character_id = :character_id',
+                                                                   'params'    => array(':character_id' => $character_id)));
+        $res = Array();
+        if (empty($characterAliases)) {
+            return $res;
+        }
+        foreach ($characterAliases as &$characterAlias) {
+            $res[] = $characterAlias->alias;
+        }
+        return $res;
+    }
+
+    public function getRelatedPositions($character_id)
+    {
+        $characterPositions = CharacterPosition::model()->findAll(array('select'    => 'position_id, start_date, end_date',
+                                                                        'condition' => 'character_id = :character_id',
+                                                                        'params'    => array(':character_id' => $character_id)));
+        $res = Array();
+        if (empty($characterPositions)) {
+            return $res;
+        }
+        foreach ($characterPositions as &$characterPosition) {
+            $position = Position::model()->findByPk($characterPosition->position_id);
+            $res[] = Array('id'         => $position->id,
+                           'name'       => $position->name,
+                           'start_date' => $characterPosition->start_date,
+                           'end_date'   => $characterPosition->end_date);
+        }
+        return $res;
+    }
+
+    public function printAliases($data)
+    {
+        $aliases = $this->getRelatedAliases($data->id);
+        if (empty($aliases)) {
+            echo "None<br/>";
+            return;
+        }
+        echo "<ul>";
+        foreach ($aliases as &$alias) {
+            echo "<li>$alias</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function printPositions($data)
+    {
+        $positions = $this->getRelatedPositions($data->id);
+        if (empty($positions)) {
+            echo "None<br/>";
+            return;
+        }
+        echo "<ul>";
+        foreach ($positions as &$position) {
+            $positionName = $position['name'];
+            $positionStartDate = $position['start_date'];
+            $positionEndDate = $position['end_date'];
+            echo "<li>$positionName ($positionStartDate - $positionEndDate)</li>";
+        }
+        echo "</ul>";
+    }
 }
