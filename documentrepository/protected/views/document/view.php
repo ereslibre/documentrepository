@@ -15,11 +15,4 @@ $this->menu=array(
 
 <h1>View Document #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'document',
-		'name',
-	),
-)); ?>
+<?php echo $this->renderPartial('_view', array('data'=>$model,)); ?>
