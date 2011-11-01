@@ -93,4 +93,15 @@ class Institution extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function afterFind()
+	{
+        $baseUrl = Yii::app()->baseUrl;
+        if ($this->image) {
+            $this->image = "$baseUrl/repository/{$this->image}";
+        } else {
+            $this->image = "$baseUrl/images/noimage.gif";
+        }
+		return parent::afterFind();
+	}
 }

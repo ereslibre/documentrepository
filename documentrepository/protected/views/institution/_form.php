@@ -42,7 +42,7 @@
 			if ($model->id) {
 				$baseUrl = Yii::app()->request->baseUrl;
 				echo CHtml::label('Current image', 'currentimage');
-				echo CHtml::image("$baseUrl/repository/{$model->image}", '', array('id' => 'currentimage'));
+				echo CHtml::image($model->image, '', array('id' => 'currentimage'));
 				echo CHtml::label('Change image', 'image');
 			}
 			echo $form->fileField($model,'image');

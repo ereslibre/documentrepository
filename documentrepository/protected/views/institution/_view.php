@@ -8,7 +8,7 @@
 <div class="view">
 
     <div class="image">
-        <?php echo CHtml::image("$baseUrl/repository/{$data->image}", $data->name, array('class' => 'thumb')); ?>
+        <?php echo CHtml::image($data->image, $data->name, array('class' => 'thumb')); ?>
     </div>
 
     <div class="description">

@@ -124,6 +124,12 @@ class Character extends CActiveRecord
 		if ($this->death_date) {
 			$this->death_date = date('d/m/Y', strtotime($this->death_date));
 		}
+        $baseUrl = Yii::app()->baseUrl;
+        if ($this->image) {
+            $this->image = "$baseUrl/repository/{$this->image}";
+        } else {
+            $this->image = "$baseUrl/images/noimage.gif";
+        }
 		return parent::afterFind();
 	}
 }

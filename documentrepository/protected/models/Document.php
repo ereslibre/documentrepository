@@ -101,4 +101,15 @@ class Document extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function afterFind()
+	{
+        $baseUrl = Yii::app()->baseUrl;
+        if ($this->document) {
+            $this->document = "$baseUrl/repository/{$this->document}";
+        } else {
+            $this->document = "$baseUrl/images/noimage.gif";
+        }
+		return parent::afterFind();
+	}
 }
