@@ -141,6 +141,11 @@ div.view
 	border: 1px solid #C9E0ED;
 }
 
+div.view:hover
+{
+	background: #C9E0ED;
+}
+
 div.breadcrumbs
 {
 	font-size: 0.9em;

@@ -111,10 +111,17 @@ class Character extends CActiveRecord
 	{
 		$birthDate = DateTime::createFromFormat('d/m/Y', $this->birth_date);
 		$this->birth_date = date('Y-m-d', $birthDate->getTimestamp());
-		if ($this->death_date) {
+		if (!empty($this->death_date)) {
 			$deathDate = DateTime::createFromFormat('d/m/Y', $this->death_date);
 			$this->death_date = date('Y-m-d', $deathDate->getTimestamp());
-		}
+		} else {
+            $this->death_date = null;
+        }
+        if ($this->image == $this->emptyImageUrl()) {
+            $this->image = null;
+        } else {
+            $this->image = basename($this->image);
+        }
 		return parent::beforeSave();
 	}
 
@@ -124,6 +131,18 @@ class Character extends CActiveRecord
 		if ($this->death_date) {
 			$this->death_date = date('d/m/Y', strtotime($this->death_date));
 		}
+        $baseUrl = Yii::app()->baseUrl;
+        if ($this->image) {
+            $this->image = "$baseUrl/repository/{$this->image}";
+        } else {
+            $this->image = $this->emptyImageUrl();
+        }
 		return parent::afterFind();
 	}
+
+    private function emptyImageUrl()
+    {
+        $baseUrl = Yii::app()->baseUrl;
+        return "$baseUrl/images/noimage.gif";
+    }
 }

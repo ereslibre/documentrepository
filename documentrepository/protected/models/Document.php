@@ -101,4 +101,31 @@ class Document extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave()
+	{
+        if ($this->document == $this->emptyImageUrl()) {
+            $this->document = null;
+        } else {
+            $this->document = basename($this->document);
+        }
+		return parent::beforeSave();
+	}
+
+	protected function afterFind()
+	{
+        $baseUrl = Yii::app()->baseUrl;
+        if ($this->document) {
+            $this->document = "$baseUrl/repository/{$this->document}";
+        } else {
+            $this->document = $this->emptyImageUrl();
+        }
+		return parent::afterFind();
+	}
+
+    private function emptyImageUrl()
+    {
+        $baseUrl = Yii::app()->baseUrl;
+        return "$baseUrl/images/noimage.gif";
+    }
 }

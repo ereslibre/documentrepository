@@ -15,14 +15,4 @@ $this->menu=array(
 
 <h1>View Event #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'description',
-		'start_date',
-		'end_date',
-		'image',
-	),
-)); ?>
+<?php echo $this->renderPartial('_view', array('data'=>$model,)); ?>

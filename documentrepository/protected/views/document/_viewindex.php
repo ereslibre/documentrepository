@@ -3,6 +3,8 @@
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
     $cs->registerCssFile($baseUrl . '/css/document-min.css');
+
+    $document_url = $this->createUrl("document/view", array('id' => $data->id));
 ?>
 
 <div class="view">
@@ -15,8 +17,6 @@
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	    <?php echo CHtml::encode($data->name); ?>
 	    <br />
-	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	    <?php echo $data->description; ?>
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('catalog')); ?>:</b>
 	    <?php echo CHtml::encode($data->catalog); ?>
 	    <br />
@@ -31,4 +31,7 @@
 	    <?php echo $this->printEvents($data); ?>
     </div>
 
+    <div class="readmore">
+        <?php echo CHtml::link('Read more', $document_url) ?>
+    </div>
 </div>

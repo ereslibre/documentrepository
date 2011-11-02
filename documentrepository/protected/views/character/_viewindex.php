@@ -3,6 +3,8 @@
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
     $cs->registerCssFile($baseUrl . '/css/character-min.css');
+
+    $character_url = $this->createUrl("character/view", array('id' => $data->id));
 ?>
 
 <div class="view">
@@ -22,11 +24,12 @@
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('death_date')); ?>:</b>
 	    <?php echo CHtml::encode($data->death_date); ?>
-	    <br />
-	    <b><?php echo CHtml::encode($data->getAttributeLabel('biography')); ?>:</b>
-	    <?php echo $data->biography; ?>
+        <br />
         <b>Positions:</b>
         <?php $this->printPositions($data); ?>
     </div>
 
+    <div class="readmore">
+        <?php echo CHtml::link('Read more', $character_url) ?>
+    </div>
 </div>

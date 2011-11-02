@@ -1,3 +1,21 @@
 #Event_image {
 	padding-left: 2em;
 }
+
+div.image
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.description
+{
+    display: inline-block;
+    margin-left: 2em;
+    vertical-align: middle;
+}
+
+div.readmore
+{
+    text-align: right;
+}
