@@ -104,7 +104,11 @@ class Document extends CActiveRecord
 
 	protected function beforeSave()
 	{
-        $this->document = basename($this->document);
+        if ($this->document == $this->emptyImageUrl()) {
+            $this->document = null;
+        } else {
+            $this->document = basename($this->document);
+        }
 		return parent::beforeSave();
 	}
 
@@ -114,8 +118,14 @@ class Document extends CActiveRecord
         if ($this->document) {
             $this->document = "$baseUrl/repository/{$this->document}";
         } else {
-            $this->document = "$baseUrl/images/noimage.gif";
+            $this->document = $this->emptyImageUrl();
         }
 		return parent::afterFind();
 	}
+
+    private function emptyImageUrl()
+    {
+        $baseUrl = Yii::app()->baseUrl;
+        return "$baseUrl/images/noimage.gif";
+    }
 }

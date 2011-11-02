@@ -96,7 +96,11 @@ class Institution extends CActiveRecord
 
 	protected function beforeSave()
 	{
-        $this->image = basename($this->image);
+        if ($this->image == $this->emptyImageUrl()) {
+            $this->image = null;
+        } else {
+            $this->image = basename($this->image);
+        }
 		return parent::beforeSave();
 	}
 
@@ -106,8 +110,14 @@ class Institution extends CActiveRecord
         if ($this->image) {
             $this->image = "$baseUrl/repository/{$this->image}";
         } else {
-            $this->image = "$baseUrl/images/noimage.gif";
+            $this->image = $this->emptyImageUrl();
         }
 		return parent::afterFind();
 	}
+
+    private function emptyImageUrl()
+    {
+        $baseUrl = Yii::app()->baseUrl;
+        return "$baseUrl/images/noimage.gif";
+    }
 }

@@ -104,11 +104,17 @@ class Event extends CActiveRecord
 	{
 		$startDate = DateTime::createFromFormat('d/m/Y', $this->start_date);
 		$this->start_date = date('Y-m-d', $startDate->getTimestamp());
-		if ($this->end_date) {
+		if (!empty($this->end_date)) {
 			$endDate = DateTime::createFromFormat('d/m/Y', $this->end_date);
 			$this->end_date = date('Y-m-d', $endDate->getTimestamp());
-		}
-        $this->image = basename($this->image);
+		} else {
+            $this->end_date = null;
+        }
+        if ($this->image == $this->emptyImageUrl()) {
+            $this->image = null;
+        } else {
+            $this->image = basename($this->image);
+        }
 		return parent::beforeSave();
 	}
 
@@ -122,8 +128,14 @@ class Event extends CActiveRecord
         if ($this->image) {
             $this->image = "$baseUrl/repository/{$this->image}";
         } else {
-            $this->image = "$baseUrl/images/noimage.gif";
+            $this->image = $this->emptyImageUrl();
         }
 		return parent::afterFind();
 	}
+
+    private function emptyImageUrl()
+    {
+        $baseUrl = Yii::app()->baseUrl;
+        return "$baseUrl/images/noimage.gif";
+    }
 }
