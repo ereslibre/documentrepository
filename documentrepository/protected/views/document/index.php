@@ -3,10 +3,12 @@ $this->breadcrumbs=array(
 	'Documents',
 );
 
-$this->menu=array(
-	array('label'=>'Create Document', 'url'=>array('create')),
-	array('label'=>'Manage Document', 'url'=>array('admin')),
-);
+if (!Yii::app()->user->isGuest) {
+    $this->menu=array(
+	    array('label'=>'Create Document', 'url'=>array('create')),
+	    array('label'=>'Manage Document', 'url'=>array('admin')),
+    );
+}
 ?>
 
 <h1>Documents</h1>

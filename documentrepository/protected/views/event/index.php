@@ -3,10 +3,12 @@ $this->breadcrumbs=array(
 	'Events',
 );
 
-$this->menu=array(
-	array('label'=>'Create Event', 'url'=>array('create')),
-	array('label'=>'Manage Event', 'url'=>array('admin')),
-);
+if (!Yii::app()->user->isGuest) {
+    $this->menu=array(
+	    array('label'=>'Create Event', 'url'=>array('create')),
+	    array('label'=>'Manage Event', 'url'=>array('admin')),
+    );
+}
 ?>
 
 <h1>Events</h1>

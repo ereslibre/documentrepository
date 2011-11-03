@@ -3,10 +3,12 @@ $this->breadcrumbs=array(
 	'Characters',
 );
 
-$this->menu=array(
-	array('label'=>'Create Character', 'url'=>array('create')),
-	array('label'=>'Manage Character', 'url'=>array('admin')),
-);
+if (!Yii::app()->user->isGuest) {
+    $this->menu=array(
+	    array('label'=>'Create Character', 'url'=>array('create')),
+	    array('label'=>'Manage Character', 'url'=>array('admin')),
+    );
+}
 ?>
 
 <h1>Characters</h1>
