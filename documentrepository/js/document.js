@@ -34,7 +34,7 @@ function cloneCharacters()
 function reloadCharacters()
 {
 	$.ajax({
-		url: '/~ereslibre/documentrepository/index.php/api/characters',
+		url: '/index.php/api/characters',
 		success: function(data) {
 			var server_characters = JSON.parse(data);
 			var initial_characters_ = new Array();
@@ -144,7 +144,7 @@ function cloneInstitutions()
 function reloadInstitutions()
 {
 	$.ajax({
-		url: '/~ereslibre/documentrepository/index.php/api/institutions',
+		url: '/index.php/api/institutions',
 		success: function(data) {
 			var server_institutions = JSON.parse(data);
 			var initial_institutions_ = new Array();
@@ -254,7 +254,7 @@ function cloneEvents()
 function reloadEvents()
 {
 	$.ajax({
-		url: '/~ereslibre/documentrepository/index.php/api/events',
+		url: '/index.php/api/events',
 		success: function(data) {
 			var server_events = JSON.parse(data);
 			var initial_events_ = new Array();
