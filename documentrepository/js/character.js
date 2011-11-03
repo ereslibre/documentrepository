@@ -37,8 +37,9 @@ function removeAlias(i)
 
 function addPosition()
 {
-	if ($('#Character_position' + positioni).val() == '') {
-		alert('Please, select start date, end date and position, and afterwards click on "Add"');
+	if ($('#Character_from_position' + positioni).val() == '' ||
+        $('#Character_position' + positioni).val() == '') {
+		alert('Please, select start date, optionally end date and position, and afterwards click on "Add"');
 		return;
 	}
 	addPosition_($('#Character_from_position' + positioni).val(),
