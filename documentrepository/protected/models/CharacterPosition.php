@@ -102,16 +102,24 @@ class CharacterPosition extends CActiveRecord
 	protected function beforeSave()
 	{
 		$startDate = DateTime::createFromFormat('d/m/Y', $this->start_date);
-		$endDate = DateTime::createFromFormat('d/m/Y', $this->end_date);
 		$this->start_date = date('Y-m-d', $startDate->getTimestamp());
-		$this->end_date = date('Y-m-d', $endDate->getTimestamp());
+        if (!empty($this->end_date)) {
+            $endDate = DateTime::createFromFormat('d/m/Y', $this->end_date);
+    		$this->end_date = date('Y-m-d', $endDate->getTimestamp());
+        } else {
+            $this->end_date = null;
+        }
 		return parent::beforeSave();
 	}
 
 	protected function afterFind()
 	{
 		$this->start_date = date('d/m/Y', strtotime($this->start_date));
-		$this->end_date = date('d/m/Y', strtotime($this->end_date));
+        if ($this->end_date) {
+    		$this->end_date = date('d/m/Y', strtotime($this->end_date));
+        } else {
+            $this->end_date = 'Unknown/To Present';
+        }
 		return parent::afterFind();
 	}
 }

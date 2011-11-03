@@ -175,7 +175,7 @@ class CharacterController extends Controller
 						$exists = CharacterPosition::model()->exists('position_id = :position_id and start_date = :start_date and end_date = :end_date and character_id = :character_id',
 																		array(':position_id'  => $position['position_id'],
 																			  ':start_date'   => date('Y-m-d', $fromDate->getTimestamp()),
-																			  ':end_date'     => date('Y-m-d', $toDate->getTimestamp()),
+																			  ':end_date'     => !empty($toDate) ? date('Y-m-d', $toDate->getTimestamp()) : null,
 																			  ':character_id' => $model->id));
 						if (!$exists) {
 							$thisPosition = Array('position_id' => $position['position_id'],
@@ -318,6 +318,9 @@ class CharacterController extends Controller
 				}
 				$position = Position::model()->findByPk($value);
 				$toDate = $attributes["to_position$positionId"];
+                if (empty($toDate)) {
+                    $toDate = null;
+                }
 				$positions[] = Array('position_id'   => $value,
 									 'position_name' => $position->name,
 									 'start_date'    => $fromDate,
@@ -358,12 +361,18 @@ class CharacterController extends Controller
 	{
 		$fromDate = DateTime::createFromFormat('d/m/Y', $position['start_date']);
 		$toDate = DateTime::createFromFormat('d/m/Y', $position['end_date']);
+        $conditionToDate = "is null";
+        $paramArray = array(':position_id'  => $position['position_id'],
+							':start_date'   => date('Y-m-d', $fromDate->getTimestamp()),
+							':character_id' => $character_id);
+        if (!empty($toDate)) {
+            $toDate = date('Y-m-d', $toDate->getTimestamp());
+            $conditionToDate = "= :end_date";
+            $paramArray[':end_date'] = $toDate;
+        }
 		$characterPosition = CharacterPosition::model()->find(array('select'    => '*',
-																	'condition' => 'position_id = :position_id and start_date = :start_date and end_date = :end_date and character_id = :character_id',
-																	'params'    => array(':position_id'  => $position['position_id'],
-																						 ':start_date'   => date('Y-m-d', $fromDate->getTimestamp()),
-																						 ':end_date'     => date('Y-m-d', $toDate->getTimestamp()),
-																						 ':character_id' => $character_id)));
+																	'condition' => "position_id = :position_id and start_date = :start_date and end_date $conditionToDate and character_id = :character_id",
+																	'params'    => $paramArray));
 		$characterPosition->delete();
 	}
 
