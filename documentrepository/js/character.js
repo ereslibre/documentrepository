@@ -37,8 +37,9 @@ function removeAlias(i)
 
 function addPosition()
 {
-	if ($('#Character_position' + positioni).val() == '') {
-		alert('Please, select start date, end date and position, and afterwards click on "Add"');
+	if ($('#Character_from_position' + positioni).val() == '' ||
+        $('#Character_position' + positioni).val() == '') {
+		alert('Please, select start date, optionally end date and position, and afterwards click on "Add"');
 		return;
 	}
 	addPosition_($('#Character_from_position' + positioni).val(),
@@ -52,7 +53,7 @@ function addPosition_(from_position_, to_position_, position_, position_name_)
 	var from_position = $('From: <input type="text" id="Character_from_position' + positioni + '" name="Character[from_position' + positioni + ']" />');
 	var to_position = $('To: <input type="text" id="Character_to_position' + positioni + '" name="Character[to_position' + positioni + ']" />');
 	var position = $('<input type="hidden" id="Character_position' + positioni + '" name="Character[position' + positioni + ']" />');
-	var position_label = 'Position: ' + position_name_;
+	var position_label = ' Position: ' + position_name_;
 	var remove_link = '&nbsp;<a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">Remove</a>';
 
 	from_position.attr('value', from_position_);
@@ -70,7 +71,9 @@ function addPosition_(from_position_, to_position_, position_, position_name_)
 	$('#Character_position' + positioni).attr('id', 'Character_position' + (positioni + 1));
 
 	var wrapper = $('<div id="positionwrapper' + positioni + '"></div>');
+    wrapper.append("From: ");
 	wrapper.append(from_position);
+    wrapper.append(" To: ");
 	wrapper.append(to_position);
 	wrapper.append(position);
 	wrapper.append(position_label);
