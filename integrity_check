@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+    if ($handle = opendir('documentrepository/repository')) {
+        while (($file = readdir($handle)) !== false) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+            $fileOk = (sha1_file("documentrepository/repository/$file") === $file);
+            $fileOk = $fileOk ? "Ok" : "Corrupted";
+            echo "Checking file $file... $fileOk\n";
+        }
+        closedir($handle);
+    } else {
+        die('repository folder does not exist. Please, read README file');
+    }
+?>
