@@ -3,6 +3,7 @@
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
     $cs->registerCssFile($baseUrl . '/css/character-min.css');
+	require_once 'translations.php';
 ?>
 
 <div class="view">
