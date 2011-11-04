@@ -56,13 +56,13 @@
 	<?php endif?>
 
 	<?php if (Yii::app()->user->hasFlash('success')) { ?>
-		<div class="flashinfo">
+		<div class="flash-success">
 			<?php echo Yii::app()->user->getFlash('success'); ?>
 		</div>
 	<?php } ?>
 
 	<?php if (Yii::app()->user->hasFlash('error')) { ?>
-		<div class="flasherror">
+		<div class="flash-error">
 			<?php echo Yii::app()->user->getFlash('error'); ?>
 		</div>
 	<?php } ?>

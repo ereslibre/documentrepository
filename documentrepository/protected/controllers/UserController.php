@@ -65,8 +65,11 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if($model->save())
+			if($model->save()) {
+				Yii::app()->user->setFlash('success', 'User saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
+			}
+			Yii::app()->user->setFlash('error', 'User could not be saved. Please review the information you provided');
 		}
 
 		$this->render('create',array(
@@ -89,8 +92,11 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if($model->save())
+			if($model->save()) {
+				Yii::app()->user->setFlash('success', 'User saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
+			}
+			Yii::app()->user->setFlash('error', 'User could not be saved. Please review the information you provided');
 		} else {
 			$model->password = '';
 		}
