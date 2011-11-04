@@ -100,9 +100,9 @@ class DocumentController extends Controller
 				$characters = $this->identifyCharacters($_POST['Document']);
 				$institutions = $this->identifyInstitutions($_POST['Document']);
 				$events = $this->identifyEvents($_POST['Document']);
-				Yii::app()->user->setFlash('error', 'Document could not be saved. Please review the information you provided');
 			}
 			$model->document = $document;
+			Yii::app()->user->setFlash('error', 'Document could not be saved. Please review the information you provided');
 		}
 
 		$this->render('create',array(

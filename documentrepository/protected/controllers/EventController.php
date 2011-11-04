@@ -75,9 +75,11 @@ class EventController extends Controller
 					// Save image on filesystem
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
+				Yii::app()->user->setFlash('success', 'Event saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
 			}
 			$model->image = $image;
+			Yii::app()->user->setFlash('error', 'Event could not be saved. Please review the information you provided');
 		}
 
 		$this->render('create',array(
@@ -113,8 +115,10 @@ class EventController extends Controller
 					// Save image on filesystem
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
+				Yii::app()->user->setFlash('success', 'Event saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
 			}
+			Yii::app()->user->setFlash('error', 'Event could not be saved. Please review the information you provided');
 		}
 
 		$this->render('update',array(

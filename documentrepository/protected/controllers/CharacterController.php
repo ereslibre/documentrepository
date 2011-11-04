@@ -62,6 +62,9 @@ class CharacterController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$aliases = Array();
+		$positions = Array();
+
 		if(isset($_POST['Character']))
 		{
 			$model->attributes=$_POST['Character'];
@@ -86,13 +89,20 @@ class CharacterController extends Controller
 					$this->createCharacterPosition($position, $model->id);
 				}
 				// Everything OK. Redirect
+				Yii::app()->user->setFlash('success', 'Character saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
+			} else {
+				$aliases = $this->identifyAliases($_POST['Character']);
+				$positions = $this->identifyPositions($_POST['Character']);
 			}
 			$model->image = $image;
+			Yii::app()->user->setFlash('error', 'Character could not be saved. Please review the information you provided');
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'aliases'=>$aliases,
+			'positions'=>$positions
 		));
 	}
 
@@ -186,10 +196,12 @@ class CharacterController extends Controller
 					}
 				}
 
+				Yii::app()->user->setFlash('success', 'Character saved correctly');
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$aliases = $this->identifyAliases($_POST['Character']);
 				$positions = $this->identifyPositions($_POST['Character']);
+				Yii::app()->user->setFlash('error', 'Character could not be saved. Please review the information you provided');
 			}
 		} else {
 			$aliases_ = CharacterAlias::model()->findAll(array('select'    => 'alias',
