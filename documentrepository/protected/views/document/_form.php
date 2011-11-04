@@ -76,7 +76,7 @@
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Character...')); ?>
+			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Character...', 'onChange' => 'addCharacter();')); ?>
 		</div>
 		<div id="selectedcharacters">
 		</div>
@@ -90,7 +90,7 @@
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Institution...')); ?>
+			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Institution...', 'onChange' => 'addInstitution();')); ?>
 		</div>
 		<div id="selectedinstitutions">
 		</div>
@@ -104,7 +104,7 @@
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Event...')); ?>
+			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Event...', 'onChange' => 'addEvent();')); ?>
 		</div>
 		<div id="selectedevents">
 		</div>
