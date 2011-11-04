@@ -9,7 +9,8 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Document Repository',
 
-	'language' => 'en_US',
+	'sourceLanguage' => 'en_us',
+	'language' => 'en_us',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -42,7 +43,8 @@ return array(
 			'rules'=>array(
 				'api/characters'   => 'characterApi/list',
 				'api/institutions' => 'institutionApi/list',
-				'api/events'       => 'eventApi/list'
+				'api/events'       => 'eventApi/list',
+				array('languageApi/change', 'pattern'=>'api/language', 'verb'=>'POST')
 			),
 		),
 
