@@ -14,7 +14,7 @@ function globalCharacterInit()
 function addAlias()
 {
 	if ($('#Character_alias' + aliasi).val() == '') {
-		alert('Please, write an alias, and afterwards click on "Add"');
+		alert($('#js_noalias').text());
 		return;
 	}
 	addAlias_($('#Character_alias' + aliasi).val());
@@ -24,7 +24,7 @@ function addAlias_(alias)
 {
 	$('#Character_alias' + aliasi).attr('name', 'Character[alias' + (aliasi + 1) + ']');
 	$('#Character_alias' + aliasi).attr('id', 'Character_alias' + (aliasi + 1));
-	var remove = '&nbsp;<a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">Remove</a>';
+	var remove = '&nbsp;<a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">' + $('#js_remove').text() + '</a>';
 	$('#addedAlias').append('<div id="aliaswrapper' + aliasi + '"><input type="text" id="Character_alias' + aliasi + '" name="Character[alias' + aliasi + ']" value="' + alias + '"/>' + remove + '<br/></div>');
 	++aliasi;
 	$('#Character_alias' + aliasi).val('');
@@ -39,7 +39,8 @@ function addPosition()
 {
 	if ($('#Character_from_position' + positioni).val() == '' ||
         $('#Character_position' + positioni).val() == '') {
-		alert('Please, select start date, optionally end date and position, and afterwards click on "Add"');
+		$('#Character_position' + positioni + ' option[value=""]').attr('selected', 'selected');
+		alert($('#js_noposition').text());
 		return;
 	}
 	addPosition_($('#Character_from_position' + positioni).val(),
@@ -54,7 +55,7 @@ function addPosition_(from_position_, to_position_, position_, position_name_)
 	var to_position = $('To: <input type="text" id="Character_to_position' + positioni + '" name="Character[to_position' + positioni + ']" />');
 	var position = $('<input type="hidden" id="Character_position' + positioni + '" name="Character[position' + positioni + ']" />');
 	var position_label = ' Position: ' + position_name_;
-	var remove_link = '&nbsp;<a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">Remove</a>';
+	var remove_link = '<div class="action"><a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">' + $('#js_remove').text() + '</a></div>';
 
 	from_position.attr('value', from_position_);
 	to_position.attr('value', to_position_);

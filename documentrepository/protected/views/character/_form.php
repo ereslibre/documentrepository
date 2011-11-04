@@ -13,6 +13,7 @@
 	} else {
 		$cs->registerScriptFile($baseUrl . '/js/character_create-min.js');
 	}
+	require_once 'translations.php';
 ?>
 
 <div class="form">
@@ -63,8 +64,7 @@
 			From: <?php echo $form->textField($model,'from_position0'); ?>
 			To: <?php echo $form->textField($model,'to_position0'); ?>
 			Position:
-			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...')); ?>
-			<a href="javascript:void(0);" onclick="javascript:addPosition();">Add</a>
+			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...', 'onChange' => 'addPosition();')); ?>
 		</div>
 	</div>
 

@@ -111,7 +111,7 @@ class Character extends CActiveRecord
 	{
 		$birthDate = DateTime::createFromFormat('d/m/Y', $this->birth_date);
 		$this->birth_date = date('Y-m-d', $birthDate->getTimestamp());
-		if (!empty($this->death_date)) {
+		if (!empty($this->death_date) && $this->death_date != 'To present') {
 			$deathDate = DateTime::createFromFormat('d/m/Y', $this->death_date);
 			$this->death_date = date('Y-m-d', $deathDate->getTimestamp());
 		} else {
@@ -128,11 +128,13 @@ class Character extends CActiveRecord
 	protected function afterFind()
 	{
 		$this->birth_date = date('d/m/Y', strtotime($this->birth_date));
-		if ($this->death_date) {
+		if (!empty($this->death_date)) {
 			$this->death_date = date('d/m/Y', strtotime($this->death_date));
-		}
+		} else {
+            $this->death_date = 'To present';
+        }
         $baseUrl = Yii::app()->baseUrl;
-        if ($this->image) {
+        if (!empty($this->image)) {
             $this->image = "$baseUrl/repository/{$this->image}";
         } else {
             $this->image = $this->emptyImageUrl();

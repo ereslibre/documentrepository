@@ -7,7 +7,9 @@ abstract class ApiController extends Controller
 		return array();
 	}
 
-	abstract public function actionList();
+	public function actionList()
+	{
+	}
 
 	protected function _sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{

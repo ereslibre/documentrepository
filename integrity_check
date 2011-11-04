@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+    $repositoryDir = 'documentrepository/repository';
+    if (!is_dir($repositoryDir)) {
+	$readme = file_get_contents('README');
+        die("!!! Repository dir not created. Here is the README file:\n\n$readme");
+    }
+    if ($handle = opendir($repositoryDir)) {
+        while (($file = readdir($handle)) !== false) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+            $fileOk = (sha1_file("$repositoryDir/$file") === $file);
+            $fileOk = $fileOk ? "Ok" : "Corrupted";
+            echo "Checking file $file... $fileOk\n";
+        }
+        closedir($handle);
+    }
+?>

@@ -1,4 +1,6 @@
 var current_characters = new Array();
+var current_institutions = new Array();
+var current_events = new Array();
 
 $(document).ready(function() {
 	globalInit('Document', 'document');
