@@ -1,26 +1,25 @@
 <?php
 $this->breadcrumbs=array(
-	'Languages'=>array('index'),
+	Yii::t('languages', 'Languages')=>array('index'),
 	$model->id,
 );
 
 if (!Yii::app()->user->isGuest) {
     $this->menu=array(
-	    array('label'=>'List Language', 'url'=>array('index')),
-	    array('label'=>'Create Language', 'url'=>array('create')),
-	    array('label'=>'Update Language', 'url'=>array('update', 'id'=>$model->id)),
-	    array('label'=>'Delete Language', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	    array('label'=>'Manage Language', 'url'=>array('admin')),
+	    array('label'=>Yii::t('languages', 'List Languages'), 'url'=>array('index')),
+	    array('label'=>Yii::t('languages', 'Create Language'), 'url'=>array('create')),
+	    array('label'=>Yii::t('languages', 'Update Language'), 'url'=>array('update', 'id'=>$model->id)),
+	    array('label'=>Yii::t('languages', 'Delete Language'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>Yii::t('app', 'Are you sure?'))),
+	    array('label'=>Yii::t('languages', 'Manage Languages'), 'url'=>array('admin')),
     );
 }
 ?>
 
-<h1>View Language #<?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('languages', 'View Language') ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'language',
 	),
 )); ?>

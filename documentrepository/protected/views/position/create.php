@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Positions'=>array('index'),
-	'Create',
+	Yii::t('positions', 'Positions')=>array('index'),
+	Yii::t('app', 'Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List Position', 'url'=>array('index')),
-	array('label'=>'Manage Position', 'url'=>array('admin')),
+	array('label'=>Yii::t('positions', 'List Positions'), 'url'=>array('index')),
+	array('label'=>Yii::t('positions', 'Manage Positions'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Position</h1>
+<h1><?php echo Yii::t('positions', 'Create Position') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

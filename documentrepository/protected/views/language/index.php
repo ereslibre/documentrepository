@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs=array(
-	'Languages',
+	Yii::t('languages', 'Languages'),
 );
 
 if (!Yii::app()->user->isGuest) {
     $this->menu=array(
-	    array('label'=>'Create Language', 'url'=>array('create')),
-	    array('label'=>'Manage Language', 'url'=>array('admin')),
+	    array('label'=>Yii::t('languages', 'Create Language'), 'url'=>array('create')),
+	    array('label'=>Yii::t('languages', 'Manage Languages'), 'url'=>array('admin')),
     );
 }
 ?>
 
-<h1>Languages</h1>
+<h1><?php echo Yii::t('languages', 'Languages') ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

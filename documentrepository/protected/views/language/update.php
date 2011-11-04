@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Languages'=>array('index'),
+	Yii::t('languages', 'Languages')=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app', 'Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List Language', 'url'=>array('index')),
-	array('label'=>'Create Language', 'url'=>array('create')),
-	array('label'=>'View Language', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Language', 'url'=>array('admin')),
+	array('label'=>Yii::t('languages', 'List Languages'), 'url'=>array('index')),
+	array('label'=>Yii::t('languages', 'Create Language'), 'url'=>array('create')),
+	array('label'=>Yii::t('languages', 'View Language'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('languages', 'Manage Languages'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Language <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('languages', 'Update Language') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
