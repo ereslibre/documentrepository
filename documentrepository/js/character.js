@@ -24,7 +24,7 @@ function addAlias_(alias)
 {
 	$('#Character_alias' + aliasi).attr('name', 'Character[alias' + (aliasi + 1) + ']');
 	$('#Character_alias' + aliasi).attr('id', 'Character_alias' + (aliasi + 1));
-	var remove = '<div class="action"><a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">' + $('#js_remove').text() + '</a></div>';
+	var remove = '&nbsp;<a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">' + $('#js_remove').text() + '</a>';
 	$('#addedAlias').append('<div id="aliaswrapper' + aliasi + '"><input type="text" id="Character_alias' + aliasi + '" name="Character[alias' + aliasi + ']" value="' + alias + '"/>' + remove + '<br/></div>');
 	++aliasi;
 	$('#Character_alias' + aliasi).val('');
