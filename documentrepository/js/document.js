@@ -55,6 +55,8 @@ function reloadCharacters()
 function addCharacterSelection()
 {
 	if (!(available_characters.length - 1)) {
+		characterlasti = characteri;
+		++characteri;
 		return;
 	}
 
@@ -164,6 +166,8 @@ function reloadInstitutions()
 function addInstitutionSelection()
 {
 	if (!(available_institutions.length - 1)) {
+		institutionlasti = institutioni;
+		++institutioni;
 		return;
 	}
 
@@ -273,6 +277,8 @@ function reloadEvents()
 function addEventSelection()
 {
     if (!(available_events.length - 1)) {
+		eventlasti = eventi;
+		++eventi;
         return;
     }
 
