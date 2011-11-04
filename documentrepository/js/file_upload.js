@@ -37,10 +37,5 @@ function globalInit(id_prefix, id)
 
 function datePicker(id)
 {
-	$('#' + id).datepicker({
-		changeMonth: true,
-		changeYear: true,
-		dateFormat: 'dd/mm/yy',
-		writableYear: true
-	});
+	$('#' + id).datepicker();
 }

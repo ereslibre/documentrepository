@@ -1,4 +1,5 @@
 <?php
+	$language = Yii::app()->getLanguage();
 	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
@@ -23,6 +24,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form-min.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js"></script>
 </head>
 
 <body>
@@ -78,8 +81,22 @@
 </div><!-- page -->
 
 <div style="display: none">
-	<div id="language"><?php echo Yii::app()->getLanguage() ?></div>
+	<div id="language"><?php echo $language ?></div>
 </div>
 
 </body>
 </html>
+
+<?php $language = (($language == 'en') ? '' : $language) ?>
+
+<script>
+$(document).ready(function() {
+	$.datepicker.setDefaults($.datepicker.regional['<?php echo $language ?>']);
+	$.datepicker.setDefaults({
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: 'dd/mm/yy',
+		writableYear: true
+	});
+});
+</script>
