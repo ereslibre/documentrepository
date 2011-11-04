@@ -7,7 +7,7 @@ function translate(language)
 		data: JSON.stringify(language),
 		dataType: 'json',
 		success: function(data) {
-			$('#page').fadeOut('slow', function() {
+			$('#page,#flags').fadeOut('slow', function() {
 				$.cookie('loadEffect', 'true');
 				location.reload();
 			});
@@ -17,8 +17,9 @@ function translate(language)
 
 $(document).ready(function() {
 	if ($.cookie('loadEffect') == 'true') {
-		$('#page').hide();
-		$('#page').fadeIn('slow');
+		$('#page,#flags').hide();
+		$('#page,#flags').fadeIn('slow');
 		$.cookie('loadEffect', null);
 	}
+	$('#' + $('#language').html() + '_flag').addClass('current');
 });

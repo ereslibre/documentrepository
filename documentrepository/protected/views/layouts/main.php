@@ -27,6 +27,11 @@
 
 <body>
 
+<div id="flags" class="language">
+	<a id="es_flag" class="flag" href="javascript:void(0);" onclick="translate('es');"><img class="flag_img" src="/images/spanish.png"></a>
+	<a id="en_flag" class="flag" href="javascript:void(0);" onclick="translate('en');"><img class="flag_img" src="/images/english.png"></a>
+</div>
+
 <div class="container" id="page">
 
 	<div id="header">
@@ -70,12 +75,11 @@
 
 	<?php echo $content; ?>
 
-	<div class="language">
-		<a href="javascript:void(0);" onclick="translate('es');"><img src="/images/spanish.png"></a>
-		<a href="javascript:void(0);" onclick="translate('en');"><img src="/images/english.png"></a>
-	</div>
-
 </div><!-- page -->
+
+<div style="display: none">
+	<div id="language"><?php echo Yii::app()->getLanguage() ?></div>
+</div>
 
 </body>
 </html>
