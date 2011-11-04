@@ -71,8 +71,9 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'biography'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
-							array('name' => 'Character[biography]',
-										'value' => $model->biography)); ?>
+							array('name'     => 'Character[biography]',
+								  'value'    => $model->biography,
+								  'language' => Yii::app()->getLanguage())); ?>
 		<?php echo $form->error($model,'biography'); ?>
 	</div>
 

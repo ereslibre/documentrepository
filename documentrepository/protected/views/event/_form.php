@@ -32,7 +32,8 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
 							array('name' => 'Event[description]',
-							'value' => $model->description)); ?>
+								  'value' => $model->description,
+								  'language' => Yii::app()->getLanguage())); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
