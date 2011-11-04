@@ -1,11 +1,4 @@
 <?php
-	$language = null;
-	if (isset(Yii::app()->request->cookies['language'])) {
-		$language = Yii::app()->request->cookies['language']->value;
-	}
-	Yii::app()->session['lang'] = $language;
-	Yii::app()->setLanguage($language);
-
 	Yii::app()->clientScript->registerCoreScript('jquery');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
@@ -77,8 +70,8 @@
 	<?php echo $content; ?>
 
 	<div class="language">
-		<a href="javascript:void(0);" onclick="translate('es_ES');"><img src="/images/spanish.png"></a>
-		<a href="javascript:void(0);" onclick="translate('en_US');"><img src="/images/english.png"></a>
+		<a href="javascript:void(0);" onclick="translate('es');"><img src="/images/spanish.png"></a>
+		<a href="javascript:void(0);" onclick="translate('en');"><img src="/images/english.png"></a>
 	</div>
 
 </div><!-- page -->

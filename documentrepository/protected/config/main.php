@@ -19,7 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.controllers.ApiController',
-		'application.components.*',
+		'application.components.*'
 	),
 
 	'modules'=>array(
@@ -76,6 +76,8 @@ return array(
 			),
 		),
 	),
+
+	'behaviors' => array('ApplicationLanguageBehavior'),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
