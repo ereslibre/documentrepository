@@ -86,6 +86,11 @@ body
 	text-decoration:none;
 }
 
+div.language
+{
+	text-align: right;
+}
+
 div.flash-error, div.flash-notice, div.flash-success
 {
 	padding:.8em;

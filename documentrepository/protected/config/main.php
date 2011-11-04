@@ -9,7 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Document Repository',
 
-	'language' => 'es',
+	'language' => 'en',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

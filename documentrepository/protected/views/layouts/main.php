@@ -62,6 +62,11 @@
 
 	<?php echo $content; ?>
 
+	<div class="language">
+		<img src="/images/spanish.png">
+		<img src="/images/english.png">
+	</div>
+
 </div><!-- page -->
 
 </body>
