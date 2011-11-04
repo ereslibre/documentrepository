@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	Yii::t('languages', 'Languages')=>array('index'),
-	$model->id,
+	$model->language,
 );
 
 if (!Yii::app()->user->isGuest) {

@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	Yii::t('languages', 'Languages')=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	$model->language=>array('view','id'=>$model->id),
 	Yii::t('app', 'Update'),
 );
 
