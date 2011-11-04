@@ -2,6 +2,7 @@
 return array(
 	'Home' => 'Inicio',
 	'Document Repository' => 'Repositorio de Documentos',
+	'Add' => 'Añadir',
 	'Create Document' => 'Crear Documento',
 	'Create Character' => 'Crear Personaje',
 	'Create Institution' => 'Crear Institución',

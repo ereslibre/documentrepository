@@ -35,12 +35,12 @@
 	</div>
 
 	<div class="row">
-		<label>Alias</label>
+		<label><?php echo Yii::t('characters', 'Aliases'); ?></label>
 		<div id="addedAlias">
 		</div>
 		<div id="addAlias">
 			<?php echo CHtml::textField('Character[alias0]'); ?>
-			<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
+			<a href="javascript:void(0);" onclick="javascript:addAlias();"><?php echo Yii::t('app', 'Add') ?></a>
 		</div>
 	</div>
 
