@@ -37,15 +37,15 @@
 			'items'=>array(
 // 				array('label'=>'Home', 'url'=>array('/site/index')),
 // 				array('label'=>'Search', 'url'=>array('search')),
-				array('label'=>Yii::t('t', 'Create Document'), 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Character'), 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Institution'), 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Event'), 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Position'), 'url'=>array('position/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Language'), 'url'=>array('language/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Users'), 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Logout'), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>Yii::t('app', 'Create Document'), 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Character'), 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Institution'), 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Event'), 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Position'), 'url'=>array('position/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Language'), 'url'=>array('language/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Users'), 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Logout'), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->

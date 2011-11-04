@@ -24,7 +24,7 @@
 	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app', 'Fields with <span class="required">*</span> are required.') ?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -61,10 +61,10 @@
 		<div id="addedPosition">
 		</div>
 		<div id="addPosition">
-			From: <?php echo $form->textField($model,'from_position0'); ?>
-			To: <?php echo $form->textField($model,'to_position0'); ?>
-			Position:
-			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...', 'onChange' => 'addPosition();')); ?>
+			<?php echo Yii::t('app', 'From') ?>: <?php echo $form->textField($model,'from_position0'); ?>
+			<?php echo Yii::t('app', 'To') ?>: <?php echo $form->textField($model,'to_position0'); ?>
+			<?php echo Yii::t('characters', 'Position') ?>:
+			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('characters', 'Select Position...'), 'onChange' => 'addPosition();')); ?>
 		</div>
 	</div>
 
@@ -82,9 +82,9 @@
 			<?php
 				if ($model->id) {
 					$baseUrl = Yii::app()->request->baseUrl;
-					echo CHtml::label('Current image', 'currentimage');
+					echo CHtml::label(Yii::t('app', 'Current image'), 'currentimage');
 					echo CHtml::image($model->image, '', array('id' => 'currentimage'));
-					echo CHtml::label('Change image', 'image');
+					echo CHtml::label(Yii::t('app', 'Change image'), 'image');
 				}
 				echo $form->fileField($model,'image');
 				echo $form->error($model,'image');
@@ -94,7 +94,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

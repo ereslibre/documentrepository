@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Characters'=>array('index'),
-	'Create',
+	Yii::t('characters', 'Characters')=>array('index'),
+	Yii::t('app', 'Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List Character', 'url'=>array('index')),
-	array('label'=>'Manage Character', 'url'=>array('admin')),
+	array('label'=>Yii::t('characters', 'List Characters'), 'url'=>array('index')),
+	array('label'=>Yii::t('characters', 'Manage Characters'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Character</h1>
+<h1><?php echo Yii::t('characters', 'Create Character') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model, 'aliases'=>$aliases, 'positions'=>$positions)); ?>

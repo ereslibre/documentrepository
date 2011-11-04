@@ -16,7 +16,7 @@
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	    <?php echo CHtml::encode($data->name); ?>
 	    <br />
-        <b>Aliases:</b>
+        <b><?php echo Yii::t('characters', 'Aliases') ?>:</b>
         <?php $this->printAliases($data); ?>
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('birth_date')); ?>:</b>
 	    <?php echo CHtml::encode($data->birth_date); ?>
@@ -26,7 +26,7 @@
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('biography')); ?>:</b>
 	    <?php echo $data->biography; ?>
-        <b>Positions:</b>
+        <b><?php echo Yii::t('characters', 'Positions') ?>:</b>
         <?php $this->printPositions($data); ?>
     </div>
 
