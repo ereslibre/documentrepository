@@ -89,6 +89,7 @@ body
 div.language
 {
 	text-align: right;
+	padding: 5px;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
