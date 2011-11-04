@@ -40,7 +40,7 @@
 		</div>
 		<div id="addAlias">
 			<?php echo CHtml::textField('Character[alias0]'); ?>
-			<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
+			&nbsp;-&nbsp;<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
 		</div>
 	</div>
 
