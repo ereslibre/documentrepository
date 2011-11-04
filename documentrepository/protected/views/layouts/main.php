@@ -30,7 +30,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><a href="<?php echo Yii::app()->homeUrl ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+		<div id="logo"><a href="<?php echo Yii::app()->homeUrl ?>"><?php echo Yii::t('app', 'Document Repository') ?></a></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">

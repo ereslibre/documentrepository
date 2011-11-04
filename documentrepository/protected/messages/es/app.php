@@ -1,6 +1,7 @@
 <?php
 return array(
 	'Home' => 'Inicio',
+	'Document Repository' => 'Repositorio de Documentos',
 	'Create Document' => 'Crear Documento',
 	'Create Character' => 'Crear Personaje',
 	'Create Institution' => 'Crear Institución',
