@@ -65,7 +65,7 @@ class Language extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'language' => 'Language',
+			'language' => Yii::t('languages', 'Language'),
 		);
 	}
 

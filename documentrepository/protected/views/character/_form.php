@@ -57,13 +57,13 @@
 	</div>
 
 	<div class="row">
-		<label>Positions</label>
+		<label><?php echo Yii::t('positions', 'Positions') ?></label>
 		<div id="addedPosition">
 		</div>
 		<div id="addPosition">
 			<?php echo Yii::t('app', 'From') ?>: <?php echo $form->textField($model,'from_position0'); ?>
 			<?php echo Yii::t('app', 'To') ?>: <?php echo $form->textField($model,'to_position0'); ?>
-			<?php echo Yii::t('characters', 'Position') ?>:
+			<?php echo Yii::t('positions', 'Position') ?>:
 			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('characters', 'Select Position...'), 'onChange' => 'addPosition();')); ?>
 		</div>
 	</div>

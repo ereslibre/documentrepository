@@ -67,9 +67,9 @@ class Institution extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'image' => 'Image',
+			'name' => Yii::t('app', 'Name'),
+			'description' => Yii::t('app', 'Description'),
+			'image' => Yii::t('app', 'Image'),
 		);
 	}
 

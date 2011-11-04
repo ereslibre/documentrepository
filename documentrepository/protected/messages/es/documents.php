@@ -14,4 +14,6 @@ return array(
 	'Related characters' => 'Personajes relacionados',
 	'Related institutions' => 'Instituciones relacionadas',
 	'Related events' => 'Eventos relacionados',
+	'Document' => 'Documento',
+	'Catalog' => 'Catálogo'
 );

@@ -71,11 +71,11 @@ class Document extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'document' => 'Document',
-			'name' => 'Name',
-			'catalog' => 'Catalog',
-			'description' => 'Description',
-			'language_id' => 'Language'
+			'document' => Yii::t('documents', 'Document'),
+			'name' => Yii::t('app', 'Name'),
+			'catalog' => Yii::t('documents', 'Catalog'),
+			'description' => Yii::t('app', 'Description'),
+			'language_id' => Yii::t('languages', 'Language')
 		);
 	}
 

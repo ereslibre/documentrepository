@@ -76,11 +76,11 @@ class Character extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'birth_date' => 'Birth Date',
-			'death_date' => 'Death Date',
-			'biography' => 'Biography',
-			'image' => 'Image',
+			'name' => Yii::t('app', 'Name'),
+			'birth_date' => Yii::t('characters', 'Birth Date'),
+			'death_date' => Yii::t('characters', 'Death Date'),
+			'biography' => Yii::t('characters', 'Biography'),
+			'image' => Yii::t('app', 'Image'),
 		);
 	}
 

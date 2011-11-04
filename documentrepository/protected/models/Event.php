@@ -69,11 +69,11 @@ class Event extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'start_date' => 'Start Date',
-			'end_date' => 'End Date',
-			'image' => 'Image',
+			'name' => Yii::t('app', 'Name'),
+			'description' => Yii::t('app', 'Description'),
+			'start_date' => Yii::t('events', 'Start Date'),
+			'end_date' => Yii::t('events', 'End Date'),
+			'image' => Yii::t('app', 'Image'),
 		);
 	}
 

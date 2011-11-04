@@ -65,7 +65,7 @@ class Position extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => Yii::t('app', 'Name'),
 		);
 	}
 

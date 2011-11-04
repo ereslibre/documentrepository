@@ -11,4 +11,6 @@ return array(
 	'Event' => 'Evento',
 	'Events' => 'Eventos',
 	'Select Event...' => 'Seleccione Evento...',
+	'Start Date' => 'Fecha de Comienzo',
+	'End Date' => 'Fecha de Fin'
 );

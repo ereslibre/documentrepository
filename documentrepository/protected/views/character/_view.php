@@ -26,7 +26,7 @@
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('biography')); ?>:</b>
 	    <?php echo $data->biography; ?>
-        <b><?php echo Yii::t('characters', 'Positions') ?>:</b>
+        <b><?php echo Yii::t('positions', 'Positions') ?>:</b>
         <?php $this->printPositions($data); ?>
     </div>
 

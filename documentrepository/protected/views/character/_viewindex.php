@@ -26,7 +26,7 @@
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('death_date')); ?>:</b>
 	    <?php echo CHtml::encode($data->death_date); ?>
         <br />
-        <b><?php echo Yii::t('characters', 'Positions') ?>:</b>
+        <b><?php echo Yii::t('positions', 'Positions') ?>:</b>
         <?php $this->printPositions($data); ?>
     </div>
 
