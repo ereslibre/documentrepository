@@ -65,8 +65,8 @@ function addCharacterSelection()
 	var character_wrapper = $('<div id="characterwrapper' + characteri + '" class="characterbox"></div>');
 	character_wrapper.append(character);
 	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + characteri + '"></div>');
-	character_wrapper.append('<a class="action" style="display: none;" id="removecharacter' + characteri + '" onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a>');
-	character_wrapper.append('<a class="action" id="addcharacter' + characteri + '" onclick="addCharacter();" href="javascript:void(0);">Add</a>');
+	character_wrapper.append('<div class="action" style="display: none;" id="removecharacter' + characteri + '"><a onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a></div>');
+	character_wrapper.append('<div class="action" id="addcharacter' + characteri + '"><a onclick="addCharacter();" href="javascript:void(0);">Add</a></div>');
 
 	$('#selectedcharacters').append(character_wrapper);
 
@@ -175,8 +175,8 @@ function addInstitutionSelection()
 	var institution_wrapper = $('<div id="institutionwrapper' + institutioni + '" class="characterbox"></div>');
 	institution_wrapper.append(institution);
 	institution_wrapper.append('<div class="minwidth" style="display: inline;" id="institutionlabel' + institutioni + '"></div>');
-	institution_wrapper.append('<a class="action" style="display: none;" id="removeinstitution' + institutioni + '" onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a>');
-	institution_wrapper.append('<a class="action" id="addinstitution' + institutioni + '" onclick="addInstitution();" href="javascript:void(0);">Add</a>');
+	institution_wrapper.append('<div class="action" style="display: none;" id="removeinstitution' + institutioni + '"><a onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a></div>');
+	institution_wrapper.append('<div class="action" id="addinstitution' + institutioni + '"><a onclick="addInstitution();" href="javascript:void(0);">Add</a></div>');
 
 	$('#selectedinstitutions').append(institution_wrapper);
 
@@ -285,8 +285,8 @@ function addEventSelection()
     var event_wrapper = $('<div id="eventwrapper' + eventi + '" class="characterbox"></div>');
     event_wrapper.append(event);
     event_wrapper.append('<div class="minwidth" style="display: inline;" id="eventlabel' + eventi + '"></div>');
-    event_wrapper.append('<a class="action" style="display: none;" id="removeevent' + eventi + '" onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
-    event_wrapper.append('<a class="action" id="addevent' + eventi + '" onclick="addEvent();" href="javascript:void(0);">Add</a>');
+    event_wrapper.append('<div class="action" style="display: none;" id="removeevent' + eventi + '"><a onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
+    event_wrapper.append('<div class="action" id="addevent' + eventi + '" onclick="addEvent();"><a href="javascript:void(0);">Add</a>');
 
     $('#selectedevents').append(event_wrapper);
 

@@ -1,13 +1,21 @@
 div.characterbox
 {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	width: 300px;
+	padding: 5px;
+	width: 100%;
+	vertical-align: middle;
 }
 
-a.action
+div.characterbox:hover
 {
-	padding-left: 10px;
+	background: #C9E0ED;
+}
+
+div.action
+{
+	float: right;
+	overflow: auto;
+	display: inline-block;
+	text-align: right;
 }
 
 #Document_document {

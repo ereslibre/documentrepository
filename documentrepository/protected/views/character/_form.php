@@ -38,9 +38,9 @@
 		<label>Alias</label>
 		<div id="addedAlias">
 		</div>
-		<div id="addAlias">
+		<div id="addAlias" style="width: 100%;">
 			<?php echo CHtml::textField('Character[alias0]'); ?>
-			&nbsp;-&nbsp;<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
+			<div class="action"><a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a></div>
 		</div>
 	</div>
 
@@ -60,12 +60,12 @@
 		<label>Positions</label>
 		<div id="addedPosition">
 		</div>
-		<div id="addPosition">
+		<div id="addPosition" style="width: 100%;">
 			From: <?php echo $form->textField($model,'from_position0'); ?>
 			To: <?php echo $form->textField($model,'to_position0'); ?>
 			Position:
 			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...')); ?>
-			&nbsp;-&nbsp;<a href="javascript:void(0);" onclick="javascript:addPosition();">Add</a>
+			<div class="action"><a href="javascript:void(0);" onclick="javascript:addPosition();">Add</a></div>
 		</div>
 	</div>
 

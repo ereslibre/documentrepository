@@ -24,7 +24,7 @@ function addAlias_(alias)
 {
 	$('#Character_alias' + aliasi).attr('name', 'Character[alias' + (aliasi + 1) + ']');
 	$('#Character_alias' + aliasi).attr('id', 'Character_alias' + (aliasi + 1));
-	var remove = '&nbsp;&nbsp;-&nbsp;<a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">' + $('#js_remove').text() + '</a>';
+	var remove = '<div class="action"><a href="javascript:void(0);" onclick="removeAlias(' + aliasi + ');">' + $('#js_remove').text() + '</a></div>';
 	$('#addedAlias').append('<div id="aliaswrapper' + aliasi + '"><input type="text" id="Character_alias' + aliasi + '" name="Character[alias' + aliasi + ']" value="' + alias + '"/>' + remove + '<br/></div>');
 	++aliasi;
 	$('#Character_alias' + aliasi).val('');
@@ -54,7 +54,7 @@ function addPosition_(from_position_, to_position_, position_, position_name_)
 	var to_position = $('To: <input type="text" id="Character_to_position' + positioni + '" name="Character[to_position' + positioni + ']" />');
 	var position = $('<input type="hidden" id="Character_position' + positioni + '" name="Character[position' + positioni + ']" />');
 	var position_label = ' Position: ' + position_name_;
-	var remove_link = '&nbsp;-&nbsp;<a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">' + $('#js_remove').text() + '</a>';
+	var remove_link = '<div class="action"><a href="javascript:void(0);" onclick="removePosition(' + positioni + ');">' + $('#js_remove').text() + '</a></div>';
 
 	from_position.attr('value', from_position_);
 	to_position.attr('value', to_position_);

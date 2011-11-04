@@ -2,6 +2,14 @@
 	padding-left: 2em;
 }
 
+div.action
+{
+	float: right;
+	overflow: auto;
+	display: inline-block;
+	text-align: right;
+}
+
 div.image
 {
     display: inline-block;
