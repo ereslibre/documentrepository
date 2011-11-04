@@ -7,7 +7,18 @@ function translate(language)
 		data: JSON.stringify(language),
 		dataType: 'json',
 		success: function(data) {
-			location.reload();
+			$('#page').fadeOut('slow', function() {
+				$.cookie('loadEffect', 'true');
+				location.reload();
+			});
 		}
 	});
 }
+
+$(document).ready(function() {
+	if ($.cookie('loadEffect') == 'true') {
+		$('#page').hide();
+		$('#page').fadeIn('slow');
+		$.cookie('loadEffect', null);
+	}
+});

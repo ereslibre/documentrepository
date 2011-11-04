@@ -1,7 +1,8 @@
 <?php
-	Yii::app()->clientScript->registerCoreScript('jquery');
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/jquery.cookie-min.js');
 	$cs->registerScriptFile($baseUrl . '/js/translate-min.js');
 ?>
 
