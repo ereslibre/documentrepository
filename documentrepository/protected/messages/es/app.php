@@ -1,5 +1,6 @@
 <?php
 return array(
+	'Home' => 'Inicio',
 	'Create Document' => 'Crear Documento',
 	'Create Character' => 'Crear Personaje',
 	'Create Institution' => 'Crear Institución',
