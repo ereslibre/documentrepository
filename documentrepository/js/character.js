@@ -39,6 +39,7 @@ function addPosition()
 {
 	if ($('#Character_from_position' + positioni).val() == '' ||
         $('#Character_position' + positioni).val() == '') {
+		$('#Character_position' + positioni + ' option[value=""]').attr('selected', 'selected');
 		alert($('#js_noposition').text());
 		return;
 	}
