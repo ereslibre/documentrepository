@@ -10,7 +10,7 @@
 <div class="view">
 
     <div class="image">
-        <?php echo CHtml::image($data->image, $data->name, array('class' => 'thumb')); ?>
+        <?php echo CHtml::link(CHtml::image($data->image, $data->name, array('class' => 'thumb')), $data->image, array('target' => '_blank')); ?>
     </div>
 
     <div class="description">
