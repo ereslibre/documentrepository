@@ -13,6 +13,8 @@ return array(
 	'Birth Date' => 'Fecha de Nacimiento',
 	'Death Date' => 'Fecha de Defunción',
 	'Biography' => 'Biografía',
+	'Character saved correctly' => 'Personaje salvado correctamente',
+	'Character could not be saved. Please review the information you provided' => 'No se pudo salvar el personaje. Por favor, compruebe los datos que ha introducido',
 	'Please, write an alias, and afterwards click on "Add"' => 'Por favor, escriba un pseudónimo y después haga click en "Añadir"',
 	'Please, select start date, optionally end date and position' => 'Por favor, seleccione una fecha de inicio, opcionalmente una fecha de fin y una posición'
 );

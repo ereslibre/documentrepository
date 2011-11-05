@@ -10,4 +10,6 @@ return array(
 	'No positions found' => 'No se han encontrado puestos',
 	'Position' => 'Puesto',
 	'Positions' => 'Puestos',
+	'Position saved correctly' => 'Puesto salvado correctamente',
+	'Position could not be saved. Please review the information you provided' => 'No se pudo salvar el puesto. Por favor, compruebe los datos que ha introducido'
 );

@@ -7,7 +7,7 @@ return array(
 	'Manage Documents' => 'Administrar Documentos',
 	'Update Document' => 'Actualizar Documento',
 	'Delete Document' => 'Eliminar Documento',
-	'Select Language...' => 'Seleccione Lenguaje...',
+	'Select Language...' => 'Seleccione Idioma...',
 	'Select Character...' => 'Seleccione Personaje...',
 	'Select Institution...' => 'Seleccione Institución...',
 	'Select Event...' => 'Seleccione Evento...',
@@ -15,5 +15,7 @@ return array(
 	'Related institutions' => 'Instituciones relacionadas',
 	'Related events' => 'Eventos relacionados',
 	'Document' => 'Documento',
-	'Catalog' => 'Catálogo'
+	'Catalog' => 'Catálogo',
+	'Document saved correctly' => 'Documento salvado correctamente',
+	'Document could not be saved. Please review the information you provided' => 'No se pudo salvar el documento. Por favor, compruebe los datos que ha introducido'
 );

@@ -66,10 +66,10 @@ class LanguageController extends Controller
 		{
 			$model->attributes=$_POST['Language'];
 			if($model->save()) {
-				Yii::app()->user->setFlash('success', 'Language saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('languages', 'Language saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			Yii::app()->user->setFlash('error', 'Language could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('languages', 'Language could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('create',array(
@@ -93,10 +93,10 @@ class LanguageController extends Controller
 		{
 			$model->attributes=$_POST['Language'];
 			if($model->save()) {
-				Yii::app()->user->setFlash('success', 'Language saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('languages', 'Language saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			Yii::app()->user->setFlash('error', 'Language could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('languages', 'Language could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('update',array(

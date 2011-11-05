@@ -8,7 +8,7 @@ return array(
 	'Create Institution' => 'Crear Institución',
 	'Create Event' => 'Crear Evento',
 	'Create Position' => 'Crear Puesto',
-	'Create Language' => 'Crear Lenguaje',
+	'Create Language' => 'Crear Idioma',
 	'Users' => 'Usuarios',
 	'Login' => 'Entrar',
 	'Logout' => 'Salir',
