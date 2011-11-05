@@ -1,7 +1,7 @@
 <?php
 $this->pageTitle=Yii::app()->name . ' - Search';
 $this->breadcrumbs=array(
-	'Search',
+	Yii::t('app', 'Search'),
 );
 ?>
 
@@ -10,12 +10,12 @@ $this->breadcrumbs=array(
 <form method="POST" action="/index.php/search/search">
 
 	<div class="row">
-		<?php echo CHtml::label('Search', 'search'); ?>
+		<?php echo CHtml::label(Yii::t('app', 'Search'), 'search'); ?>
 		<?php echo CHtml::textField('search','',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton(Yii::t('appaction', 'Search')); ?>
 	</div>
 
 </form>

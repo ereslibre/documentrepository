@@ -22,7 +22,7 @@ return array(
 	'Change image' => 'Cambiar imagen',
 	'Create' => 'Crear',
 	'Save' => 'Guardar',
-	'Search' => 'Buscar',
+	'Search' => 'Búsqueda',
 	'Remove' => 'Eliminar',
 	'Update' => 'Actualizar',
 	'Reload' => 'Recargar',
