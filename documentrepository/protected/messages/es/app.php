@@ -31,5 +31,8 @@ return array(
 	'Name' => 'Nombre',
 	'Image' => 'Imagen',
 	'Description' => 'Descripción',
+	'To present' => 'Presente',
+	'None' => 'Ninguno/a',
+	'Unknown' => 'Desconocido/a',
 	'Fields with <span class="required">*</span> are required.' => 'Los campos marcados con <span class="required">*</span> son requeridos'
 );

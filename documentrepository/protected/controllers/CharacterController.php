@@ -428,7 +428,7 @@ class CharacterController extends Controller
     {
         $aliases = $this->getRelatedAliases($data->id);
         if (empty($aliases)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";
@@ -442,7 +442,7 @@ class CharacterController extends Controller
     {
         $positions = $this->getRelatedPositions($data->id);
         if (empty($positions)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";

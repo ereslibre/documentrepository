@@ -425,7 +425,7 @@ class DocumentController extends Controller
     {
         $language = Language::model()->findByPk($language_id);
         if (empty($language)) {
-            return "Unknown";
+            return echo Yii::t('app', 'Unknown');
         }
         return $language->language;
     }
@@ -485,7 +485,7 @@ class DocumentController extends Controller
     {
         $characters = $this->getRelatedCharacters($data->id);
         if (empty($characters)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";
@@ -500,7 +500,7 @@ class DocumentController extends Controller
     {
         $institutions = $this->getRelatedInstitutions($data->id);
         if (empty($institutions)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";
@@ -515,7 +515,7 @@ class DocumentController extends Controller
     {
         $events = $this->getRelatedEvents($data->id);
         if (empty($events)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";
