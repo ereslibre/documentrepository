@@ -34,5 +34,6 @@ return array(
 	'To present' => 'Presente',
 	'None' => 'Ninguno/a',
 	'Unknown' => 'Desconocido/a',
+	'Search is empty' => 'La búsqueda es vacía',
 	'Fields with <span class="required">*</span> are required.' => 'Los campos marcados con <span class="required">*</span> son requeridos'
 );

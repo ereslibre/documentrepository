@@ -5,8 +5,19 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Search</h1>
+<div class="form" style="text-align: center">
 
-<p>Enter your search terms:</p>
+<form method="POST" action="/index.php/search/search">
 
-Search terms here
+	<div class="row">
+		<?php echo CHtml::label('Search', 'search'); ?>
+		<?php echo CHtml::textField('search','',array('size'=>60,'maxlength'=>255)); ?>
+	</div>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Search'); ?>
+	</div>
+
+</form>
+
+</div><!-- form -->
