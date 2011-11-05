@@ -35,5 +35,6 @@ return array(
 	'None' => 'Ninguno/a',
 	'Unknown' => 'Desconocido/a',
 	'Search is empty' => 'La búsqueda es vacía',
+	'Invalid characters in query' => 'Caracteres inválidos en la sentencia',
 	'Fields with <span class="required">*</span> are required.' => 'Los campos marcados con <span class="required">*</span> son requeridos'
 );
