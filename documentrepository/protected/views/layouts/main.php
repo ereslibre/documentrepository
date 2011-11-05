@@ -44,8 +44,7 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-// 				array('label'=>'Home', 'url'=>array('/site/index')),
-// 				array('label'=>'Search', 'url'=>array('search')),
+ 				array('label'=>Yii::t('app', 'Home'), 'url'=>array('/'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>Yii::t('app', 'Create Document'), 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>Yii::t('app', 'Create Character'), 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>Yii::t('app', 'Create Institution'), 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
