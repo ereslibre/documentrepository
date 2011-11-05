@@ -11,6 +11,7 @@
 	} else {
 		$cs->registerScriptFile($baseUrl . '/js/document_create-min.js');
 	}
+	require_once 'translations.php';
 ?>
 
 <div class="form">

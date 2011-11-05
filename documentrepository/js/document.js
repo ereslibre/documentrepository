@@ -67,7 +67,7 @@ function addCharacterSelection()
 	var character_wrapper = $('<div id="characterwrapper' + characteri + '" class="characterbox"></div>');
 	character_wrapper.append(character);
 	character_wrapper.append('<div class="minwidth" style="display: inline;" id="characterlabel' + characteri + '"></div>');
-	character_wrapper.append('<div class="action" style="display: none;" id="removecharacter' + characteri + '"><a onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">Remove</a></div>');
+	character_wrapper.append('<div class="action" style="display: none;" id="removecharacter' + characteri + '"><a onclick="removeCharacter(' + characteri + ');" href="javascript:void(0);">' + $('#js_remove').text() + '</a></div>');
 
 	$('#selectedcharacters').append(character_wrapper);
 
@@ -178,7 +178,7 @@ function addInstitutionSelection()
 	var institution_wrapper = $('<div id="institutionwrapper' + institutioni + '" class="characterbox"></div>');
 	institution_wrapper.append(institution);
 	institution_wrapper.append('<div class="minwidth" style="display: inline;" id="institutionlabel' + institutioni + '"></div>');
-	institution_wrapper.append('<div class="action" style="display: none;" id="removeinstitution' + institutioni + '"><a onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">Remove</a></div>');
+	institution_wrapper.append('<div class="action" style="display: none;" id="removeinstitution' + institutioni + '"><a onclick="removeInstitution(' + institutioni + ');" href="javascript:void(0);">' + $('#js_remove').text() + '</a></div>');
 
 	$('#selectedinstitutions').append(institution_wrapper);
 
@@ -289,7 +289,7 @@ function addEventSelection()
     var event_wrapper = $('<div id="eventwrapper' + eventi + '" class="characterbox"></div>');
     event_wrapper.append(event);
     event_wrapper.append('<div class="minwidth" style="display: inline;" id="eventlabel' + eventi + '"></div>');
-    event_wrapper.append('<div class="action" style="display: none;" id="removeevent' + eventi + '"><a onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">Remove</a>');
+    event_wrapper.append('<div class="action" style="display: none;" id="removeevent' + eventi + '"><a onclick="removeEvent(' + eventi + ');" href="javascript:void(0);">' + $('#js_remove').text() + '</a>');
 
     $('#selectedevents').append(event_wrapper);
 
