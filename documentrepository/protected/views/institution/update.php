@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Institutions'=>array('index'),
+	Yii::t('institutions', 'Institutions')=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app', 'Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List Institution', 'url'=>array('index')),
-	array('label'=>'Create Institution', 'url'=>array('create')),
-	array('label'=>'View Institution', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Institution', 'url'=>array('admin')),
+	array('label'=>Yii::t('institutions', 'List Institutions'), 'url'=>array('index')),
+	array('label'=>Yii::t('institutions', 'Create Institution'), 'url'=>array('create')),
+	array('label'=>Yii::t('institutions', 'View Institution'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('institutions', 'Manage Institutions'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Institution <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('institutions', 'Update Institution') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

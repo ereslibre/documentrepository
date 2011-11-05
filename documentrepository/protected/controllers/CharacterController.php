@@ -89,14 +89,14 @@ class CharacterController extends Controller
 					$this->createCharacterPosition($position, $model->id);
 				}
 				// Everything OK. Redirect
-				Yii::app()->user->setFlash('success', 'Character saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('characters', 'Character saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$aliases = $this->identifyAliases($_POST['Character']);
 				$positions = $this->identifyPositions($_POST['Character']);
 			}
 			$model->image = $image;
-			Yii::app()->user->setFlash('error', 'Character could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('characters', 'Character could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('create',array(
@@ -196,12 +196,12 @@ class CharacterController extends Controller
 					}
 				}
 
-				Yii::app()->user->setFlash('success', 'Character saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('characters', 'Character saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 				$aliases = $this->identifyAliases($_POST['Character']);
 				$positions = $this->identifyPositions($_POST['Character']);
-				Yii::app()->user->setFlash('error', 'Character could not be saved. Please review the information you provided');
+				Yii::app()->user->setFlash('error', Yii::t('characters', 'Character could not be saved. Please review the information you provided'));
 			}
 		} else {
 			$aliases_ = CharacterAlias::model()->findAll(array('select'    => 'alias',
@@ -330,7 +330,7 @@ class CharacterController extends Controller
 				}
 				$position = Position::model()->findByPk($value);
 				$toDate = $attributes["to_position$positionId"];
-                if (empty($toDate)) {
+                if (empty($toDate) || $toDate == Yii::t('app', 'To present')) {
                     $toDate = null;
                 }
 				$positions[] = Array('position_id'   => $value,
@@ -428,7 +428,7 @@ class CharacterController extends Controller
     {
         $aliases = $this->getRelatedAliases($data->id);
         if (empty($aliases)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";
@@ -442,7 +442,7 @@ class CharacterController extends Controller
     {
         $positions = $this->getRelatedPositions($data->id);
         if (empty($positions)) {
-            echo "None<br/>";
+            echo Yii::t('app', 'None') . '<br/>';
             return;
         }
         echo "<ul>";

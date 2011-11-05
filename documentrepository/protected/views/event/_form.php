@@ -18,7 +18,7 @@
 	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app', 'Fields with <span class="required">*</span> are required.') ?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -32,7 +32,8 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
 							array('name' => 'Event[description]',
-							'value' => $model->description)); ?>
+								  'value' => $model->description,
+								  'language' => Yii::app()->getLanguage())); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -53,9 +54,9 @@
 		<?php
 			if ($model->id) {
 				$baseUrl = Yii::app()->request->baseUrl;
-				echo CHtml::label('Current image', 'currentimage');
+				echo CHtml::label(Yii::t('app', 'Current image'), 'currentimage');
 				echo CHtml::image($model->image, '', array('id' => 'currentimage'));
-				echo CHtml::label('Change image', 'image');
+				echo CHtml::label(Yii::t('app', 'Change image'), 'image');
 			}
 			echo $form->fileField($model,'image');
 		?>
@@ -64,7 +65,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

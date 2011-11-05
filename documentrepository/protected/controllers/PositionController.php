@@ -66,10 +66,10 @@ class PositionController extends Controller
 		{
 			$model->attributes=$_POST['Position'];
 			if($model->save()) {
-				Yii::app()->user->setFlash('success', 'Position saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('positions', 'Position saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			Yii::app()->user->setFlash('error', 'Position could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('positions', 'Position could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('create',array(
@@ -93,10 +93,10 @@ class PositionController extends Controller
 		{
 			$model->attributes=$_POST['Position'];
 			if($model->save()) {
-				Yii::app()->user->setFlash('success', 'Position saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('positions', 'Position saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			Yii::app()->user->setFlash('error', 'Position could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('positions', 'Position could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('update',array(

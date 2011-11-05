@@ -1,7 +1,9 @@
 <?php
-	Yii::app()->clientScript->registerCoreScript('jquery');
+	$language = Yii::app()->getLanguage();
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	$baseUrl = Yii::app()->baseUrl;
 	$cs = Yii::app()->getClientScript();
+	$cs->registerScriptFile($baseUrl . '/js/jquery.cookie-min.js');
 	$cs->registerScriptFile($baseUrl . '/js/translate-min.js');
 ?>
 
@@ -22,14 +24,21 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form-min.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js"></script>
 </head>
 
 <body>
 
+<div id="flags" class="language">
+	<a id="es_flag" class="flag" href="javascript:void(0);" onclick="translate('es');"><img class="flag_img" src="/images/spanish.png"></a>
+	<a id="en_flag" class="flag" href="javascript:void(0);" onclick="translate('en');"><img class="flag_img" src="/images/english.png"></a>
+</div>
+
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><a href="<?php echo Yii::app()->homeUrl ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+		<div id="logo"><a href="<?php echo Yii::app()->homeUrl ?>"><?php echo Yii::t('app', 'Document Repository') ?></a></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -37,15 +46,15 @@
 			'items'=>array(
 // 				array('label'=>'Home', 'url'=>array('/site/index')),
 // 				array('label'=>'Search', 'url'=>array('search')),
-				array('label'=>Yii::t('t', 'Create Document'), 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Character'), 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Institution'), 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Event'), 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Position'), 'url'=>array('position/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Create Language'), 'url'=>array('language/create'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Users'), 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>Yii::t('t', 'Logout'), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>Yii::t('app', 'Create Document'), 'url'=>array('document/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Character'), 'url'=>array('character/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Institution'), 'url'=>array('institution/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Event'), 'url'=>array('event/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Position'), 'url'=>array('position/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Create Language'), 'url'=>array('language/create'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Users'), 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>Yii::t('app', 'Logout'), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -69,12 +78,25 @@
 
 	<?php echo $content; ?>
 
-	<div class="language">
-		<a href="javascript:void(0);" onclick="translate('es');"><img src="/images/spanish.png"></a>
-		<a href="javascript:void(0);" onclick="translate('en');"><img src="/images/english.png"></a>
-	</div>
-
 </div><!-- page -->
+
+<div style="display: none">
+	<div id="language"><?php echo $language ?></div>
+</div>
 
 </body>
 </html>
+
+<?php $language = (($language == 'en') ? '' : $language) ?>
+
+<script>
+$(document).ready(function() {
+	$.datepicker.setDefaults($.datepicker.regional['<?php echo $language ?>']);
+	$.datepicker.setDefaults({
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: 'dd/mm/yy',
+		writableYear: true
+	});
+});
+</script>

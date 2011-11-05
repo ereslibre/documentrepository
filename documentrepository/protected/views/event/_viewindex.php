@@ -25,6 +25,6 @@
     </div>
 
     <div class="readmore">
-        <?php echo CHtml::link('Read more', $event_url) ?>
+        <?php echo CHtml::link(Yii::t('app', 'Read more'), $event_url) ?>
     </div>
 </div>

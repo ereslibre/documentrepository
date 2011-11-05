@@ -16,18 +16,24 @@
 	    <?php echo CHtml::encode($data->name); ?>
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	    <?php echo $data->description; ?>
+		<?php
+			if (empty($data->description)) {
+				echo Yii::t('app', 'None') . '<br/>';
+			} else {
+				echo $data->description;
+			}
+		?>
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('catalog')); ?>:</b>
 	    <?php echo CHtml::encode($data->catalog); ?>
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('language_id')); ?>:</b>
 	    <?php echo CHtml::encode($this->getLanguage($data->language_id)); ?>
 	    <br />
-	    <b>Related characters:</b>
+	    <b><?php echo Yii::t('documents', 'Related characters')?>:</b>
 	    <?php echo $this->printCharacters($data);  ?>
-	    <b>Related institutions:</b>
+	    <b><?php echo Yii::t('documents', 'Related institutions')?>:</b>
 	    <?php echo $this->printInstitutions($data); ?>
-	    <b>Related events:</b>
+	    <b><?php echo Yii::t('documents', 'Related events')?>:</b>
 	    <?php echo $this->printEvents($data); ?>
     </div>
 

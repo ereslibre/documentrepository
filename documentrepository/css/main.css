@@ -88,8 +88,33 @@ body
 
 div.language
 {
+	margin: 0 auto;
+	width: 950px;
 	text-align: right;
-	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: -10px;
+}
+
+img.flag_img
+{
+	vertical-align: top;
+}
+
+a.flag
+{
+	margin-left: 5px;
+	padding: 2px;
+	opacity: 0.2;
+}
+
+a.flag:hover
+{
+	background: #C9E0ED;
+}
+
+a.flag.current
+{
+	opacity: 1.0;
 }
 
 div.flash-error, div.flash-notice, div.flash-success

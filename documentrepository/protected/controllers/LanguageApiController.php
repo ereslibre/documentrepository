@@ -8,7 +8,9 @@ class LanguageApiController extends ApiController
 		$language = array_keys($language);
 		$language = $language[0];
 		$language = CJSON::decode($language);
-		Yii::app()->request->cookies['language'] = new CHttpCookie('language', $language);
+		$languageCookie = new CHttpCookie('language', $language);
+		$languageCookie->expire = time() + 31104000; // a year
+		Yii::app()->request->cookies['language'] = $languageCookie;
 		$this->_sendResponse(200, CJSON::encode($language));
 	}
 }

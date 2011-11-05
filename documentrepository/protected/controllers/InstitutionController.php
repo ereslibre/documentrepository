@@ -75,11 +75,11 @@ class InstitutionController extends Controller
 					// Save image on filesystem
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
-				Yii::app()->user->setFlash('success', 'Institution saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('institutions', 'Institution saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
 			$model->image = $image;
-			Yii::app()->user->setFlash('error', 'Institution could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('institutions', 'Institution could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('create',array(
@@ -115,10 +115,10 @@ class InstitutionController extends Controller
 					// Save image on filesystem
 					$image->saveAs("$documentRepository/{$model->image}");
 				}
-				Yii::app()->user->setFlash('success', 'Institution saved correctly');
+				Yii::app()->user->setFlash('success', Yii::t('institutions', 'Institution saved correctly'));
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			Yii::app()->user->setFlash('error', 'Institution could not be saved. Please review the information you provided');
+			Yii::app()->user->setFlash('error', Yii::t('institutions', 'Institution could not be saved. Please review the information you provided'));
 		}
 
 		$this->render('update',array(

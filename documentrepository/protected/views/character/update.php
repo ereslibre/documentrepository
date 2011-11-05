@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Characters'=>array('index'),
+	Yii::t('characters', 'Characters')=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app', 'Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List Character', 'url'=>array('index')),
-	array('label'=>'Create Character', 'url'=>array('create')),
-	array('label'=>'View Character', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Character', 'url'=>array('admin')),
+	array('label'=>Yii::t('characters', 'List Characters'), 'url'=>array('index')),
+	array('label'=>Yii::t('characters', 'Create Character'), 'url'=>array('create')),
+	array('label'=>Yii::t('characters', 'View Character'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('characters', 'Manage Characters'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Character <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('characters', 'Update Character') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model, 'aliases'=>$aliases, 'positions'=>$positions)); ?>

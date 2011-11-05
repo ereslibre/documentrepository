@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Positions'=>array('index'),
+	Yii::t('positions', 'Positions')=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app', 'Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List Position', 'url'=>array('index')),
-	array('label'=>'Create Position', 'url'=>array('create')),
-	array('label'=>'View Position', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Position', 'url'=>array('admin')),
+	array('label'=>Yii::t('positions', 'List Positions'), 'url'=>array('index')),
+	array('label'=>Yii::t('positions', 'Create Position'), 'url'=>array('create')),
+	array('label'=>Yii::t('positions', 'View Position'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('positions', 'Manage Positions'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Position <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('positions', 'Update Position') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

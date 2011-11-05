@@ -76,11 +76,11 @@ class Character extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'birth_date' => 'Birth Date',
-			'death_date' => 'Death Date',
-			'biography' => 'Biography',
-			'image' => 'Image',
+			'name' => Yii::t('app', 'Name'),
+			'birth_date' => Yii::t('characters', 'Birth Date'),
+			'death_date' => Yii::t('characters', 'Death Date'),
+			'biography' => Yii::t('characters', 'Biography'),
+			'image' => Yii::t('app', 'Image'),
 		);
 	}
 
@@ -111,7 +111,7 @@ class Character extends CActiveRecord
 	{
 		$birthDate = DateTime::createFromFormat('d/m/Y', $this->birth_date);
 		$this->birth_date = date('Y-m-d', $birthDate->getTimestamp());
-		if (!empty($this->death_date) && $this->death_date != 'To present') {
+		if (!empty($this->death_date) && $this->death_date != Yii::t('app', 'To present')) {
 			$deathDate = DateTime::createFromFormat('d/m/Y', $this->death_date);
 			$this->death_date = date('Y-m-d', $deathDate->getTimestamp());
 		} else {
@@ -131,7 +131,7 @@ class Character extends CActiveRecord
 		if (!empty($this->death_date)) {
 			$this->death_date = date('d/m/Y', strtotime($this->death_date));
 		} else {
-            $this->death_date = 'To present';
+            $this->death_date = Yii::t('app', 'To present');
         }
         $baseUrl = Yii::app()->baseUrl;
         if (!empty($this->image)) {

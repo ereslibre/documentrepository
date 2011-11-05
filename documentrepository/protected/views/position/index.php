@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs=array(
-	'Positions',
+	Yii::t('positions', 'Positions'),
 );
 
 if (!Yii::app()->user->isGuest) {
     $this->menu=array(
-	    array('label'=>'Create Position', 'url'=>array('create')),
-	    array('label'=>'Manage Position', 'url'=>array('admin')),
+	    array('label'=>Yii::t('positions', 'Create Position'), 'url'=>array('create')),
+	    array('label'=>Yii::t('positions', 'Manage Positions'), 'url'=>array('admin')),
     );
 }
 ?>
 
-<h1>Positions</h1>
+<h1><?php echo Yii::t('positions', 'Positions') ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

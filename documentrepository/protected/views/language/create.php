@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Languages'=>array('index'),
-	'Create',
+	Yii::t('languages', 'Languages')=>array('index'),
+	Yii::t('app', 'Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List Language', 'url'=>array('index')),
-	array('label'=>'Manage Language', 'url'=>array('admin')),
+	array('label'=>Yii::t('languages', 'List Languages'), 'url'=>array('index')),
+	array('label'=>Yii::t('languages', 'Manage Languages'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Language</h1>
+<h1><?php echo Yii::t('languages', 'Create Language') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

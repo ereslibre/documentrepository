@@ -24,7 +24,7 @@
 	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app', 'Fields with <span class="required">*</span> are required.') ?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -35,12 +35,12 @@
 	</div>
 
 	<div class="row">
-		<label>Alias</label>
+		<label><?php echo Yii::t('characters', 'Aliases'); ?></label>
 		<div id="addedAlias">
 		</div>
 		<div id="addAlias">
 			<?php echo CHtml::textField('Character[alias0]'); ?>
-			<a href="javascript:void(0);" onclick="javascript:addAlias();">Add</a>
+			<a href="javascript:void(0);" onclick="javascript:addAlias();"><?php echo Yii::t('app', 'Add') ?></a>
 		</div>
 	</div>
 
@@ -57,22 +57,23 @@
 	</div>
 
 	<div class="row">
-		<label>Positions</label>
+		<label><?php echo Yii::t('positions', 'Positions') ?></label>
 		<div id="addedPosition">
 		</div>
 		<div id="addPosition">
-			From: <?php echo $form->textField($model,'from_position0'); ?>
-			To: <?php echo $form->textField($model,'to_position0'); ?>
-			Position:
-			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Position...', 'onChange' => 'addPosition();')); ?>
+			<?php echo Yii::t('app', 'From') ?>: <?php echo $form->textField($model,'from_position0'); ?>
+			<?php echo Yii::t('app', 'To') ?>: <?php echo $form->textField($model,'to_position0'); ?>
+			<?php echo Yii::t('positions', 'Position') ?>:
+			<?php echo CHtml::dropDownList('Character[position0]', '', CHtml::listData(Position::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('characters', 'Select Position...'), 'onChange' => 'addPosition();')); ?>
 		</div>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'biography'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
-							array('name' => 'Character[biography]',
-										'value' => $model->biography)); ?>
+							array('name'     => 'Character[biography]',
+								  'value'    => $model->biography,
+								  'language' => Yii::app()->getLanguage())); ?>
 		<?php echo $form->error($model,'biography'); ?>
 	</div>
 
@@ -82,9 +83,9 @@
 			<?php
 				if ($model->id) {
 					$baseUrl = Yii::app()->request->baseUrl;
-					echo CHtml::label('Current image', 'currentimage');
+					echo CHtml::label(Yii::t('app', 'Current image'), 'currentimage');
 					echo CHtml::image($model->image, '', array('id' => 'currentimage'));
-					echo CHtml::label('Change image', 'image');
+					echo CHtml::label(Yii::t('app', 'Change image'), 'image');
 				}
 				echo $form->fileField($model,'image');
 				echo $form->error($model,'image');
@@ -94,7 +95,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

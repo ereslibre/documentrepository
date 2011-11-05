@@ -103,7 +103,7 @@ class CharacterPosition extends CActiveRecord
 	{
 		$startDate = DateTime::createFromFormat('d/m/Y', $this->start_date);
 		$this->start_date = date('Y-m-d', $startDate->getTimestamp());
-        if (!empty($this->end_date) && ($this->end_date != 'To present')) {
+        if (!empty($this->end_date) && ($this->end_date != Yii::t('app', 'To present'))) {
             $endDate = DateTime::createFromFormat('d/m/Y', $this->end_date);
     		$this->end_date = date('Y-m-d', $endDate->getTimestamp());
         } else {
@@ -118,7 +118,7 @@ class CharacterPosition extends CActiveRecord
         if ($this->end_date) {
     		$this->end_date = date('d/m/Y', strtotime($this->end_date));
         } else {
-            $this->end_date = 'To present';
+            $this->end_date = Yii::t('app', 'To present');
         }
 		return parent::afterFind();
 	}

@@ -21,7 +21,7 @@
 	'htmlOptions'=>array('enctype' => 'multipart/form-data')
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app', 'Fields with <span class="required">*</span> are required.') ?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -35,7 +35,8 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php $this->widget('application.extensions.tinymce.ETinyMce',
 							array('name' => 'Document[description]',
-							'value' => $model->description)); ?>
+								  'value' => $model->description,
+								  'language' => Yii::app()->getLanguage())); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -64,54 +65,54 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'language_id'); ?>
-			<?php echo CHtml::activeDropDownList($model, 'language_id', CHtml::listData(Language::model()->findAll(), 'id', 'language'), array('prompt' => 'Select Language...')); ?>
+			<?php echo CHtml::activeDropDownList($model, 'language_id', CHtml::listData(Language::model()->findAll(), 'id', 'language'), array('prompt' => Yii::t('documents', 'Select Language...'))); ?>
 		<?php echo $form->error($model,'language_id'); ?>
 	</div>
 
 	<div class="row">
-		<label>Characters (<a href="<?php echo "$baseUrl/index.php/character/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadCharacters();">Reload</a>)</label>
+		<label><?php echo Yii::t('characters', 'Characters') ?> (<a href="<?php echo "$baseUrl/index.php/character/create" ?>" target=_blank><?php echo Yii::t('app', 'Create') ?></a> - <a href="javascript:void(0);" onclick="reloadCharacters();"><?php echo Yii::t('app', 'Reload') ?></a>)</label>
 		<?php
 			if (Character::model()->count() == 0) {
-				echo 'No characters found';
+				echo Yii::t('characters', 'No characters found');
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Character...', 'onChange' => 'addCharacter();')); ?>
+			<?php echo CHtml::dropDownList('characters', '', CHtml::listData(Character::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('documents', 'Select Character...'), 'onChange' => 'addCharacter();')); ?>
 		</div>
 		<div id="selectedcharacters">
 		</div>
 	</div>
 
 	<div class="row">
-		<label>Institutions (<a href="<?php echo "$baseUrl/index.php/institution/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadInstitutions();">Reload</a>)</label>
+		<label><?php echo Yii::t('institutions', 'Institutions') ?> (<a href="<?php echo "$baseUrl/index.php/institution/create" ?>" target=_blank><?php echo Yii::t('app', 'Create') ?></a> - <a href="javascript:void(0);" onclick="reloadInstitutions();"><?php echo Yii::t('app', 'Reload') ?></a>)</label>
 		<?php
 			if (Institution::model()->count() == 0) {
-				echo 'No institutions found';
+				echo Yii::t('institutions', 'No institutions found');
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Institution...', 'onChange' => 'addInstitution();')); ?>
+			<?php echo CHtml::dropDownList('institutions', '', CHtml::listData(Institution::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('documents', 'Select Institution...'), 'onChange' => 'addInstitution();')); ?>
 		</div>
 		<div id="selectedinstitutions">
 		</div>
 	</div>
 
 	<div class="row">
-		<label>Events (<a href="<?php echo "$baseUrl/index.php/event/create" ?>" target=_blank>Create</a> - <a href="javascript:void(0);" onclick="reloadEvents();">Reload</a>)</label>
+		<label><?php echo Yii::t('events', 'Events') ?> (<a href="<?php echo "$baseUrl/index.php/event/create" ?>" target=_blank><?php echo Yii::t('app', 'Create') ?></a> - <a href="javascript:void(0);" onclick="reloadEvents();"><?php echo Yii::t('app', 'Reload') ?></a>)</label>
 		<?php
 			if (Event::model()->count() == 0) {
-				echo 'No events found';
+				Yii::t('events', 'No events found');
 			}
 		?>
 		<div style="display: none">
-			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => 'Select Event...', 'onChange' => 'addEvent();')); ?>
+			<?php echo CHtml::dropDownList('events', '', CHtml::listData(Event::model()->findAll(), 'id', 'name'), array('prompt' => Yii::t('documents', 'Select Event...'), 'onChange' => 'addEvent();')); ?>
 		</div>
 		<div id="selectedevents">
 		</div>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
