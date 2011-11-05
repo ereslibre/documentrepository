@@ -87,8 +87,11 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()) {
+				Yii::app()->user->setFlash('success', Yii::t('login', 'Login successfull'));
 				$this->redirect(Yii::app()->user->returnUrl);
+			}
+			Yii::app()->user->setFlash('error', Yii::t('login', 'Login error. Please, check your credentials'));
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
