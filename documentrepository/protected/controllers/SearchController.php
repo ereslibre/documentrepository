@@ -2,6 +2,8 @@
 
 class SearchController extends DocumentHelperController
 {
+	public $layout='//layouts/column2';
+
 	public function actionSearch($searchText)
 	{
 		if (empty($searchText)) {
