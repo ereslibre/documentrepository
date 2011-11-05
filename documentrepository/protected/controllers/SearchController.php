@@ -17,9 +17,14 @@ class SearchController extends DocumentHelperController
 			)
 		));
 		try {
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider
-			));
+			if ($dataProvider->getItemCount() === 0) {
+				Yii::app()->user->setFlash('error', Yii::t('app', 'No results found'));
+				$this->redirect('/');
+			} else {
+				$this->render('index',array(
+					'dataProvider'=>$dataProvider
+				));
+			}
 		} catch (Exception $e) {
 			Yii::app()->user->setFlash('error', Yii::t('app', 'Invalid characters in query'));
 			$this->redirect('/');
