@@ -330,7 +330,7 @@ class CharacterController extends Controller
 				}
 				$position = Position::model()->findByPk($value);
 				$toDate = $attributes["to_position$positionId"];
-                if (empty($toDate)) {
+                if (empty($toDate) || $toDate == Yii::t('app', 'To present')) {
                     $toDate = null;
                 }
 				$positions[] = Array('position_id'   => $value,
