@@ -22,7 +22,13 @@
 	    <?php echo CHtml::encode($data->end_date); ?>
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	    <?php echo $data->description; ?>
+		<?php
+			if (empty($data->description)) {
+				echo Yii::t('app', 'None') . '<br/>';
+			} else {
+				echo $data->description;
+			}
+		?>
     </div>
 
 </div>

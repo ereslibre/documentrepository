@@ -16,7 +16,13 @@
 	    <?php echo CHtml::encode($data->name); ?>
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	    <?php echo $data->description; ?>
+		<?php
+			if (empty($data->description)) {
+				echo Yii::t('app', 'None') . '<br/>';
+			} else {
+				echo $data->description;
+			}
+		?>
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('catalog')); ?>:</b>
 	    <?php echo CHtml::encode($data->catalog); ?>
 	    <br />
