@@ -25,7 +25,13 @@
 	    <?php echo CHtml::encode($data->death_date); ?>
 	    <br />
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('biography')); ?>:</b>
-	    <?php echo $data->biography; ?>
+		<?php
+			if (empty($data->biography)) {
+				echo Yii::t('app', 'None') . '<br/>';
+			} else {
+				echo $data->biography;
+			}
+		?>
         <b><?php echo Yii::t('positions', 'Positions') ?>:</b>
         <?php $this->printPositions($data); ?>
     </div>
