@@ -425,7 +425,7 @@ class DocumentController extends Controller
     {
         $language = Language::model()->findByPk($language_id);
         if (empty($language)) {
-            return echo Yii::t('app', 'Unknown');
+            return Yii::t('app', 'Unknown');
         }
         return $language->language;
     }
