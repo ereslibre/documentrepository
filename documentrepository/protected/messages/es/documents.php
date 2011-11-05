@@ -16,6 +16,6 @@ return array(
 	'Related events' => 'Eventos relacionados',
 	'Document' => 'Documento',
 	'Catalog' => 'Catálogo',
-	'Document saved correctly' => 'Documento salvado correctamente',
-	'Document could not be saved. Please review the information you provided' => 'No se pudo salvar el documento. Por favor, compruebe los datos que ha introducido'
+	'Document saved correctly' => 'Documento guardado correctamente',
+	'Document could not be saved. Please review the information you provided' => 'No se pudo guardar el documento. Por favor, compruebe los datos que ha introducido'
 );

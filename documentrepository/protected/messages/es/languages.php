@@ -10,6 +10,6 @@ return array(
 	'No languages found' => 'No se han encontrado idiomas',
 	'Language' => 'Idioma',
 	'Languages' => 'Idiomas',
-	'Language saved correctly' => 'Idioma salvado correctamente',
-	'Language could not be saved. Please review the information you provided' => 'No se pudo salvar el idioma. Por favor, compruebe los datos que ha introducido'
+	'Language saved correctly' => 'Idioma guardado correctamente',
+	'Language could not be saved. Please review the information you provided' => 'No se pudo guardar el idioma. Por favor, compruebe los datos que ha introducido'
 );

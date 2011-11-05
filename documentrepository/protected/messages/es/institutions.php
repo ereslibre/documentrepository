@@ -11,6 +11,6 @@ return array(
 	'Institution' => 'Institución',
 	'Institutions' => 'Instituciones',
 	'Select Institution...' => 'Seleccione Institución...',
-	'Institution saved correctly' => 'Institución salvada correctamente',
-	'Institution could not be saved. Please review the information you provided' => 'No se pudo salvar la institución. Por favor, compruebe los datos que ha introducido'
+	'Institution saved correctly' => 'Institución guardada correctamente',
+	'Institution could not be saved. Please review the information you provided' => 'No se pudo guardar la institución. Por favor, compruebe los datos que ha introducido'
 );

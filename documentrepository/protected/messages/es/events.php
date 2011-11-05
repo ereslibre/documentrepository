@@ -13,6 +13,6 @@ return array(
 	'Select Event...' => 'Seleccione Evento...',
 	'Start Date' => 'Fecha de Comienzo',
 	'End Date' => 'Fecha de Fin',
-	'Event saved correctly' => 'Evento salvado correctamente',
-	'Event could not be saved. Please review the information you provided' => 'No se pudo salvar el evento. Por favor, compruebe los datos que ha introducido'
+	'Event saved correctly' => 'Evento guardado correctamente',
+	'Event could not be saved. Please review the information you provided' => 'No se pudo guardar el evento. Por favor, compruebe los datos que ha introducido'
 );

@@ -21,7 +21,7 @@ return array(
 	'Current image' => 'Imagen actual',
 	'Change image' => 'Cambiar imagen',
 	'Create' => 'Crear',
-	'Save' => 'Salvar',
+	'Save' => 'Guardar',
 	'Search' => 'Buscar',
 	'Remove' => 'Eliminar',
 	'Update' => 'Actualizar',
