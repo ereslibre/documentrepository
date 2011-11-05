@@ -17,5 +17,7 @@ return array(
 	'Document' => 'Documento',
 	'Catalog' => 'Catálogo',
 	'Document saved correctly' => 'Documento guardado correctamente',
+	'Current document' => 'Documento actual',
+	'Change document' => 'Cambiar documento',
 	'Document could not be saved. Please review the information you provided' => 'No se pudo guardar el documento. Por favor, compruebe los datos que ha introducido'
 );

@@ -46,9 +46,9 @@
 			<?php
 				if ($model->id) {
 					$baseUrl = Yii::app()->request->baseUrl;
-					echo CHtml::label('Current document', 'currentdocument');
+					echo CHtml::label(Yii::t('documents', 'Current document'), 'currentdocument');
 					echo CHtml::image($model->document, '', array('id' => 'currentdocument', 'class' => 'thumb'));
-					echo CHtml::label('Change document', 'document');
+					echo CHtml::label(Yii::t('documents', 'Change document'), 'document');
 				}
 				echo $form->fileField($model,'document');
 			?>
