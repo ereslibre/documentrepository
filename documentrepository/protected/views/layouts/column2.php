@@ -1,10 +1,15 @@
-<?php $this->beginContent('//layouts/main'); ?>
+<?php
+	$this->beginContent('//layouts/main');
+	$hasMenu = !empty($this->menu);
+	$contentClass = $hasMenu ? "span-19" : "span-24 last";
+?>
 <div class="container">
-	<div class="span-19">
+	<div class="<?php echo $contentClass ?>">
 		<div id="content">
 			<?php echo $content; ?>
 		</div><!-- content -->
 	</div>
+<?php if ($hasMenu) { ?>
 	<div class="span-5 last">
 		<div id="sidebar">
 		<?php
@@ -19,5 +24,6 @@
 		?>
 		</div><!-- sidebar -->
 	</div>
+<?php } ?>
 </div>
 <?php $this->endContent(); ?>
