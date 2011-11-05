@@ -19,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.controllers.ApiController',
+		'application.controllers.DocumentHelperController',
 		'application.components.*'
 	),
 
