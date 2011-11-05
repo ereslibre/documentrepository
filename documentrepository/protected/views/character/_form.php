@@ -14,6 +14,7 @@
 		$cs->registerScriptFile($baseUrl . '/js/character_create-min.js');
 	}
 	require_once 'translations.php';
+	require_once 'protected/views/layouts/translations_shared.php';
 ?>
 
 <div class="form">

@@ -6,14 +6,14 @@ function fileAPIAvailable()
 function previewImage(evt)
 {
 	if (!fileAPIAvailable()) {
-		$('#preview').html('Your browser does not support image previews');
+		$('#preview').html($('#js_nopreview').text());
 		return;
 	}
 
 	var files = evt.target.files;
 	for (var i = 0, f; f = files[i]; ++i) {
 		if (!f.type.match('image.*')) {
-			$('#preview').html('Selected file is not an image');
+			$('#preview').html($('#js_notimage').text());
 			return;
 		}
 		var reader = new FileReader();

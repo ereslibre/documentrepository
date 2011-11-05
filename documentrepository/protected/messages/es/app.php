@@ -37,5 +37,7 @@ return array(
 	'Search is empty' => 'La búsqueda es vacía',
 	'Invalid characters in query' => 'Caracteres inválidos en la sentencia',
 	'No results found' => 'No se encontraron resultados',
+	'Your browser does not support image previews' => 'Su navegador no soporta previsualización de imágenes',
+	'Selected file is not an image' => 'El archivo seleccionado no es una imagen',
 	'Fields with <span class="required">*</span> are required.' => 'Los campos marcados con <span class="required">*</span> son requeridos'
 );

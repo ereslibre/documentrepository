@@ -8,6 +8,7 @@
 	$cs->registerCssFile($baseUrl . '/css/institution-min.css');
 	$cssCoreUrl = $cs->getCoreScriptUrl();
 	$cs->registerCssFile($cssCoreUrl . '/jui/css/base/jquery-ui.css');
+	require_once 'protected/views/layouts/translations_shared.php';
 ?>
 
 <div class="form">
