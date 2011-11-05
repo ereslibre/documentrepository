@@ -57,7 +57,7 @@ class ETinyMce extends CInputWidget
     *
     * @var string
     */
-   private $language = 'es';
+   private $language = 'en';
 
    /**
     * You can use one of these predefined setups for the editor:
@@ -111,8 +111,8 @@ class ETinyMce extends CInputWidget
     *
     * @var array
     */
-   private $options = array('theme_advanced_buttons1' => 'separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor,bullist,numlist,separator,outdent,indent,separator,undo,redo,separator',
-                            'theme_advanced_buttons2' => 'hr,removeformat,visualaid,separator,sub,sup,separator,charmap',
+   private $options = array('theme_advanced_buttons1' => 'bold,italic,underline,strikethrough',
+                            'theme_advanced_buttons2' => '',
                             'theme_advanced_buttons3' => '');
 
    /**
