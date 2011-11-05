@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Events',
+	Yii::t('events', 'Events'),
 );
 
 if (!Yii::app()->user->isGuest) {
