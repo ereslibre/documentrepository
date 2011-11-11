@@ -3,20 +3,26 @@
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile($baseUrl . '/css/file_upload-min.css');
     $cs->registerCssFile($baseUrl . '/css/document-min.css');
-
-    $document_url = $this->createUrl("document/viewBySearch", array('id' => $data->id));
 ?>
 
 <div class="view">
 
     <div class="document">
-        <?php echo CHtml::image($data->document, $data->name, array('class' => 'thumb')); ?>
+        <?php echo CHtml::link(CHtml::image($data->document, $data->name, array('class' => 'thumb')), $data->document, array('target' => '_blank')); ?>
     </div>
 
     <div class="description">
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	    <?php echo CHtml::encode($data->name); ?>
 	    <br />
+	    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+		<?php
+			if (empty($data->description)) {
+				echo Yii::t('app', 'None') . '<br/>';
+			} else {
+				echo $data->description;
+			}
+		?>
 	    <b><?php echo CHtml::encode($data->getAttributeLabel('catalog')); ?>:</b>
 	    <?php echo CHtml::encode($data->catalog); ?>
 	    <br />
@@ -31,7 +37,6 @@
 	    <?php echo $this->printEvents($data, 'viewBySearch'); ?>
     </div>
 
-    <div class="readmore">
-        <?php echo CHtml::link(Yii::t('app', 'Read more'), $document_url) ?>
-    </div>
 </div>
+
+<a href="javascript:void(0);" onclick="javascript:history.go(-1);"><?php echo Yii::t('app', 'Back to search results') ?></a>

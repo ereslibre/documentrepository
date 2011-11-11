@@ -34,6 +34,7 @@ return array(
 	'To present' => 'Presente',
 	'None' => 'Ninguno/a',
 	'Unknown' => 'Desconocido/a',
+	'Back to search results' => 'Volver a los resultados de la búsqueda',
 	'Search is empty' => 'La búsqueda es vacía',
 	'Invalid characters in query' => 'Caracteres inválidos en la sentencia',
 	'No results found' => 'No se encontraron resultados',

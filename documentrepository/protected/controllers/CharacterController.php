@@ -27,7 +27,7 @@ class CharacterController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'viewBySearch'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -48,6 +48,13 @@ class CharacterController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionViewBySearch($id)
+	{
+		$this->render('_viewbysearch',array(
+			'data'=>$this->loadModel($id),
 		));
 	}
 
