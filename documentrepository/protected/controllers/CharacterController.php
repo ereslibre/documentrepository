@@ -27,7 +27,7 @@ class CharacterController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','view', 'viewBySearch'),
+				'actions'=>array('index','view', 'viewBySearch', 'viewFromDocument'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -55,6 +55,14 @@ class CharacterController extends Controller
 	{
 		$this->render('_viewbysearch',array(
 			'data'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionViewFromDocument($id, $documentId)
+	{
+		$this->render('_viewfromdocument',array(
+			'data'=>$this->loadModel($id),
+			'document'=>$this->loadDocumentModel($documentId)
 		));
 	}
 
@@ -293,6 +301,14 @@ class CharacterController extends Controller
 	public function loadModel($id)
 	{
 		$model=Character::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	public function loadDocumentModel($id)
+	{
+		$model=Document::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

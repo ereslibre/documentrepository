@@ -30,11 +30,11 @@
 	    <?php echo CHtml::encode($this->getLanguage($data->language_id)); ?>
 	    <br />
 	    <b><?php echo Yii::t('documents', 'Related characters')?>:</b>
-	    <?php echo $this->printCharacters($data, 'viewBySearch');  ?>
+	    <?php echo $this->printCharactersWithBacklink($data);  ?>
 	    <b><?php echo Yii::t('documents', 'Related institutions')?>:</b>
-	    <?php echo $this->printInstitutions($data, 'viewBySearch'); ?>
+	    <?php echo $this->printInstitutionsWithBacklink($data); ?>
 	    <b><?php echo Yii::t('documents', 'Related events')?>:</b>
-	    <?php echo $this->printEvents($data, 'viewBySearch'); ?>
+	    <?php echo $this->printEventsWithBacklink($data); ?>
     </div>
 
 </div>

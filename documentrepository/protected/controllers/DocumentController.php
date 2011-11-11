@@ -503,6 +503,23 @@ class DocumentController extends DocumentHelperController
         echo "</ul>";
     }
 
+    public function printCharactersWithBacklink($data)
+    {
+        $characters = $this->getRelatedCharacters($data->id);
+        if (empty($characters)) {
+            echo Yii::t('app', 'None') . '<br/>';
+            return;
+        }
+        echo "<ul>";
+        foreach ($characters as &$character) {
+            $character_url = $this->createUrl("character/viewFromDocument",
+            									array('id'         => $character['id'],
+            										  'documentId' => $data->id));
+            echo "<li>" . CHtml::link($character['name'], $character_url) . "</li>";
+        }
+        echo "</ul>";
+    }
+
     public function printInstitutions($data, $action = 'view')
     {
         $institutions = $this->getRelatedInstitutions($data->id);
@@ -518,6 +535,23 @@ class DocumentController extends DocumentHelperController
         echo "</ul>";
     }
 
+    public function printInstitutionsWithBacklink($data)
+    {
+        $institutions = $this->getRelatedInstitutions($data->id);
+        if (empty($institutions)) {
+            echo Yii::t('app', 'None') . '<br/>';
+            return;
+        }
+        echo "<ul>";
+        foreach ($institutions as &$institution) {
+            $institution_url = $this->createUrl("institution/viewFromDocument",
+            										array('id'         => $institution['id'],
+            											  'documentId' => $data->id));
+            echo "<li>" . CHtml::link($institution['name'], $institution_url) . "</li>";
+        }
+        echo "</ul>";
+    }
+
     public function printEvents($data, $action = 'view')
     {
         $events = $this->getRelatedEvents($data->id);
@@ -528,6 +562,23 @@ class DocumentController extends DocumentHelperController
         echo "<ul>";
         foreach ($events as &$event) {
             $event_url = $this->createUrl("event/$action", array('id' => $event['id']));
+            echo "<li>" . CHtml::link($event['name'], $event_url) . "</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function printEventsWithBacklink($data)
+    {
+        $events = $this->getRelatedEvents($data->id);
+        if (empty($events)) {
+            echo Yii::t('app', 'None') . '<br/>';
+            return;
+        }
+        echo "<ul>";
+        foreach ($events as &$event) {
+            $event_url = $this->createUrl("event/viewFromDocument",
+            								array('id'         => $event['id'],
+            									  'documentId' => $data->id));
             echo "<li>" . CHtml::link($event['name'], $event_url) . "</li>";
         }
         echo "</ul>";
